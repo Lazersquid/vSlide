@@ -255,6 +255,26 @@ namespace myFirstVJoyFeeder
                     return Keys.Y;
                 case "Z":
                     return Keys.Z;
+                case "1":
+                    return Keys.D1;
+                case "2":
+                    return Keys.D2;
+                case "3":
+                    return Keys.D3;
+                case "4":
+                    return Keys.D4;
+                case "5":
+                    return Keys.D5;
+                case "6":
+                    return Keys.D6;
+                case "7":
+                    return Keys.D7;
+                case "8":
+                    return Keys.D8;
+                case "9":
+                    return Keys.D9;
+                case "0":
+                    return Keys.D0;
                 case "Control":
                     return Keys.ControlKey;
                 case "Control Left":
@@ -273,8 +293,40 @@ namespace myFirstVJoyFeeder
                     return Keys.LMenu;
                 case "Alt Right":
                     return Keys.RMenu;
+                case "Up":
+                    return Keys.Up;
+                case "Down":
+                    return Keys.Down;
+                case "Left":
+                    return Keys.Left;
+                case "Right":
+                    return Keys.Right;
+                case "Numlock":
+                    return Keys.NumLock;
+                case "Numpad 1":
+                    return Keys.NumPad1;
+                case "Numpad 2":
+                    return Keys.NumPad2;
+                case "Numpad 3":
+                    return Keys.NumPad3;
+                case "Numpad 4":
+                    return Keys.NumPad4;
+                case "Numpad 5":
+                    return Keys.NumPad5;
+                case "Numpad 6":
+                    return Keys.NumPad6;
+                case "Numpad 7":
+                    return Keys.NumPad7;
+                case "Numpad 8":
+                    return Keys.NumPad8;
+                case "Numpad 9":
+                    return Keys.NumPad9;
+                case "Numpad 0":
+                    return Keys.NumPad0;
                 case "Capslock":
                     return Keys.CapsLock;
+                case "Tab":
+                    return Keys.Tab;
                 default:
                     return Keys.None;
             }
@@ -336,6 +388,26 @@ namespace myFirstVJoyFeeder
                     return "Y";
                 case Keys.Z:
                     return "Z";
+                case Keys.D1:
+                    return "1";
+                case Keys.D2:
+                    return "2";
+                case Keys.D3:
+                    return "3";
+                case Keys.D4:
+                    return "4";
+                case Keys.D5:
+                    return "5";
+                case Keys.D6:
+                    return "6";
+                case Keys.D7:
+                    return "7";
+                case Keys.D8:
+                    return "8";
+                case Keys.D9:
+                    return "9";
+                case Keys.D0:
+                    return "0";
                 case Keys.ControlKey:
                     return "Control";
                 case Keys.LControlKey:
@@ -354,8 +426,42 @@ namespace myFirstVJoyFeeder
                     return "Alt Left";
                 case Keys.RMenu:
                     return "Alt Right";
+                case Keys.Up:
+                    return "Up";
+                case Keys.Down:
+                    return "Down";
+                case Keys.Left:
+                    return "Left";
+                case Keys.Right:
+                    return "Right";
+                case Keys.NumLock:
+                    return "Numlock";
+                case Keys.NumPad1:
+                    return "Numpad 1";
+                case Keys.NumPad2:
+                    return "Numpad 2";
+                case Keys.NumPad3:
+                    return "Numpad 3";
+                case Keys.NumPad4:
+                    return "Numpad 4";
+                case Keys.NumPad5:
+                    return "Numpad 5";
+                case Keys.NumPad6:
+                    return "Numpad 6";
+                case Keys.NumPad7:
+                    return "Numpad 7";
+                case Keys.NumPad8:
+                    return "Numpad 8";
+                case Keys.NumPad9:
+                    return "Numpad 9";
+                case Keys.NumPad0:
+                    return "Numpad 0";
                 case Keys.CapsLock:
                     return "Capslock";
+                case Keys.Tab:
+                    return "Tab";
+                case Keys.Crsel:
+                    return "Crsel";
                 default:
                     return "None";
             }
