@@ -324,7 +324,6 @@ namespace myFirstVJoyFeeder
 
         // Joystick variables
         public vJoy vJoyDriver;
-        private vJoy.JoystickState iReport;
         private uint currJoystickId = 0;
         public uint CurrJoystickId
         {
@@ -420,13 +419,23 @@ namespace myFirstVJoyFeeder
         MappingThemeForm mappingThemeForm;
         SettingsForm settingsForm;
         AboutForm aboutForm;
+        InstructionsForm instructionsForm;
 
         // DLL library used to manage hotkeys
         [DllImport("User32.dll")]
         private static extern short GetAsyncKeyState(Keys vKey);
 
         // Other
-        private bool showLogMessages = true;
+        private bool inDebugMode = true;
+        private bool InDebugMode
+        {
+            get { return InDebugMode; }
+            set
+            {
+                inDebugMode = value;
+                debugInfoGroupBox.Visible = value;
+            }
+        }
         #endregion
 
         public delegate void JoystickChangeHandler(uint joystickId, int maxSliderValue);
@@ -438,13 +447,12 @@ namespace myFirstVJoyFeeder
 
             // Create a vJoy instance
             vJoyDriver = new vJoy();
-            iReport = new vJoy.JoystickState();
             VjdStat status;
             CurrState = FeederState.SettingUp;
 
             //Sets 'MaxSliderValue' to its default value, so that mapping levels can be adjusted even if no jostick device can be acquired
             MaxSliderValue = 32767;
-
+            
             // Checks if vJoy is enabled
             if (vJoyDriver.vJoyEnabled())
             {
@@ -557,6 +565,10 @@ namespace myFirstVJoyFeeder
             Log("Creating about-form...");
             aboutForm = new AboutForm();
 
+            Log("");
+            Log("Creating instuctions-form...");
+            instructionsForm = new InstructionsForm();
+            
             // Enables the other forms menu strip
             otherFormsMenuStrip.Enabled = true;
 
@@ -566,21 +578,25 @@ namespace myFirstVJoyFeeder
             Log("The Previous-Level-Key is bound to '" + prevLevelKey.ToString() + "'");
             Log("The Increase-Slider-Key is bound to '" + incrSliderKey.ToString() + "'");
             Log("The Decrease-Slider-Key is bound to '" + decrSliderKey.ToString() + "'");
-            LogInstructions();
-
-            showLogMessages = showLogMsgCheckBox.Checked;
+            Log("");
 
             // Checks if a device was aquired
             if (vJoyDriver.GetVJDStatus(CurrJoystickId) == VjdStat.VJD_STAT_OWN)
             {
                 CurrState = FeederState.ReadyToFeed;
+                Log("Everything is setup you can now start by pressing the 'Start feeding' button.");
+                Log("Click the 'Instructions' button at the top if you need help!");
             }
             else
             {
                 CurrState = FeederState.NoVJoyDevice;
+                Log("The setup finished but no vJoy device is aquired!");
+                Log("Open the 'Configure vJoy devices' app to make sure that there is a free device with a slider axis. Restart the feeder afterwards.");
             }
+
+            InDebugMode = debugModeCheckBox.Checked;
         }
-        
+
         #region Methods
 
         /// <summary>
@@ -679,6 +695,7 @@ namespace myFirstVJoyFeeder
             {
                 NewJoystickAcquired(CurrJoystickId, MaxSliderValue);
             }
+            
             return true;
         }
 
@@ -773,6 +790,7 @@ namespace myFirstVJoyFeeder
 
             toggleFeedingButton.Text = "Start feeding";
             sliderTrackBar.Enabled = false;
+            pingPongCheckBox.Checked = false;
             pingPongCheckBox.Enabled = false;
             inputCheckTimer.Stop();
             inputCheckTimer.Enabled = false;
@@ -799,7 +817,7 @@ namespace myFirstVJoyFeeder
         {
             Console.WriteLine(message);
             
-            if(showLogMessages)
+            if(inDebugMode)
             {
                 logTextBox.AppendText(message + "\n");
             }
@@ -888,45 +906,42 @@ namespace myFirstVJoyFeeder
         
         private void pingPongCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (CurrState == FeederState.Feeding)
+            if(pingPongCheckBox.Checked && CurrState == FeederState.Feeding)
             {
-                if(pingPongCheckBox.Checked)
-                {
-                    Log("Starting ping pong timer...");
-                    currPingPongState = PingPongState.Decreasing;
-                    pingPongTimer.Start();
-                }
-                else
-                {
-                    Log("Stopping ping pong timer...");
-                    currPingPongState = PingPongState.Disabled;
-                    pingPongTimer.Stop();
-                }
+                Log("Starting ping pong timer...");
+                currPingPongState = PingPongState.Decreasing;
+                pingPongTimer.Start();
+            }
+            else if (currPingPongState != PingPongState.Disabled)
+            {
+                Log("Stopping ping pong timer...");
+                currPingPongState = PingPongState.Disabled;
+                pingPongTimer.Stop();
             }
         }
 
         private void pingPongTimer_Tick(object sender, EventArgs e)
         {
-            if (CurrState == FeederState.Feeding)
-            {
-                // Checks if the slider reached its max or 0 value, and changes the currPingPongState
-                if (CurrSliderValue >= maxSliderValue)
-                    currPingPongState = PingPongState.Decreasing;
-                else if (CurrSliderValue <= 0)
-                    currPingPongState = PingPongState.Increasing;
+            // Returns if the programm is currently not feeding
+            if (CurrState != FeederState.Feeding) return;
+            
+            // Checks if the slider reached its max or 0 value, and changes the currPingPongState
+            if (CurrSliderValue >= maxSliderValue)
+                currPingPongState = PingPongState.Decreasing;
+            else if (CurrSliderValue <= 0)
+                currPingPongState = PingPongState.Increasing;
 
-                // Increases the slider
-                if (currPingPongState == PingPongState.Increasing)
-                {
-                    CurrSliderValue += pingPongStepValue;
-                    UpdateSliderInVJoyDriver();
-                }
-                // Decreases the slider
-                else if (currPingPongState == PingPongState.Decreasing)
-                {
-                    CurrSliderValue -= pingPongStepValue;
-                    UpdateSliderInVJoyDriver();
-                }
+            // Increases the slider
+            if (currPingPongState == PingPongState.Increasing)
+            {
+                CurrSliderValue += pingPongStepValue;
+                UpdateSliderInVJoyDriver();
+            }
+            // Decreases the slider
+            else if (currPingPongState == PingPongState.Decreasing)
+            {
+                CurrSliderValue -= pingPongStepValue;
+                UpdateSliderInVJoyDriver();
             }
         }
 
@@ -1164,11 +1179,11 @@ namespace myFirstVJoyFeeder
 
         private void sliderTrackBar_Scroll(object sender, EventArgs e)
         {
-            if (CurrState == FeederState.Feeding)
-            {
-                CurrSliderValue = (int)(MaxSliderValue * (sliderTrackBar.Value / 100f));
-                UpdateSliderInVJoyDriver();
-            }
+            // Returns if the programm is currently not feeding
+            if (CurrState != FeederState.Feeding) return;
+            
+            CurrSliderValue = (int)(MaxSliderValue * (sliderTrackBar.Value / 100f));
+            UpdateSliderInVJoyDriver();
         }
 
         private void mappingThemeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1207,14 +1222,26 @@ namespace myFirstVJoyFeeder
             }
         }
 
+        private void instructionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (instructionsForm.Visible)
+            {
+                instructionsForm.BringToFront();
+            }
+            else
+            {
+                instructionsForm.Show();
+            }
+        }
+
         private void saveSetupToolStripMenuItem_Click(object sender, EventArgs e)
         {
             throw new NotImplementedException();
         }
 
-        private void showLogMsgCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void debugModeCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            showLogMessages = showLogMsgCheckBox.Checked;
+            InDebugMode = debugModeCheckBox.Checked;
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)

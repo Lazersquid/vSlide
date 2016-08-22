@@ -52,6 +52,7 @@
             this.saveSetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mappingThemeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.instructionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sliderAxisInfoLabel3 = new System.Windows.Forms.Label();
             this.sliderAxisInfoLabel2 = new System.Windows.Forms.Label();
@@ -78,16 +79,18 @@
             this.sliderDeltaSliderLabel = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.canNotFeedInfoLabel = new System.Windows.Forms.Label();
-            this.showLogMsgCheckBox = new System.Windows.Forms.CheckBox();
+            this.debugModeCheckBox = new System.Windows.Forms.CheckBox();
+            this.debugInfoGroupBox = new System.Windows.Forms.GroupBox();
             this.otherFormsMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sliderTrackBar)).BeginInit();
+            this.debugInfoGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // toggleFeedingButton
             // 
             this.toggleFeedingButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.toggleFeedingButton.Enabled = false;
-            this.toggleFeedingButton.Location = new System.Drawing.Point(619, 425);
+            this.toggleFeedingButton.Location = new System.Drawing.Point(632, 425);
             this.toggleFeedingButton.Name = "toggleFeedingButton";
             this.toggleFeedingButton.Size = new System.Drawing.Size(98, 30);
             this.toggleFeedingButton.TabIndex = 0;
@@ -119,7 +122,7 @@
             // 
             this.currSliderValueRelLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.currSliderValueRelLabel.AutoSize = true;
-            this.currSliderValueRelLabel.Location = new System.Drawing.Point(715, 134);
+            this.currSliderValueRelLabel.Location = new System.Drawing.Point(739, 134);
             this.currSliderValueRelLabel.Name = "currSliderValueRelLabel";
             this.currSliderValueRelLabel.Size = new System.Drawing.Size(21, 13);
             this.currSliderValueRelLabel.TabIndex = 9;
@@ -129,7 +132,7 @@
             // 
             this.currSliderValueInfoLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.currSliderValueInfoLabel.AutoSize = true;
-            this.currSliderValueInfoLabel.Location = new System.Drawing.Point(576, 134);
+            this.currSliderValueInfoLabel.Location = new System.Drawing.Point(589, 134);
             this.currSliderValueInfoLabel.Name = "currSliderValueInfoLabel";
             this.currSliderValueInfoLabel.Size = new System.Drawing.Size(88, 13);
             this.currSliderValueInfoLabel.TabIndex = 10;
@@ -139,7 +142,7 @@
             // 
             this.currSliderValueLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.currSliderValueLabel.AutoSize = true;
-            this.currSliderValueLabel.Location = new System.Drawing.Point(678, 134);
+            this.currSliderValueLabel.Location = new System.Drawing.Point(691, 134);
             this.currSliderValueLabel.Name = "currSliderValueLabel";
             this.currSliderValueLabel.Size = new System.Drawing.Size(13, 13);
             this.currSliderValueLabel.TabIndex = 11;
@@ -149,7 +152,7 @@
             // 
             this.maxSliderValueInfoLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.maxSliderValueInfoLabel.AutoSize = true;
-            this.maxSliderValueInfoLabel.Location = new System.Drawing.Point(576, 119);
+            this.maxSliderValueInfoLabel.Location = new System.Drawing.Point(589, 119);
             this.maxSliderValueInfoLabel.Name = "maxSliderValueInfoLabel";
             this.maxSliderValueInfoLabel.Size = new System.Drawing.Size(89, 13);
             this.maxSliderValueInfoLabel.TabIndex = 12;
@@ -159,7 +162,7 @@
             // 
             this.maxSliderValueLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.maxSliderValueLabel.AutoSize = true;
-            this.maxSliderValueLabel.Location = new System.Drawing.Point(678, 119);
+            this.maxSliderValueLabel.Location = new System.Drawing.Point(691, 119);
             this.maxSliderValueLabel.Name = "maxSliderValueLabel";
             this.maxSliderValueLabel.Size = new System.Drawing.Size(13, 13);
             this.maxSliderValueLabel.TabIndex = 13;
@@ -169,7 +172,7 @@
             // 
             this.currFeederStateInfoLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.currFeederStateInfoLabel.AutoSize = true;
-            this.currFeederStateInfoLabel.Location = new System.Drawing.Point(576, 104);
+            this.currFeederStateInfoLabel.Location = new System.Drawing.Point(589, 104);
             this.currFeederStateInfoLabel.Name = "currFeederStateInfoLabel";
             this.currFeederStateInfoLabel.Size = new System.Drawing.Size(72, 13);
             this.currFeederStateInfoLabel.TabIndex = 14;
@@ -179,7 +182,7 @@
             // 
             this.vJoyDllVersionInfoLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.vJoyDllVersionInfoLabel.AutoSize = true;
-            this.vJoyDllVersionInfoLabel.Location = new System.Drawing.Point(576, 64);
+            this.vJoyDllVersionInfoLabel.Location = new System.Drawing.Point(589, 64);
             this.vJoyDllVersionInfoLabel.Name = "vJoyDllVersionInfoLabel";
             this.vJoyDllVersionInfoLabel.Size = new System.Drawing.Size(83, 13);
             this.vJoyDllVersionInfoLabel.TabIndex = 15;
@@ -189,7 +192,7 @@
             // 
             this.vJoyDriverVersionInfoLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.vJoyDriverVersionInfoLabel.AutoSize = true;
-            this.vJoyDriverVersionInfoLabel.Location = new System.Drawing.Point(576, 49);
+            this.vJoyDriverVersionInfoLabel.Location = new System.Drawing.Point(589, 49);
             this.vJoyDriverVersionInfoLabel.Name = "vJoyDriverVersionInfoLabel";
             this.vJoyDriverVersionInfoLabel.Size = new System.Drawing.Size(101, 13);
             this.vJoyDriverVersionInfoLabel.TabIndex = 16;
@@ -199,7 +202,7 @@
             // 
             this.vJoyDriverFoundInfoLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.vJoyDriverFoundInfoLabel.AutoSize = true;
-            this.vJoyDriverFoundInfoLabel.Location = new System.Drawing.Point(576, 34);
+            this.vJoyDriverFoundInfoLabel.Location = new System.Drawing.Point(589, 34);
             this.vJoyDriverFoundInfoLabel.Name = "vJoyDriverFoundInfoLabel";
             this.vJoyDriverFoundInfoLabel.Size = new System.Drawing.Size(93, 13);
             this.vJoyDriverFoundInfoLabel.TabIndex = 17;
@@ -209,7 +212,7 @@
             // 
             this.vJoyDriverFoundLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.vJoyDriverFoundLabel.AutoSize = true;
-            this.vJoyDriverFoundLabel.Location = new System.Drawing.Point(678, 33);
+            this.vJoyDriverFoundLabel.Location = new System.Drawing.Point(691, 33);
             this.vJoyDriverFoundLabel.Name = "vJoyDriverFoundLabel";
             this.vJoyDriverFoundLabel.Size = new System.Drawing.Size(10, 13);
             this.vJoyDriverFoundLabel.TabIndex = 18;
@@ -219,7 +222,7 @@
             // 
             this.vJoyDriverVersionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.vJoyDriverVersionLabel.AutoSize = true;
-            this.vJoyDriverVersionLabel.Location = new System.Drawing.Point(678, 49);
+            this.vJoyDriverVersionLabel.Location = new System.Drawing.Point(691, 49);
             this.vJoyDriverVersionLabel.Name = "vJoyDriverVersionLabel";
             this.vJoyDriverVersionLabel.Size = new System.Drawing.Size(10, 13);
             this.vJoyDriverVersionLabel.TabIndex = 19;
@@ -229,7 +232,7 @@
             // 
             this.vJoyDllVersionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.vJoyDllVersionLabel.AutoSize = true;
-            this.vJoyDllVersionLabel.Location = new System.Drawing.Point(678, 64);
+            this.vJoyDllVersionLabel.Location = new System.Drawing.Point(691, 64);
             this.vJoyDllVersionLabel.Name = "vJoyDllVersionLabel";
             this.vJoyDllVersionLabel.Size = new System.Drawing.Size(10, 13);
             this.vJoyDllVersionLabel.TabIndex = 20;
@@ -239,7 +242,7 @@
             // 
             this.currFeederStateLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.currFeederStateLabel.AutoSize = true;
-            this.currFeederStateLabel.Location = new System.Drawing.Point(678, 104);
+            this.currFeederStateLabel.Location = new System.Drawing.Point(691, 104);
             this.currFeederStateLabel.Name = "currFeederStateLabel";
             this.currFeederStateLabel.Size = new System.Drawing.Size(10, 13);
             this.currFeederStateLabel.TabIndex = 21;
@@ -249,7 +252,7 @@
             // 
             this.usedVJoyDeviceLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.usedVJoyDeviceLabel.AutoSize = true;
-            this.usedVJoyDeviceLabel.Location = new System.Drawing.Point(678, 79);
+            this.usedVJoyDeviceLabel.Location = new System.Drawing.Point(691, 79);
             this.usedVJoyDeviceLabel.Name = "usedVJoyDeviceLabel";
             this.usedVJoyDeviceLabel.Size = new System.Drawing.Size(10, 13);
             this.usedVJoyDeviceLabel.TabIndex = 23;
@@ -259,7 +262,7 @@
             // 
             this.usedVJoyDeviceInfoLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.usedVJoyDeviceInfoLabel.AutoSize = true;
-            this.usedVJoyDeviceInfoLabel.Location = new System.Drawing.Point(576, 79);
+            this.usedVJoyDeviceInfoLabel.Location = new System.Drawing.Point(589, 79);
             this.usedVJoyDeviceInfoLabel.Name = "usedVJoyDeviceInfoLabel";
             this.usedVJoyDeviceInfoLabel.Size = new System.Drawing.Size(81, 13);
             this.usedVJoyDeviceInfoLabel.TabIndex = 22;
@@ -272,10 +275,11 @@
             this.saveSetupToolStripMenuItem,
             this.mappingThemeToolStripMenuItem,
             this.settingsToolStripMenuItem,
+            this.instructionsToolStripMenuItem,
             this.aboutToolStripMenuItem});
             this.otherFormsMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.otherFormsMenuStrip.Name = "otherFormsMenuStrip";
-            this.otherFormsMenuStrip.Size = new System.Drawing.Size(767, 24);
+            this.otherFormsMenuStrip.Size = new System.Drawing.Size(780, 24);
             this.otherFormsMenuStrip.TabIndex = 32;
             // 
             // saveSetupToolStripMenuItem
@@ -299,6 +303,13 @@
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.settingsToolStripMenuItem.Text = "Settings";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
+            // 
+            // instructionsToolStripMenuItem
+            // 
+            this.instructionsToolStripMenuItem.Name = "instructionsToolStripMenuItem";
+            this.instructionsToolStripMenuItem.Size = new System.Drawing.Size(81, 20);
+            this.instructionsToolStripMenuItem.Text = "Instructions";
+            this.instructionsToolStripMenuItem.Click += new System.EventHandler(this.instructionsToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
@@ -375,9 +386,8 @@
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(576, 159);
+            this.label1.Location = new System.Drawing.Point(10, 16);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(84, 13);
             this.label1.TabIndex = 46;
@@ -385,9 +395,8 @@
             // 
             // useLevelKeysLabel
             // 
-            this.useLevelKeysLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.useLevelKeysLabel.AutoSize = true;
-            this.useLevelKeysLabel.Location = new System.Drawing.Point(670, 159);
+            this.useLevelKeysLabel.Location = new System.Drawing.Point(104, 16);
             this.useLevelKeysLabel.Name = "useLevelKeysLabel";
             this.useLevelKeysLabel.Size = new System.Drawing.Size(10, 13);
             this.useLevelKeysLabel.TabIndex = 47;
@@ -395,9 +404,8 @@
             // 
             // label3
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(586, 174);
+            this.label3.Location = new System.Drawing.Point(20, 31);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(93, 13);
             this.label3.TabIndex = 48;
@@ -405,9 +413,8 @@
             // 
             // holdModeLevelLabel
             // 
-            this.holdModeLevelLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.holdModeLevelLabel.AutoSize = true;
-            this.holdModeLevelLabel.Location = new System.Drawing.Point(698, 174);
+            this.holdModeLevelLabel.Location = new System.Drawing.Point(132, 31);
             this.holdModeLevelLabel.Name = "holdModeLevelLabel";
             this.holdModeLevelLabel.Size = new System.Drawing.Size(10, 13);
             this.holdModeLevelLabel.TabIndex = 49;
@@ -415,9 +422,8 @@
             // 
             // holdTresholdLevelLabel
             // 
-            this.holdTresholdLevelLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.holdTresholdLevelLabel.AutoSize = true;
-            this.holdTresholdLevelLabel.Location = new System.Drawing.Point(698, 189);
+            this.holdTresholdLevelLabel.Location = new System.Drawing.Point(132, 46);
             this.holdTresholdLevelLabel.Name = "holdTresholdLevelLabel";
             this.holdTresholdLevelLabel.Size = new System.Drawing.Size(29, 13);
             this.holdTresholdLevelLabel.TabIndex = 51;
@@ -425,9 +431,8 @@
             // 
             // label6
             // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(586, 189);
+            this.label6.Location = new System.Drawing.Point(20, 46);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(107, 13);
             this.label6.TabIndex = 50;
@@ -435,9 +440,8 @@
             // 
             // tickIntervalLevelLabel
             // 
-            this.tickIntervalLevelLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tickIntervalLevelLabel.AutoSize = true;
-            this.tickIntervalLevelLabel.Location = new System.Drawing.Point(698, 204);
+            this.tickIntervalLevelLabel.Location = new System.Drawing.Point(132, 61);
             this.tickIntervalLevelLabel.Name = "tickIntervalLevelLabel";
             this.tickIntervalLevelLabel.Size = new System.Drawing.Size(29, 13);
             this.tickIntervalLevelLabel.TabIndex = 53;
@@ -445,9 +449,8 @@
             // 
             // label8
             // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(586, 204);
+            this.label8.Location = new System.Drawing.Point(20, 61);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(69, 13);
             this.label8.TabIndex = 52;
@@ -455,9 +458,8 @@
             // 
             // tickIntervalSliderLabel
             // 
-            this.tickIntervalSliderLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tickIntervalSliderLabel.AutoSize = true;
-            this.tickIntervalSliderLabel.Location = new System.Drawing.Point(698, 276);
+            this.tickIntervalSliderLabel.Location = new System.Drawing.Point(132, 133);
             this.tickIntervalSliderLabel.Name = "tickIntervalSliderLabel";
             this.tickIntervalSliderLabel.Size = new System.Drawing.Size(29, 13);
             this.tickIntervalSliderLabel.TabIndex = 61;
@@ -465,9 +467,8 @@
             // 
             // label10
             // 
-            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(587, 276);
+            this.label10.Location = new System.Drawing.Point(21, 133);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(69, 13);
             this.label10.TabIndex = 60;
@@ -475,9 +476,8 @@
             // 
             // holdTresholdSliderLabel
             // 
-            this.holdTresholdSliderLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.holdTresholdSliderLabel.AutoSize = true;
-            this.holdTresholdSliderLabel.Location = new System.Drawing.Point(698, 261);
+            this.holdTresholdSliderLabel.Location = new System.Drawing.Point(132, 118);
             this.holdTresholdSliderLabel.Name = "holdTresholdSliderLabel";
             this.holdTresholdSliderLabel.Size = new System.Drawing.Size(29, 13);
             this.holdTresholdSliderLabel.TabIndex = 59;
@@ -485,9 +485,8 @@
             // 
             // label12
             // 
-            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(587, 261);
+            this.label12.Location = new System.Drawing.Point(21, 118);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(107, 13);
             this.label12.TabIndex = 58;
@@ -495,9 +494,8 @@
             // 
             // holdModeSliderLabel
             // 
-            this.holdModeSliderLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.holdModeSliderLabel.AutoSize = true;
-            this.holdModeSliderLabel.Location = new System.Drawing.Point(698, 246);
+            this.holdModeSliderLabel.Location = new System.Drawing.Point(132, 103);
             this.holdModeSliderLabel.Name = "holdModeSliderLabel";
             this.holdModeSliderLabel.Size = new System.Drawing.Size(10, 13);
             this.holdModeSliderLabel.TabIndex = 57;
@@ -505,9 +503,8 @@
             // 
             // label14
             // 
-            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(586, 246);
+            this.label14.Location = new System.Drawing.Point(20, 103);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(93, 13);
             this.label14.TabIndex = 56;
@@ -515,9 +512,8 @@
             // 
             // useSliderKeysLabel
             // 
-            this.useSliderKeysLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.useSliderKeysLabel.AutoSize = true;
-            this.useSliderKeysLabel.Location = new System.Drawing.Point(670, 231);
+            this.useSliderKeysLabel.Location = new System.Drawing.Point(104, 88);
             this.useSliderKeysLabel.Name = "useSliderKeysLabel";
             this.useSliderKeysLabel.Size = new System.Drawing.Size(10, 13);
             this.useSliderKeysLabel.TabIndex = 55;
@@ -525,9 +521,8 @@
             // 
             // label16
             // 
-            this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(576, 231);
+            this.label16.Location = new System.Drawing.Point(10, 88);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(84, 13);
             this.label16.TabIndex = 54;
@@ -535,9 +530,8 @@
             // 
             // sliderDeltaSliderLabel
             // 
-            this.sliderDeltaSliderLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.sliderDeltaSliderLabel.AutoSize = true;
-            this.sliderDeltaSliderLabel.Location = new System.Drawing.Point(698, 291);
+            this.sliderDeltaSliderLabel.Location = new System.Drawing.Point(132, 148);
             this.sliderDeltaSliderLabel.Name = "sliderDeltaSliderLabel";
             this.sliderDeltaSliderLabel.Size = new System.Drawing.Size(13, 13);
             this.sliderDeltaSliderLabel.TabIndex = 63;
@@ -545,9 +539,8 @@
             // 
             // label18
             // 
-            this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(586, 291);
+            this.label18.Location = new System.Drawing.Point(20, 148);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(64, 13);
             this.label18.TabIndex = 62;
@@ -557,7 +550,7 @@
             // 
             this.canNotFeedInfoLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.canNotFeedInfoLabel.AutoSize = true;
-            this.canNotFeedInfoLabel.Location = new System.Drawing.Point(585, 387);
+            this.canNotFeedInfoLabel.Location = new System.Drawing.Point(598, 387);
             this.canNotFeedInfoLabel.MaximumSize = new System.Drawing.Size(170, 0);
             this.canNotFeedInfoLabel.Name = "canNotFeedInfoLabel";
             this.canNotFeedInfoLabel.Size = new System.Drawing.Size(157, 26);
@@ -565,41 +558,54 @@
             this.canNotFeedInfoLabel.Text = "The programm isn\'t finished with setting up.";
             this.canNotFeedInfoLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // showLogMsgCheckBox
+            // debugModeCheckBox
             // 
-            this.showLogMsgCheckBox.AutoSize = true;
-            this.showLogMsgCheckBox.Location = new System.Drawing.Point(604, 331);
-            this.showLogMsgCheckBox.Name = "showLogMsgCheckBox";
-            this.showLogMsgCheckBox.Size = new System.Drawing.Size(125, 17);
-            this.showLogMsgCheckBox.TabIndex = 64;
-            this.showLogMsgCheckBox.Text = "Show Log Messages";
-            this.showLogMsgCheckBox.UseVisualStyleBackColor = true;
-            this.showLogMsgCheckBox.CheckedChanged += new System.EventHandler(this.showLogMsgCheckBox_CheckedChanged);
+            this.debugModeCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.debugModeCheckBox.AutoSize = true;
+            this.debugModeCheckBox.Location = new System.Drawing.Point(621, 169);
+            this.debugModeCheckBox.Name = "debugModeCheckBox";
+            this.debugModeCheckBox.Size = new System.Drawing.Size(116, 17);
+            this.debugModeCheckBox.TabIndex = 64;
+            this.debugModeCheckBox.Text = "Display Debug Info";
+            this.debugModeCheckBox.UseVisualStyleBackColor = true;
+            this.debugModeCheckBox.CheckedChanged += new System.EventHandler(this.debugModeCheckBox_CheckedChanged);
+            // 
+            // debugInfoGroupBox
+            // 
+            this.debugInfoGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.debugInfoGroupBox.Controls.Add(this.sliderDeltaSliderLabel);
+            this.debugInfoGroupBox.Controls.Add(this.label18);
+            this.debugInfoGroupBox.Controls.Add(this.tickIntervalSliderLabel);
+            this.debugInfoGroupBox.Controls.Add(this.label10);
+            this.debugInfoGroupBox.Controls.Add(this.holdTresholdSliderLabel);
+            this.debugInfoGroupBox.Controls.Add(this.label12);
+            this.debugInfoGroupBox.Controls.Add(this.holdModeSliderLabel);
+            this.debugInfoGroupBox.Controls.Add(this.label14);
+            this.debugInfoGroupBox.Controls.Add(this.useSliderKeysLabel);
+            this.debugInfoGroupBox.Controls.Add(this.label16);
+            this.debugInfoGroupBox.Controls.Add(this.tickIntervalLevelLabel);
+            this.debugInfoGroupBox.Controls.Add(this.label8);
+            this.debugInfoGroupBox.Controls.Add(this.holdTresholdLevelLabel);
+            this.debugInfoGroupBox.Controls.Add(this.label6);
+            this.debugInfoGroupBox.Controls.Add(this.holdModeLevelLabel);
+            this.debugInfoGroupBox.Controls.Add(this.label3);
+            this.debugInfoGroupBox.Controls.Add(this.useLevelKeysLabel);
+            this.debugInfoGroupBox.Controls.Add(this.label1);
+            this.debugInfoGroupBox.Location = new System.Drawing.Point(585, 196);
+            this.debugInfoGroupBox.Name = "debugInfoGroupBox";
+            this.debugInfoGroupBox.Size = new System.Drawing.Size(184, 168);
+            this.debugInfoGroupBox.TabIndex = 65;
+            this.debugInfoGroupBox.TabStop = false;
+            this.debugInfoGroupBox.Text = "Debug Info";
+            this.debugInfoGroupBox.Visible = false;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(767, 468);
-            this.Controls.Add(this.showLogMsgCheckBox);
-            this.Controls.Add(this.sliderDeltaSliderLabel);
-            this.Controls.Add(this.label18);
-            this.Controls.Add(this.tickIntervalSliderLabel);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.holdTresholdSliderLabel);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.holdModeSliderLabel);
-            this.Controls.Add(this.label14);
-            this.Controls.Add(this.useSliderKeysLabel);
-            this.Controls.Add(this.label16);
-            this.Controls.Add(this.tickIntervalLevelLabel);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.holdTresholdLevelLabel);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.holdModeLevelLabel);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.useLevelKeysLabel);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(780, 468);
+            this.Controls.Add(this.debugInfoGroupBox);
+            this.Controls.Add(this.debugModeCheckBox);
             this.Controls.Add(this.canNotFeedInfoLabel);
             this.Controls.Add(this.sliderAxisInfoLabel3);
             this.Controls.Add(this.sliderAxisInfoLabel2);
@@ -634,6 +640,8 @@
             this.otherFormsMenuStrip.ResumeLayout(false);
             this.otherFormsMenuStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sliderTrackBar)).EndInit();
+            this.debugInfoGroupBox.ResumeLayout(false);
+            this.debugInfoGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -689,8 +697,10 @@
         private System.Windows.Forms.Label sliderDeltaSliderLabel;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label canNotFeedInfoLabel;
-        private System.Windows.Forms.CheckBox showLogMsgCheckBox;
+        private System.Windows.Forms.CheckBox debugModeCheckBox;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem instructionsToolStripMenuItem;
+        private System.Windows.Forms.GroupBox debugInfoGroupBox;
     }
 }
 
