@@ -549,9 +549,9 @@
             this.label18.AutoSize = true;
             this.label18.Location = new System.Drawing.Point(586, 291);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(66, 13);
+            this.label18.Size = new System.Drawing.Size(64, 13);
             this.label18.TabIndex = 62;
-            this.label18.Text = "Slider Deltal:";
+            this.label18.Text = "Slider Delta:";
             // 
             // canNotFeedInfoLabel
             // 
