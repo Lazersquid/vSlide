@@ -539,7 +539,7 @@ namespace myFirstVJoyFeeder
 
             if (vJoyDriver.GetVJDStatus(CurrJoystickId) != VjdStat.VJD_STAT_OWN)
             {
-                Log("Couldn't acquire a device!");
+                Log("Couldn't acquire a device: There was no free vJoy device!");
             }
 
             // Checks if the key variables are set up correctly
@@ -566,13 +566,11 @@ namespace myFirstVJoyFeeder
             Log("The Previous-Level-Key is bound to '" + prevLevelKey.ToString() + "'");
             Log("The Increase-Slider-Key is bound to '" + incrSliderKey.ToString() + "'");
             Log("The Decrease-Slider-Key is bound to '" + decrSliderKey.ToString() + "'");
-            Log("");
-            Log("Everything is setup.");
             LogInstructions();
 
             showLogMessages = showLogMsgCheckBox.Checked;
 
-            // Checks if a device was quired
+            // Checks if a device was aquired
             if (vJoyDriver.GetVJDStatus(CurrJoystickId) == VjdStat.VJD_STAT_OWN)
             {
                 CurrState = FeederState.ReadyToFeed;
@@ -582,8 +580,7 @@ namespace myFirstVJoyFeeder
                 CurrState = FeederState.NoVJoyDevice;
             }
         }
-
-
+        
         #region Methods
 
         /// <summary>

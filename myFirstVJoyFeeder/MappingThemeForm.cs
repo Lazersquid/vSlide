@@ -76,6 +76,7 @@ namespace myFirstVJoyFeeder
             newLevelControl.MappingLevelAbsoluteNumericUpDown_ValueChanged += MappingLevelAbsoluteNumericUpDown_ValueChanged;
             newLevelControl.MappingLevelRelativeNumericUpDown_ValueChanged += MappingLevelRelativeNumericUpDown_ValueChanged;
 
+            // Sets the value of the MappingLevelControl to the max value of the slider
             newLevelControl.AbsoluteValue = mainForm.MaxSliderValue;
         }
 
