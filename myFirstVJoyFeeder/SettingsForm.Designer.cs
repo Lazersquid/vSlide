@@ -1155,7 +1155,7 @@
             this.sliderDeltaSliderSystemBPNumericUpDown.Size = new System.Drawing.Size(109, 20);
             this.sliderDeltaSliderSystemBPNumericUpDown.TabIndex = 32;
             this.sliderDeltaSliderSystemBPNumericUpDown.Value = new decimal(new int[] {
-            170,
+            200,
             0,
             0,
             0});
