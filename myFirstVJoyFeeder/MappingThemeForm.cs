@@ -75,6 +75,8 @@ namespace myFirstVJoyFeeder
             // Subscribes to the value changed events of the control
             newLevelControl.MappingLevelAbsoluteNumericUpDown_ValueChanged += MappingLevelAbsoluteNumericUpDown_ValueChanged;
             newLevelControl.MappingLevelRelativeNumericUpDown_ValueChanged += MappingLevelRelativeNumericUpDown_ValueChanged;
+
+            newLevelControl.AbsoluteValue = mainForm.MaxSliderValue;
         }
 
         private void DeleteLastMappingLevelControl()

@@ -380,6 +380,9 @@ namespace myFirstVJoyFeeder
         string noVJoyDeviceInfoText = "A vJoy Device has to be acquired in order to feed the driver!";
         string settingUpInfoText = "The programm isn't finished with setting up.";
         string setupFailedInfoText = "Startup procedure failed, can't continue. You can close this programm.";
+        string vJoyDisabledInfoText = "Failed Getting vJoy attributes: vJoy driver not enabled or not installed, returning...";
+        string driverAndDllVersMatchInfoText = "Version of the vJoy driver matches the DLL version: '{0:X}'";
+        string driverAndDllVersDontMatchInfoText = "Version of driver '{0:X}' does NOT match DLL version '{1:X}', returning...";
 
         // Feeder state
         private FeederState currState;
@@ -452,7 +455,7 @@ namespace myFirstVJoyFeeder
             }
             else
             {
-                Log("vJoy driver not enabled: Failed Getting vJoy attributes, returning...");
+                Log(vJoyDisabledInfoText);
                 vJoyDriverFoundLabel.Text = "No";
                 Log(setupFailedInfoText);
                 return;
@@ -462,11 +465,11 @@ namespace myFirstVJoyFeeder
             // Tests if the dll version matches the driver version
             if (vJoyDriver.DriverMatch(ref DllVer, ref DrvVer))
             {
-                Log(String.Format("Version of Driver Matches DLL Version: '{0:X}'", DllVer));
+                Log(String.Format(driverAndDllVersMatchInfoText, DllVer));
             }
             else
             {
-                Log(String.Format("Version of Driver ({0:X}) does NOT match DLL Version ({1:X}), returning...", DrvVer, DllVer));
+                Log(String.Format(driverAndDllVersDontMatchInfoText, DrvVer, DllVer));
                 Log(setupFailedInfoText);
                 return;
             }
@@ -826,9 +829,9 @@ namespace myFirstVJoyFeeder
             Log("- Key Setup:");
             Log("You think 4 keys are too many?");
             Log("Customize the behaviour of the feeder in the 'Key Setup'-category in the settings!");
-            Log("You can mess with those as much as you won't they won't break the programm.");
+            Log("You can mess with those as much as you want.");
             Log("");
-            Log("Checking 'Use Level Keys only' and 'Use the hold down logic for the slider system' for example allows");
+            Log("Checking 'Use Level Keys only' and 'Use the hold down logic for the slider system', for example, allows");
             Log("you to swith to another slider-level and alter the slider by small amounts aswell.");
             Log("A fast tab on the key will change the slider-level while holding the key down will alter the slider");
             Log("value by a samll amount.");
