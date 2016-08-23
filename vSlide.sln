@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vSlide", "myFirstVJoyFeeder\vSlide.csproj", "{4531844B-727F-49BD-BC18-F478017C0368}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vSlide", "vSlide\vSlide.csproj", "{4531844B-727F-49BD-BC18-F478017C0368}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
