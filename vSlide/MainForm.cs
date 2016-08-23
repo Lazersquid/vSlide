@@ -416,7 +416,7 @@ namespace vSlide
         }
         
         // Forms
-        MappingThemeForm mappingThemeForm;
+        SliderLevelsForm sliderLevelsForm;
         SettingsForm settingsForm;
         AboutForm aboutForm;
         InstructionsForm instructionsForm;
@@ -555,7 +555,7 @@ namespace vSlide
             
             Log("");
             Log("Creating mapping-theme-form...");
-            mappingThemeForm = new MappingThemeForm(this, 7);
+            sliderLevelsForm = new SliderLevelsForm(this, 7);
 
             Log("");
             Log("Creating settings-form...");
@@ -979,7 +979,7 @@ namespace vSlide
                     // the keyHoldDownMode isn't in slider mode
                     if (holdDownModeLevel != KeyHoldDownMode.Slider)
                     {
-                        CurrSliderValue = mappingThemeForm.IncreaseToNextLevel(CurrSliderValue);
+                        CurrSliderValue = sliderLevelsForm.IncreaseToNextLevel(CurrSliderValue);
                         UpdateSliderInVJoyDriver();
                     }
                     nextLevelKeyState = KeyState.Down;
@@ -995,7 +995,7 @@ namespace vSlide
                     // the keyHoldDownMode is in slider mode
                     if (holdDownModeLevel == KeyHoldDownMode.Slider && nextLevelKeyState == KeyState.Down)
                     {
-                        CurrSliderValue = mappingThemeForm.IncreaseToNextLevel(CurrSliderValue);
+                        CurrSliderValue = sliderLevelsForm.IncreaseToNextLevel(CurrSliderValue);
                         UpdateSliderInVJoyDriver();
                     }
                     nextLevelKeyState = KeyState.Up;
@@ -1011,7 +1011,7 @@ namespace vSlide
                     // the keyHoldDownMode isn't in slider mode
                     if (holdDownModeLevel != KeyHoldDownMode.Slider)
                     {
-                        CurrSliderValue = mappingThemeForm.DecreaseToNextLevel(CurrSliderValue);
+                        CurrSliderValue = sliderLevelsForm.DecreaseToNextLevel(CurrSliderValue);
                         UpdateSliderInVJoyDriver();
                     }
                     prevLevelKeyState = KeyState.Down;
@@ -1027,7 +1027,7 @@ namespace vSlide
                     // the keyHoldDownMode is in slider mode
                     if (holdDownModeLevel == KeyHoldDownMode.Slider && prevLevelKeyState == KeyState.Down)
                     {
-                        CurrSliderValue = mappingThemeForm.DecreaseToNextLevel(CurrSliderValue);
+                        CurrSliderValue = sliderLevelsForm.DecreaseToNextLevel(CurrSliderValue);
                         UpdateSliderInVJoyDriver();
                     }
                     prevLevelKeyState = KeyState.Up;
@@ -1056,7 +1056,7 @@ namespace vSlide
 
                         if (holdDownModeLevel == KeyHoldDownMode.Level)
                         {
-                            CurrSliderValue = mappingThemeForm.IncreaseToNextLevel(CurrSliderValue);
+                            CurrSliderValue = sliderLevelsForm.IncreaseToNextLevel(CurrSliderValue);
                         }
                         else if (holdDownModeLevel == KeyHoldDownMode.Slider)
                         {
@@ -1085,7 +1085,7 @@ namespace vSlide
 
                         if (holdDownModeLevel == KeyHoldDownMode.Level)
                         {
-                            CurrSliderValue = mappingThemeForm.DecreaseToNextLevel(CurrSliderValue);
+                            CurrSliderValue = sliderLevelsForm.DecreaseToNextLevel(CurrSliderValue);
                         }
                         else if (holdDownModeLevel == KeyHoldDownMode.Slider)
                         {
@@ -1193,13 +1193,13 @@ namespace vSlide
 
         private void mappingThemeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mappingThemeForm.Visible)
+            if (sliderLevelsForm.Visible)
             {
-                mappingThemeForm.BringToFront();
+                sliderLevelsForm.BringToFront();
             }
             else
             {
-                mappingThemeForm.Show();
+                sliderLevelsForm.Show();
             }
         }
 

@@ -1,6 +1,6 @@
 ﻿namespace vSlide
 {
-    partial class MappingThemeForm
+    partial class SliderLevelsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -207,7 +207,7 @@
             this.MaximizeBox = false;
             this.Name = "MappingThemeForm";
             this.Text = "vSlide - Slider Levels";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ManageMappingThemeForm_FormClosing);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SliderLevelsForm_FormClosing);
             this.mappingLevelPrototypeGroupBox.ResumeLayout(false);
             this.mappingLevelPrototypeGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();

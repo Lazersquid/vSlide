@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace vSlide
 {
-    public partial class MappingThemeForm : Form
+    public partial class SliderLevelsForm : Form
     {
         #region Fields
 
@@ -20,7 +20,7 @@ namespace vSlide
 
         #endregion
 
-        public MappingThemeForm(MainForm mainForm, int numberOfLevels)
+        public SliderLevelsForm(MainForm mainForm, int numberOfLevels)
         {
             InitializeComponent();
 
@@ -201,7 +201,7 @@ namespace vSlide
 
         #region Event Methods
 
-        private void ManageMappingThemeForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void SliderLevelsForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             //Hides the form instead of closing it
             if (e.CloseReason == CloseReason.UserClosing)
