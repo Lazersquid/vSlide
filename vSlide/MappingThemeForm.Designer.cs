@@ -39,6 +39,8 @@
             this.label18 = new System.Windows.Forms.Label();
             this.mappingThemeFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.numberOfLevelsNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.revertSliderLevelToDefaultButton = new System.Windows.Forms.Button();
+            this.saveSliderLevelsButton = new System.Windows.Forms.Button();
             this.mappingLevelPrototypeGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
@@ -169,11 +171,33 @@
             0});
             this.numberOfLevelsNumericUpDown.ValueChanged += new System.EventHandler(this.numberOfLevelsNumericUpDown_ValueChanged);
             // 
+            // revertSliderLevelToDefaultButton
+            // 
+            this.revertSliderLevelToDefaultButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.revertSliderLevelToDefaultButton.Location = new System.Drawing.Point(214, 631);
+            this.revertSliderLevelToDefaultButton.Name = "revertSliderLevelToDefaultButton";
+            this.revertSliderLevelToDefaultButton.Size = new System.Drawing.Size(101, 23);
+            this.revertSliderLevelToDefaultButton.TabIndex = 41;
+            this.revertSliderLevelToDefaultButton.Text = "Revert to Default";
+            this.revertSliderLevelToDefaultButton.UseVisualStyleBackColor = true;
+            // 
+            // saveSliderLevelsButton
+            // 
+            this.saveSliderLevelsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.saveSliderLevelsButton.Location = new System.Drawing.Point(12, 631);
+            this.saveSliderLevelsButton.Name = "saveSliderLevelsButton";
+            this.saveSliderLevelsButton.Size = new System.Drawing.Size(53, 23);
+            this.saveSliderLevelsButton.TabIndex = 40;
+            this.saveSliderLevelsButton.Text = "Save";
+            this.saveSliderLevelsButton.UseVisualStyleBackColor = true;
+            // 
             // MappingThemeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(327, 631);
+            this.ClientSize = new System.Drawing.Size(327, 666);
+            this.Controls.Add(this.revertSliderLevelToDefaultButton);
+            this.Controls.Add(this.saveSliderLevelsButton);
             this.Controls.Add(this.mappingLevelPrototypeGroupBox);
             this.Controls.Add(this.setValuesEqualyButton);
             this.Controls.Add(this.label18);
@@ -207,5 +231,7 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.FlowLayoutPanel mappingThemeFlowLayoutPanel;
         private System.Windows.Forms.NumericUpDown numberOfLevelsNumericUpDown;
+        private System.Windows.Forms.Button revertSliderLevelToDefaultButton;
+        private System.Windows.Forms.Button saveSliderLevelsButton;
     }
 }

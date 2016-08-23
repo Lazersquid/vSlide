@@ -49,7 +49,6 @@
             this.usedVJoyDeviceLabel = new System.Windows.Forms.Label();
             this.usedVJoyDeviceInfoLabel = new System.Windows.Forms.Label();
             this.otherFormsMenuStrip = new System.Windows.Forms.MenuStrip();
-            this.saveSetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mappingThemeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.instructionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -272,7 +271,6 @@
             // 
             this.otherFormsMenuStrip.Enabled = false;
             this.otherFormsMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.saveSetupToolStripMenuItem,
             this.mappingThemeToolStripMenuItem,
             this.settingsToolStripMenuItem,
             this.instructionsToolStripMenuItem,
@@ -281,14 +279,6 @@
             this.otherFormsMenuStrip.Name = "otherFormsMenuStrip";
             this.otherFormsMenuStrip.Size = new System.Drawing.Size(780, 24);
             this.otherFormsMenuStrip.TabIndex = 32;
-            // 
-            // saveSetupToolStripMenuItem
-            // 
-            this.saveSetupToolStripMenuItem.Enabled = false;
-            this.saveSetupToolStripMenuItem.Name = "saveSetupToolStripMenuItem";
-            this.saveSetupToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
-            this.saveSetupToolStripMenuItem.Text = "Save Setup";
-            this.saveSetupToolStripMenuItem.Click += new System.EventHandler(this.saveSetupToolStripMenuItem_Click);
             // 
             // mappingThemeToolStripMenuItem
             // 
@@ -669,7 +659,6 @@
         private System.Windows.Forms.Label usedVJoyDeviceLabel;
         private System.Windows.Forms.Label usedVJoyDeviceInfoLabel;
         private System.Windows.Forms.MenuStrip otherFormsMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem saveSetupToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mappingThemeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.Label sliderAxisInfoLabel3;
