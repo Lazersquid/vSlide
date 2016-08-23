@@ -568,11 +568,16 @@ namespace vSlide
             Log("");
             Log("Creating instuctions-form...");
             instructionsForm = new InstructionsForm();
-            
+
+            // Loads the settings
+            Log("");
+            Log("Loading settings...");
+            settingsForm.LoadSettings();
+
             // Enables the other forms menu strip
             otherFormsMenuStrip.Enabled = true;
 
-            // Debugs aditional information and instructions
+            // Debugs aditional information
             Log("");
             Log("The Next-Level-Key is bound to '" + nextLevelKey.ToString() + "'");
             Log("The Previous-Level-Key is bound to '" + prevLevelKey.ToString() + "'");
@@ -1256,7 +1261,7 @@ namespace vSlide
         #endregion
     }
 
-    public enum FeederState { SettingUp, NoVJoyDevice, ReadyToFeed, Feeding};
+    public enum FeederState { SettingUp, NoVJoyDevice, ReadyToFeed, Feeding };
 
     public enum KeyState { Up, Down, HeldDown };
 }

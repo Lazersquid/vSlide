@@ -112,6 +112,8 @@
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.devicesComboBox = new System.Windows.Forms.ComboBox();
+            this.saveSettingsButton = new System.Windows.Forms.Button();
+            this.revertToDefaultButton = new System.Windows.Forms.Button();
             this.levelKeyBindsGroupBox.SuspendLayout();
             this.sliderKeyBindsGroupBox.SuspendLayout();
             this.levelKeysOnlyPanel.SuspendLayout();
@@ -432,7 +434,7 @@
             // 
             // acquireDeviceButton
             // 
-            this.acquireDeviceButton.Location = new System.Drawing.Point(277, 161);
+            this.acquireDeviceButton.Location = new System.Drawing.Point(277, 150);
             this.acquireDeviceButton.Name = "acquireDeviceButton";
             this.acquireDeviceButton.Size = new System.Drawing.Size(101, 23);
             this.acquireDeviceButton.TabIndex = 6;
@@ -1427,7 +1429,7 @@
             this.groupBox1.Controls.Add(this.acquireDeviceButton);
             this.groupBox1.Location = new System.Drawing.Point(615, 524);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(384, 190);
+            this.groupBox1.Size = new System.Drawing.Size(384, 181);
             this.groupBox1.TabIndex = 31;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "vJoy Device";
@@ -1501,11 +1503,35 @@
             this.devicesComboBox.TabIndex = 17;
             this.devicesComboBox.SelectedIndexChanged += new System.EventHandler(this.devicesComboBox_SelectedIndexChanged);
             // 
+            // saveSettingsButton
+            // 
+            this.saveSettingsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.saveSettingsButton.Location = new System.Drawing.Point(12, 703);
+            this.saveSettingsButton.Name = "saveSettingsButton";
+            this.saveSettingsButton.Size = new System.Drawing.Size(101, 23);
+            this.saveSettingsButton.TabIndex = 24;
+            this.saveSettingsButton.Text = "Save Settings";
+            this.saveSettingsButton.UseVisualStyleBackColor = true;
+            this.saveSettingsButton.Click += new System.EventHandler(this.saveSettingsButton_Click);
+            // 
+            // revertToDefaultButton
+            // 
+            this.revertToDefaultButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.revertToDefaultButton.Location = new System.Drawing.Point(119, 703);
+            this.revertToDefaultButton.Name = "revertToDefaultButton";
+            this.revertToDefaultButton.Size = new System.Drawing.Size(101, 23);
+            this.revertToDefaultButton.TabIndex = 32;
+            this.revertToDefaultButton.Text = "Revert to Default";
+            this.revertToDefaultButton.UseVisualStyleBackColor = true;
+            this.revertToDefaultButton.Click += new System.EventHandler(this.revertToDefaultButton_Click);
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1012, 726);
+            this.ClientSize = new System.Drawing.Size(1012, 738);
+            this.Controls.Add(this.revertToDefaultButton);
+            this.Controls.Add(this.saveSettingsButton);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label14);
@@ -1640,5 +1666,7 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Button saveSettingsButton;
+        private System.Windows.Forms.Button revertToDefaultButton;
     }
 }
