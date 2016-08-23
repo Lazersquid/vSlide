@@ -1,4 +1,4 @@
-﻿namespace myFirstVJoyFeeder
+﻿namespace vSlide
 {
     partial class SettingsForm
     {

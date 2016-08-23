@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using vJoyInterfaceWrap;
 
-namespace myFirstVJoyFeeder
+namespace vSlide
 {
     public partial class MainForm : Form
     {

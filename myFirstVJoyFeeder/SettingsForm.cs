@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace myFirstVJoyFeeder
+namespace vSlide
 {
     public partial class SettingsForm : Form
     {
