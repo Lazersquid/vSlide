@@ -60,37 +60,37 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="pressTresholdHoldLevelLPNumericUpDown" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">80</Value>
     </Setting>
     <Setting Name="tickIntervalHoldLevelLPNumericUpDown" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">55</Value>
     </Setting>
     <Setting Name="pressTresholdHoldSliderLPNumericUpDown" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">55</Value>
     </Setting>
     <Setting Name="tickIntervalHoldSliderLPNumericUpDown" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">5</Value>
     </Setting>
     <Setting Name="sliderDeltaHoldSliderLPNumericUpDown" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">200</Value>
     </Setting>
     <Setting Name="pressTresholdLevelSystemBPNumericUpDown" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">80</Value>
     </Setting>
     <Setting Name="tickIntervalLevelSystemBPNumericUpDown" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">55</Value>
     </Setting>
     <Setting Name="tickIntervalSliderSystemBPNumericUpDown" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">5</Value>
     </Setting>
     <Setting Name="sliderDeltaSliderSystemBPNumericUpDown" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">200</Value>
     </Setting>
     <Setting Name="tickIntervalSPNumericUpDown" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">5</Value>
     </Setting>
     <Setting Name="sliderDeltaSPNumericUpDown" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">170</Value>
     </Setting>
   </Settings>
 </SettingsFile>

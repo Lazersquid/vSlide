@@ -482,160 +482,197 @@ namespace vSlide
 
         public void SaveCurrSettings()
         {
-            // Saves key binds
-            Properties.Settings.Default["nextLevelKey"] = KeyToString(mainForm.NextLevelKey);
-            Properties.Settings.Default["prevLevelKey"] = KeyToString(mainForm.PrevLevelKey);
-            Properties.Settings.Default["incrSliderKey"] = KeyToString(mainForm.IncrSliderKey);
-            Properties.Settings.Default["decrSliderKey"] = KeyToString(mainForm.DecrSliderKey);
+            try
+            {
+                // Saves key binds
+                Properties.Settings.Default["nextLevelKey"] = KeyToString(mainForm.NextLevelKey);
+                Properties.Settings.Default["prevLevelKey"] = KeyToString(mainForm.PrevLevelKey);
+                Properties.Settings.Default["incrSliderKey"] = KeyToString(mainForm.IncrSliderKey);
+                Properties.Settings.Default["decrSliderKey"] = KeyToString(mainForm.DecrSliderKey);
 
-            Properties.Settings.Default["controlModNextLevelKey"] = KeyToString(mainForm.ControlModNextLevelKey);
-            Properties.Settings.Default["controlModPrevLevelKey"] = KeyToString(mainForm.ControlModPrevLevelKey);
-            Properties.Settings.Default["controlModIncrSliderKey"] = KeyToString(mainForm.ControlModIncrSliderKey);
-            Properties.Settings.Default["controlModDecrSliderKey"] = KeyToString(mainForm.ControlModDecrSliderKey);
-            
-            Properties.Settings.Default["shiftModNextLevelKey"] = KeyToString(mainForm.ShiftModNextLevelKey);
-            Properties.Settings.Default["shiftModPrevLevelKey"] = KeyToString(mainForm.ShiftModPrevLevelKey);
-            Properties.Settings.Default["shiftModIncrSliderKey"] = KeyToString(mainForm.ShiftModIncrSliderKey);
-            Properties.Settings.Default["shiftModDecrSliderKey"] = KeyToString(mainForm.ShiftModDecrSliderKey);
+                Properties.Settings.Default["controlModNextLevelKey"] = KeyToString(mainForm.ControlModNextLevelKey);
+                Properties.Settings.Default["controlModPrevLevelKey"] = KeyToString(mainForm.ControlModPrevLevelKey);
+                Properties.Settings.Default["controlModIncrSliderKey"] = KeyToString(mainForm.ControlModIncrSliderKey);
+                Properties.Settings.Default["controlModDecrSliderKey"] = KeyToString(mainForm.ControlModDecrSliderKey);
 
-            Properties.Settings.Default["altModNextLevelKey"] = KeyToString(mainForm.AltModNextLevelKey);
-            Properties.Settings.Default["altModPrevLevelKey"] = KeyToString(mainForm.AltModPrevLevelKey);
-            Properties.Settings.Default["altModIncrSliderKey"] = KeyToString(mainForm.AltModIncrSliderKey);
-            Properties.Settings.Default["altModDecrSliderKey"] = KeyToString(mainForm.AltModDecrSliderKey);
+                Properties.Settings.Default["shiftModNextLevelKey"] = KeyToString(mainForm.ShiftModNextLevelKey);
+                Properties.Settings.Default["shiftModPrevLevelKey"] = KeyToString(mainForm.ShiftModPrevLevelKey);
+                Properties.Settings.Default["shiftModIncrSliderKey"] = KeyToString(mainForm.ShiftModIncrSliderKey);
+                Properties.Settings.Default["shiftModDecrSliderKey"] = KeyToString(mainForm.ShiftModDecrSliderKey);
 
-            // The checked RadioButton of the 'keySetupGroupBox'
-            if(useLevelKeysOnlyRadioButton.Checked)
-            {
-                Properties.Settings.Default["keySetupRadioButton"] = 1;
-            }
-            else if(useBothKeysRadioButton.Checked)
-            {
-                Properties.Settings.Default["keySetupRadioButton"] = 2;
-            }
-            else if(useSliderKeysOnlyRadioButton.Checked)
-            {
-                Properties.Settings.Default["keySetupRadioButton"] = 3;
-            }
-            // Should never be the case
-            else
-            {
-                Properties.Settings.Default["keySetupRadioButton"] = 0;
-            }
+                Properties.Settings.Default["altModNextLevelKey"] = KeyToString(mainForm.AltModNextLevelKey);
+                Properties.Settings.Default["altModPrevLevelKey"] = KeyToString(mainForm.AltModPrevLevelKey);
+                Properties.Settings.Default["altModIncrSliderKey"] = KeyToString(mainForm.AltModIncrSliderKey);
+                Properties.Settings.Default["altModDecrSliderKey"] = KeyToString(mainForm.AltModDecrSliderKey);
 
-            // The checked RadioButton of the 'levelKeysOnlyPanel'
-            if (holdLevelLPRadioButton.Checked)
-            {
-                Properties.Settings.Default["levelKeysOnlyRadioButton"] = 1;
-            }
-            else if (holdSliderLPRadioButton.Checked)
-            {
-                Properties.Settings.Default["levelKeysOnlyRadioButton"] = 2;
-            }
-            else if (doNothingLPRadioButton.Checked)
-            {
-                Properties.Settings.Default["levelKeysOnlyRadioButton"] = 3;
-            }
-            // Should never be the case
-            else
-            {
-                Properties.Settings.Default["levelKeysOnlyRadioButton"] = 0;
-            }
+                // The checked RadioButton of the 'keySetupGroupBox'
+                if (useLevelKeysOnlyRadioButton.Checked)
+                {
+                    Properties.Settings.Default["keySetupRadioButton"] = 1;
+                }
+                else if (useBothKeysRadioButton.Checked)
+                {
+                    Properties.Settings.Default["keySetupRadioButton"] = 2;
+                }
+                else if (useSliderKeysOnlyRadioButton.Checked)
+                {
+                    Properties.Settings.Default["keySetupRadioButton"] = 3;
+                }
+                // Should never be the case
+                else
+                {
+                    Properties.Settings.Default["keySetupRadioButton"] = 0;
+                }
 
-            // The value of the 'useHoldDownLevelSystemBPGroupBox.Checked' attribute
-            Properties.Settings.Default["useHoldDownBothKeysChecked"] = useHoldDownLevelSystemBPGroupBox.Checked;
+                // The checked RadioButton of the 'levelKeysOnlyPanel'
+                if (holdLevelLPRadioButton.Checked)
+                {
+                    Properties.Settings.Default["levelKeysOnlyRadioButton"] = 1;
+                }
+                else if (holdSliderLPRadioButton.Checked)
+                {
+                    Properties.Settings.Default["levelKeysOnlyRadioButton"] = 2;
+                }
+                else if (doNothingLPRadioButton.Checked)
+                {
+                    Properties.Settings.Default["levelKeysOnlyRadioButton"] = 3;
+                }
+                // Should never be the case
+                else
+                {
+                    Properties.Settings.Default["levelKeysOnlyRadioButton"] = 0;
+                }
 
-            // 'NumericUpDown' values
-            Properties.Settings.Default["pressTresholdHoldLevelLPNumericUpDown"] = (int)pressTresholdHoldLevelLPNumericUpDown.Value;
-            Properties.Settings.Default["tickIntervalHoldLevelLPNumericUpDown"] = (int)tickIntervalHoldLevelLPNumericUpDown.Value;
-            Properties.Settings.Default["pressTresholdHoldSliderLPNumericUpDown"] = (int)pressTresholdHoldSliderLPNumericUpDown.Value;
-            Properties.Settings.Default["tickIntervalHoldSliderLPNumericUpDown"] = (int)tickIntervalHoldSliderLPNumericUpDown.Value;
-            Properties.Settings.Default["sliderDeltaHoldSliderLPNumericUpDown"] = (int)sliderDeltaHoldSliderLPNumericUpDown.Value;
-            Properties.Settings.Default["pressTresholdLevelSystemBPNumericUpDown"] = (int)pressTresholdLevelSystemBPNumericUpDown.Value;
-            Properties.Settings.Default["tickIntervalLevelSystemBPNumericUpDown"] = (int)tickIntervalLevelSystemBPNumericUpDown.Value;
-            Properties.Settings.Default["tickIntervalSliderSystemBPNumericUpDown"] = (int)tickIntervalSliderSystemBPNumericUpDown.Value;
-            Properties.Settings.Default["sliderDeltaSliderSystemBPNumericUpDown"] = (int)sliderDeltaSliderSystemBPNumericUpDown.Value;
-            Properties.Settings.Default["tickIntervalSPNumericUpDown"] = (int)tickIntervalSPNumericUpDown.Value;
-            Properties.Settings.Default["sliderDeltaSPNumericUpDown"] = (int)sliderDeltaSPNumericUpDown.Value;
+                // The value of the 'useHoldDownLevelSystemBPGroupBox.Checked' attribute
+                Properties.Settings.Default["useHoldDownBothKeysChecked"] = useHoldDownLevelSystemBPGroupBox.Checked;
 
-            Properties.Settings.Default.Save();
+                // 'NumericUpDown' values
+                Properties.Settings.Default["pressTresholdHoldLevelLPNumericUpDown"] = (int)pressTresholdHoldLevelLPNumericUpDown.Value;
+                Properties.Settings.Default["tickIntervalHoldLevelLPNumericUpDown"] = (int)tickIntervalHoldLevelLPNumericUpDown.Value;
+                Properties.Settings.Default["pressTresholdHoldSliderLPNumericUpDown"] = (int)pressTresholdHoldSliderLPNumericUpDown.Value;
+                Properties.Settings.Default["tickIntervalHoldSliderLPNumericUpDown"] = (int)tickIntervalHoldSliderLPNumericUpDown.Value;
+                Properties.Settings.Default["sliderDeltaHoldSliderLPNumericUpDown"] = (int)sliderDeltaHoldSliderLPNumericUpDown.Value;
+                Properties.Settings.Default["pressTresholdLevelSystemBPNumericUpDown"] = (int)pressTresholdLevelSystemBPNumericUpDown.Value;
+                Properties.Settings.Default["tickIntervalLevelSystemBPNumericUpDown"] = (int)tickIntervalLevelSystemBPNumericUpDown.Value;
+                Properties.Settings.Default["tickIntervalSliderSystemBPNumericUpDown"] = (int)tickIntervalSliderSystemBPNumericUpDown.Value;
+                Properties.Settings.Default["sliderDeltaSliderSystemBPNumericUpDown"] = (int)sliderDeltaSliderSystemBPNumericUpDown.Value;
+                Properties.Settings.Default["tickIntervalSPNumericUpDown"] = (int)tickIntervalSPNumericUpDown.Value;
+                Properties.Settings.Default["sliderDeltaSPNumericUpDown"] = (int)sliderDeltaSPNumericUpDown.Value;
+
+                Properties.Settings.Default.Save();
+            }
+            catch (Exception exc)
+            {
+                mainForm.Log("Unhandled exception '" + exc + "' thrown while saving!");
+            }
         }
 
         public void LoadSettings()
         {
-            // Loads key binds
-            nextLevelComboBox.SelectedItem = (string)Properties.Settings.Default["nextLevelKey"];
-            prevLevelComboBox.SelectedItem = (string)Properties.Settings.Default["prevLevelKey"];
-            incrSliderComboBox.SelectedItem = (string)Properties.Settings.Default["incrSliderKey"];
-            decrSliderComboBox.SelectedItem = (string)Properties.Settings.Default["decrSliderKey"];
+            mainForm.Log("Loading settings...");
 
-            controlModNextLevelComboBox.SelectedItem = (string)Properties.Settings.Default["controlModNextLevelKey"];
-            controlModPrevLevelComboBox.SelectedItem = (string)Properties.Settings.Default["controlModPrevLevelKey"];
-            controlModIncrSliderComboBox.SelectedItem = (string)Properties.Settings.Default["controlModIncrSliderKey"];
-            controlModDecrSliderComboBox.SelectedItem = (string)Properties.Settings.Default["controlModDecrSliderKey"];
+            try
+            {
+                // Loads key binds
+                nextLevelComboBox.SelectedItem = (string)Properties.Settings.Default["nextLevelKey"];
+                prevLevelComboBox.SelectedItem = (string)Properties.Settings.Default["prevLevelKey"];
+                incrSliderComboBox.SelectedItem = (string)Properties.Settings.Default["incrSliderKey"];
+                decrSliderComboBox.SelectedItem = (string)Properties.Settings.Default["decrSliderKey"];
 
-            shiftModNextLevelComboBox.SelectedItem = (string)Properties.Settings.Default["shiftModNextLevelKey"];
-            shiftModPrevLevelComboBox.SelectedItem = (string)Properties.Settings.Default["shiftModPrevLevelKey"];
-            shiftModIncrSliderComboBox.SelectedItem = (string)Properties.Settings.Default["shiftModIncrSliderKey"];
-            shiftModDecrSliderComboBox.SelectedItem = (string)Properties.Settings.Default["shiftModDecrSliderKey"];
+                controlModNextLevelComboBox.SelectedItem = (string)Properties.Settings.Default["controlModNextLevelKey"];
+                controlModPrevLevelComboBox.SelectedItem = (string)Properties.Settings.Default["controlModPrevLevelKey"];
+                controlModIncrSliderComboBox.SelectedItem = (string)Properties.Settings.Default["controlModIncrSliderKey"];
+                controlModDecrSliderComboBox.SelectedItem = (string)Properties.Settings.Default["controlModDecrSliderKey"];
 
-            altModNextLevelComboBox.SelectedItem = (string)Properties.Settings.Default["altModNextLevelKey"];
-            altModPrevLevelComboBox.SelectedItem = (string)Properties.Settings.Default["altModPrevLevelKey"];
-            altModIncrSliderComboBox.SelectedItem = (string)Properties.Settings.Default["altModIncrSliderKey"];
-            altModDecrSliderComboBox.SelectedItem = (string)Properties.Settings.Default["altModDecrSliderKey"];
-            
-            // The checked RadioButton of the 'keySetupGroupBox'
-            if ((int)Properties.Settings.Default["keySetupRadioButton"] == 1)
-            {
-                useLevelKeysOnlyRadioButton.Checked = true;
-            }
-            else if ((int)Properties.Settings.Default["keySetupRadioButton"] == 2)
-            {
-                useBothKeysRadioButton.Checked = true;
-            }
-            else if ((int)Properties.Settings.Default["keySetupRadioButton"] == 3)
-            {
-                useSliderKeysOnlyRadioButton.Checked = true;
-            }
-            // Default fallback case if the value of the 'keySetupRadioButton' setting is invalid
-            else
-            {
-                mainForm.Log("The saved setting 'keySetupRadioButton' has the invalid value '"+ Properties.Settings.Default["keySetupRadioButton"] +"'!");
-            }
+                shiftModNextLevelComboBox.SelectedItem = (string)Properties.Settings.Default["shiftModNextLevelKey"];
+                shiftModPrevLevelComboBox.SelectedItem = (string)Properties.Settings.Default["shiftModPrevLevelKey"];
+                shiftModIncrSliderComboBox.SelectedItem = (string)Properties.Settings.Default["shiftModIncrSliderKey"];
+                shiftModDecrSliderComboBox.SelectedItem = (string)Properties.Settings.Default["shiftModDecrSliderKey"];
 
-            // The checked RadioButton of the 'levelKeysOnlyPanel'
-            if ((int)Properties.Settings.Default["levelKeysOnlyRadioButton"] == 1)
-            {
-                holdLevelLPRadioButton.Checked = true;
-            }
-            else if ((int)Properties.Settings.Default["levelKeysOnlyRadioButton"] == 2)
-            {
-                holdSliderLPRadioButton.Checked = true;
-            }
-            else if ((int)Properties.Settings.Default["levelKeysOnlyRadioButton"] == 3)
-            {
-                doNothingLPRadioButton.Checked = true;
-            }
-            // Default fallback case if the value of the 'levelKeysOnlyRadioButton' setting is invalid
-            else
-            {
-                mainForm.Log("The saved setting 'levelKeysOnlyRadioButton' has the invalid value '" + Properties.Settings.Default["levelKeysOnlyRadioButton"] + "'!");
-            }
+                altModNextLevelComboBox.SelectedItem = (string)Properties.Settings.Default["altModNextLevelKey"];
+                altModPrevLevelComboBox.SelectedItem = (string)Properties.Settings.Default["altModPrevLevelKey"];
+                altModIncrSliderComboBox.SelectedItem = (string)Properties.Settings.Default["altModIncrSliderKey"];
+                altModDecrSliderComboBox.SelectedItem = (string)Properties.Settings.Default["altModDecrSliderKey"];
 
-            // The value of the 'useHoldDownLevelSystemBPGroupBox.Checked' attribute
-            useHoldDownLevelSystemBPGroupBox.Checked = (bool)Properties.Settings.Default["useHoldDownBothKeysChecked"];
+                // The checked RadioButton of the 'keySetupGroupBox'
+                if ((int)Properties.Settings.Default["keySetupRadioButton"] == 1)
+                {
+                    useLevelKeysOnlyRadioButton.Checked = true;
+                }
+                else if ((int)Properties.Settings.Default["keySetupRadioButton"] == 2)
+                {
+                    useBothKeysRadioButton.Checked = true;
+                }
+                else if ((int)Properties.Settings.Default["keySetupRadioButton"] == 3)
+                {
+                    useSliderKeysOnlyRadioButton.Checked = true;
+                }
+                // Default fallback case if the value of the 'keySetupRadioButton' setting is invalid
+                else
+                {
+                    mainForm.Log("The saved setting 'keySetupRadioButton' has the invalid value '" + Properties.Settings.Default["keySetupRadioButton"] + "'!");
+                }
 
-            // 'NumericUpDown' values
-            pressTresholdHoldLevelLPNumericUpDown.Value = (int)Properties.Settings.Default["pressTresholdHoldLevelLPNumericUpDown"];
-            tickIntervalHoldLevelLPNumericUpDown.Value = (int)Properties.Settings.Default["tickIntervalHoldLevelLPNumericUpDown"];
-            pressTresholdHoldSliderLPNumericUpDown.Value = (int)Properties.Settings.Default["pressTresholdHoldSliderLPNumericUpDown"];
-            tickIntervalHoldSliderLPNumericUpDown.Value = (int)Properties.Settings.Default["tickIntervalHoldSliderLPNumericUpDown"];
-            sliderDeltaHoldSliderLPNumericUpDown.Value = (int)Properties.Settings.Default["sliderDeltaHoldSliderLPNumericUpDown"];
-            pressTresholdLevelSystemBPNumericUpDown.Value = (int)Properties.Settings.Default["pressTresholdLevelSystemBPNumericUpDown"];
-            tickIntervalLevelSystemBPNumericUpDown.Value = (int)Properties.Settings.Default["tickIntervalLevelSystemBPNumericUpDown"];
-            tickIntervalSliderSystemBPNumericUpDown.Value = (int)Properties.Settings.Default["tickIntervalSliderSystemBPNumericUpDown"];
-            sliderDeltaSliderSystemBPNumericUpDown.Value = (int)Properties.Settings.Default["sliderDeltaSliderSystemBPNumericUpDown"];
-            tickIntervalSPNumericUpDown.Value = (int)Properties.Settings.Default["tickIntervalSPNumericUpDown"];
-            sliderDeltaSPNumericUpDown.Value = (int)Properties.Settings.Default["sliderDeltaSPNumericUpDown"];
+                // The checked RadioButton of the 'levelKeysOnlyPanel'
+                if ((int)Properties.Settings.Default["levelKeysOnlyRadioButton"] == 1)
+                {
+                    holdLevelLPRadioButton.Checked = true;
+                }
+                else if ((int)Properties.Settings.Default["levelKeysOnlyRadioButton"] == 2)
+                {
+                    holdSliderLPRadioButton.Checked = true;
+                }
+                else if ((int)Properties.Settings.Default["levelKeysOnlyRadioButton"] == 3)
+                {
+                    doNothingLPRadioButton.Checked = true;
+                }
+                // Default fallback case if the value of the 'levelKeysOnlyRadioButton' setting is invalid
+                else
+                {
+                    mainForm.Log("The saved setting 'levelKeysOnlyRadioButton' has the invalid value '" + Properties.Settings.Default["levelKeysOnlyRadioButton"] + "'!");
+                }
+
+                // The value of the 'useHoldDownLevelSystemBPGroupBox.Checked' attribute
+                useHoldDownLevelSystemBPGroupBox.Checked = (bool)Properties.Settings.Default["useHoldDownBothKeysChecked"];
+
+                // 'NumericUpDown' values
+                int temp = Math.Min((int)pressTresholdHoldLevelLPNumericUpDown.Maximum, (int)Properties.Settings.Default["pressTresholdHoldLevelLPNumericUpDown"]);
+                pressTresholdHoldLevelLPNumericUpDown.Value = Math.Max((int)pressTresholdHoldLevelLPNumericUpDown.Minimum, temp);
+
+                temp = Math.Min((int)tickIntervalHoldLevelLPNumericUpDown.Maximum, (int)Properties.Settings.Default["tickIntervalHoldLevelLPNumericUpDown"]);
+                tickIntervalHoldLevelLPNumericUpDown.Value = Math.Max((int)tickIntervalHoldLevelLPNumericUpDown.Minimum, temp);
+
+                temp = Math.Min((int)pressTresholdHoldSliderLPNumericUpDown.Maximum, (int)Properties.Settings.Default["pressTresholdHoldSliderLPNumericUpDown"]);
+                pressTresholdHoldSliderLPNumericUpDown.Value = Math.Max((int)pressTresholdHoldSliderLPNumericUpDown.Minimum, temp);
+
+                temp = Math.Min((int)tickIntervalHoldSliderLPNumericUpDown.Maximum, (int)Properties.Settings.Default["tickIntervalHoldSliderLPNumericUpDown"]);
+                tickIntervalHoldSliderLPNumericUpDown.Value = Math.Max((int)tickIntervalHoldSliderLPNumericUpDown.Minimum, temp);
+
+                temp = Math.Min((int)sliderDeltaHoldSliderLPNumericUpDown.Maximum, (int)Properties.Settings.Default["sliderDeltaHoldSliderLPNumericUpDown"]);
+                sliderDeltaHoldSliderLPNumericUpDown.Value = Math.Max((int)sliderDeltaHoldSliderLPNumericUpDown.Minimum, temp);
+
+                temp = Math.Min((int)pressTresholdLevelSystemBPNumericUpDown.Maximum, (int)Properties.Settings.Default["pressTresholdLevelSystemBPNumericUpDown"]);
+                pressTresholdLevelSystemBPNumericUpDown.Value = Math.Max((int)pressTresholdLevelSystemBPNumericUpDown.Minimum, temp);
+
+                temp = Math.Min((int)tickIntervalLevelSystemBPNumericUpDown.Maximum, (int)Properties.Settings.Default["tickIntervalLevelSystemBPNumericUpDown"]);
+                tickIntervalLevelSystemBPNumericUpDown.Value = Math.Max((int)tickIntervalLevelSystemBPNumericUpDown.Minimum, temp);
+
+                temp = Math.Min((int)tickIntervalSliderSystemBPNumericUpDown.Maximum, (int)Properties.Settings.Default["tickIntervalSliderSystemBPNumericUpDown"]);
+                tickIntervalSliderSystemBPNumericUpDown.Value = Math.Max((int)tickIntervalSliderSystemBPNumericUpDown.Minimum, temp);
+
+                temp = Math.Min((int)sliderDeltaSliderSystemBPNumericUpDown.Maximum, (int)Properties.Settings.Default["sliderDeltaSliderSystemBPNumericUpDown"]);
+                sliderDeltaSliderSystemBPNumericUpDown.Value = Math.Max((int)sliderDeltaSliderSystemBPNumericUpDown.Minimum, temp);
+
+                temp = Math.Min((int)tickIntervalSPNumericUpDown.Maximum, (int)Properties.Settings.Default["tickIntervalSPNumericUpDown"]);
+                tickIntervalSPNumericUpDown.Value = Math.Max((int)tickIntervalSPNumericUpDown.Minimum, temp);
+
+                temp = Math.Min((int)sliderDeltaSPNumericUpDown.Maximum, (int)Properties.Settings.Default["sliderDeltaSPNumericUpDown"]);
+                sliderDeltaSPNumericUpDown.Value = Math.Max((int)sliderDeltaSPNumericUpDown.Minimum, temp);
+            }
+            catch(Exception exc)
+            {
+                mainForm.Log("Unhandled exception '" + exc +"' thrown while loading!");
+            }
         }
 
         public void RevertSettingsToDefault()

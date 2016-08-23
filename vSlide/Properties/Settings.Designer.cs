@@ -253,7 +253,7 @@ namespace vSlide.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("80")]
         public int pressTresholdHoldLevelLPNumericUpDown {
             get {
                 return ((int)(this["pressTresholdHoldLevelLPNumericUpDown"]));
@@ -265,7 +265,7 @@ namespace vSlide.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("55")]
         public int tickIntervalHoldLevelLPNumericUpDown {
             get {
                 return ((int)(this["tickIntervalHoldLevelLPNumericUpDown"]));
@@ -277,7 +277,7 @@ namespace vSlide.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("55")]
         public int pressTresholdHoldSliderLPNumericUpDown {
             get {
                 return ((int)(this["pressTresholdHoldSliderLPNumericUpDown"]));
@@ -289,7 +289,7 @@ namespace vSlide.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
         public int tickIntervalHoldSliderLPNumericUpDown {
             get {
                 return ((int)(this["tickIntervalHoldSliderLPNumericUpDown"]));
@@ -301,7 +301,7 @@ namespace vSlide.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("200")]
         public int sliderDeltaHoldSliderLPNumericUpDown {
             get {
                 return ((int)(this["sliderDeltaHoldSliderLPNumericUpDown"]));
@@ -313,7 +313,7 @@ namespace vSlide.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("80")]
         public int pressTresholdLevelSystemBPNumericUpDown {
             get {
                 return ((int)(this["pressTresholdLevelSystemBPNumericUpDown"]));
@@ -325,7 +325,7 @@ namespace vSlide.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("55")]
         public int tickIntervalLevelSystemBPNumericUpDown {
             get {
                 return ((int)(this["tickIntervalLevelSystemBPNumericUpDown"]));
@@ -337,7 +337,7 @@ namespace vSlide.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
         public int tickIntervalSliderSystemBPNumericUpDown {
             get {
                 return ((int)(this["tickIntervalSliderSystemBPNumericUpDown"]));
@@ -349,7 +349,7 @@ namespace vSlide.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("200")]
         public int sliderDeltaSliderSystemBPNumericUpDown {
             get {
                 return ((int)(this["sliderDeltaSliderSystemBPNumericUpDown"]));
@@ -361,7 +361,7 @@ namespace vSlide.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
         public int tickIntervalSPNumericUpDown {
             get {
                 return ((int)(this["tickIntervalSPNumericUpDown"]));
@@ -373,7 +373,7 @@ namespace vSlide.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("170")]
         public int sliderDeltaSPNumericUpDown {
             get {
                 return ((int)(this["sliderDeltaSPNumericUpDown"]));
