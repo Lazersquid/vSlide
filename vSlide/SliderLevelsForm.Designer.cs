@@ -55,7 +55,7 @@
             this.mappingLevelPrototypeGroupBox.Controls.Add(this.label10);
             this.mappingLevelPrototypeGroupBox.Controls.Add(this.numericUpDown1);
             this.mappingLevelPrototypeGroupBox.Controls.Add(this.numericUpDown2);
-            this.mappingLevelPrototypeGroupBox.Location = new System.Drawing.Point(321, 33);
+            this.mappingLevelPrototypeGroupBox.Location = new System.Drawing.Point(338, 33);
             this.mappingLevelPrototypeGroupBox.Name = "mappingLevelPrototypeGroupBox";
             this.mappingLevelPrototypeGroupBox.Size = new System.Drawing.Size(295, 68);
             this.mappingLevelPrototypeGroupBox.TabIndex = 36;
@@ -124,7 +124,7 @@
             // 
             // setValuesEqualyButton
             // 
-            this.setValuesEqualyButton.Location = new System.Drawing.Point(187, 4);
+            this.setValuesEqualyButton.Location = new System.Drawing.Point(204, 4);
             this.setValuesEqualyButton.Name = "setValuesEqualyButton";
             this.setValuesEqualyButton.Size = new System.Drawing.Size(128, 23);
             this.setValuesEqualyButton.TabIndex = 39;
@@ -141,15 +141,15 @@
             this.label18.TabIndex = 37;
             this.label18.Text = "Number of Levels:";
             // 
-            // mappingThemeFlowLayoutPanel
+            // sliderLevelsFlowLayoutPanel
             // 
             this.sliderLevelsFlowLayoutPanel.AutoScroll = true;
             this.sliderLevelsFlowLayoutPanel.BackColor = System.Drawing.SystemColors.Control;
             this.sliderLevelsFlowLayoutPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.sliderLevelsFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.sliderLevelsFlowLayoutPanel.Location = new System.Drawing.Point(12, 33);
-            this.sliderLevelsFlowLayoutPanel.Name = "mappingThemeFlowLayoutPanel";
-            this.sliderLevelsFlowLayoutPanel.Size = new System.Drawing.Size(303, 586);
+            this.sliderLevelsFlowLayoutPanel.Name = "sliderLevelsFlowLayoutPanel";
+            this.sliderLevelsFlowLayoutPanel.Size = new System.Drawing.Size(320, 586);
             this.sliderLevelsFlowLayoutPanel.TabIndex = 35;
             this.sliderLevelsFlowLayoutPanel.WrapContents = false;
             // 
@@ -174,7 +174,7 @@
             // revertSliderLevelToDefaultButton
             // 
             this.revertSliderLevelToDefaultButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.revertSliderLevelToDefaultButton.Location = new System.Drawing.Point(214, 631);
+            this.revertSliderLevelToDefaultButton.Location = new System.Drawing.Point(230, 631);
             this.revertSliderLevelToDefaultButton.Name = "revertSliderLevelToDefaultButton";
             this.revertSliderLevelToDefaultButton.Size = new System.Drawing.Size(101, 23);
             this.revertSliderLevelToDefaultButton.TabIndex = 41;
@@ -191,11 +191,11 @@
             this.saveSliderLevelsButton.Text = "Save";
             this.saveSliderLevelsButton.UseVisualStyleBackColor = true;
             // 
-            // MappingThemeForm
+            // SliderLevelsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(327, 666);
+            this.ClientSize = new System.Drawing.Size(343, 666);
             this.Controls.Add(this.revertSliderLevelToDefaultButton);
             this.Controls.Add(this.saveSliderLevelsButton);
             this.Controls.Add(this.mappingLevelPrototypeGroupBox);
@@ -205,7 +205,7 @@
             this.Controls.Add(this.numberOfLevelsNumericUpDown);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
-            this.Name = "MappingThemeForm";
+            this.Name = "SliderLevelsForm";
             this.Text = "vSlide - Slider Levels";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SliderLevelsForm_FormClosing);
             this.mappingLevelPrototypeGroupBox.ResumeLayout(false);
