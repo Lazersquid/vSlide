@@ -12,11 +12,11 @@ namespace vSlide
         MainForm mainForm;
         int NumberOfLevels
         {
-            get { return mappingLevelControlList.Count; }
+            get { return sliderLevelControlList.Count; }
         }
 
-        // Saves all MappingLevelControl's
-        List<MappingLevelControl> mappingLevelControlList = new List<MappingLevelControl>();
+        // Saves all SliderLevelControl's
+        List<SliderLevelControl> sliderLevelControlList = new List<SliderLevelControl>();
 
         #endregion
 
@@ -26,78 +26,77 @@ namespace vSlide
 
             this.mainForm = mainForm;
             
-            // Creates as many mappingLevelGroupBoxes as 'numberOfLevels' specefies
             numberOfLevelsNumericUpDown.Value = numberOfLevels;
-            SyncMappingThemeFlowLayoutPanelToLevelNumber(numberOfLevels);
+            SyncCountOfSliderLevelsToLevelNumber(numberOfLevels);
 
             SetValuesOfLevelsEqualy();
             
-            // Subscribes to the newJoystickAcquired event to update the 'maxAbsoluteSliderValue' of the mapping levels
+            // Subscribes to the newJoystickAcquired event to update the 'maxAbsoluteSliderValue' of the slider levels
             // to the new maxSliderValue of the new device
-            mainForm.NewJoystickAcquired += UpdateMaxSliderValueOfMappingLevelControls;
+            mainForm.NewJoystickAcquired += UpdateMaxSliderValueOfSliderLevelControls;
         }
 
         #region Methods
 
-        private void SyncMappingThemeFlowLayoutPanelToLevelNumber(int numberOfLevels)
+        private void SyncCountOfSliderLevelsToLevelNumber(int numberOfLevels)
         {
             // Gets the difference of the current number of Levels (NumberOfLevels) and the target number (numberOfLevels)
             int delta = numberOfLevels - NumberOfLevels;
 
-            // Creates the needed amount of mapping level controls if delta is positive
-            if(delta > 0)
+            // Creates the needed amount of SliderLevelControls if delta is positive
+            if (delta > 0)
             {
                 for (; delta > 0; delta--)
                 {
-                    CreateNewMappingLevelControl();
+                    CreateNewSliderLevelControl();
                 }
             }
 
-            // Deletes mapping level controls if delta is negative
+            // Deletes SliderLevelControls if delta is negative
             else if (delta < 0)
             {
                 for (; delta < 0; delta++)
                 {
-                    DeleteLastMappingLevelControl();
+                    DeleteLastSliderLevelControl();
                 }
             }
         }
 
-        private void CreateNewMappingLevelControl()
+        private void CreateNewSliderLevelControl()
         {
-            int mappingLevelIndex = mappingLevelControlList.Count;
-            mainForm.Log("Creating mapping level '" + (mappingLevelIndex+1) + "'...");
+            int sliderLevelIndex = sliderLevelControlList.Count;
+            mainForm.Log("Creating slider level '" + (sliderLevelIndex+1) + "'...");
 
-            // Creates a new MappingLevelControl and adds it to the mappingLevelList
-            MappingLevelControl newLevelControl = new MappingLevelControl(mappingLevelIndex, mappingThemeFlowLayoutPanel, (int)mainForm.MaxSliderValue);
-            mappingLevelControlList.Add(newLevelControl);
+            // Creates a new SliderLevelControl and adds it to the sliderLevelControlList
+            SliderLevelControl newLevelControl = new SliderLevelControl(sliderLevelIndex, sliderLevelsFlowLayoutPanel, (int)mainForm.MaxSliderValue);
+            sliderLevelControlList.Add(newLevelControl);
 
             // Subscribes to the value changed events of the control
-            newLevelControl.MappingLevelAbsoluteNumericUpDown_ValueChanged += MappingLevelAbsoluteNumericUpDown_ValueChanged;
-            newLevelControl.MappingLevelRelativeNumericUpDown_ValueChanged += MappingLevelRelativeNumericUpDown_ValueChanged;
+            newLevelControl.SliderLevelAbsoluteNumericUpDown_ValueChanged += SliderLevelAbsoluteNumericUpDown_ValueChanged;
+            newLevelControl.SliderLevelRelativeNumericUpDown_ValueChanged += SliderLevelRelativeNumericUpDown_ValueChanged;
 
-            // Sets the value of the MappingLevelControl to the max value of the slider
+            // Sets the value of the SliderLevelControl to the max value of the slider
             newLevelControl.AbsoluteValue = mainForm.MaxSliderValue;
         }
 
-        private void DeleteLastMappingLevelControl()
+        private void DeleteLastSliderLevelControl()
         {
             if(NumberOfLevels < 0 )
             {
-                mainForm.Log("Tried to delete a mapping level control while there were none, returning...");
+                mainForm.Log("Tried to delete a SliderLevelControl while there were none, returning...");
                 return;
             }
 
-            mainForm.Log("Removing mapping level '" + (mappingLevelControlList.Count) + "'...");
-            // Creates the last MappingLevelControl and removes it from the mappingLevelList
-            MappingLevelControl mappingLevelToRemove = mappingLevelControlList[mappingLevelControlList.Count - 1];
-            mappingLevelControlList.RemoveAt(mappingLevelControlList.Count - 1);
+            mainForm.Log("Removing slider level '" + (sliderLevelControlList.Count) + "'...");
+            // Creates the last SliderLevelControl and removes it from the sliderLevelControlList
+            SliderLevelControl sliderLevelControlToRemove = sliderLevelControlList[sliderLevelControlList.Count - 1];
+            sliderLevelControlList.RemoveAt(sliderLevelControlList.Count - 1);
 
             // Unsubscribes from the value changed events of the control
-            mappingLevelToRemove.MappingLevelAbsoluteNumericUpDown_ValueChanged -= MappingLevelAbsoluteNumericUpDown_ValueChanged;
-            mappingLevelToRemove.MappingLevelRelativeNumericUpDown_ValueChanged -= MappingLevelRelativeNumericUpDown_ValueChanged;
+            sliderLevelControlToRemove.SliderLevelAbsoluteNumericUpDown_ValueChanged -= SliderLevelAbsoluteNumericUpDown_ValueChanged;
+            sliderLevelControlToRemove.SliderLevelRelativeNumericUpDown_ValueChanged -= SliderLevelRelativeNumericUpDown_ValueChanged;
 
-            mappingLevelToRemove.Remove();
+            sliderLevelControlToRemove.Remove();
         }
 
         private void SetValuesOfLevelsEqualy()
@@ -111,36 +110,36 @@ namespace vSlide
 
             float stepValueRel = 1f / (NumberOfLevels - 1);
 
-            // Iterates through all MappingLevelControl's and sets their absolute value
+            // Iterates through all SliderLevelControl's and sets their absolute value
             for (int i = 0; i < NumberOfLevels; i++)
             {
-                mappingLevelControlList[i].AbsoluteValue = (int)(mainForm.MaxSliderValue * (stepValueRel * i));
+                sliderLevelControlList[i].AbsoluteValue = (int)(mainForm.MaxSliderValue * (stepValueRel * i));
             }
         }
 
-        private void CheckNewMappingLevelAbsoluteValue(int mappingLevel, MappingLevelControl control)
+        private void CheckNewSliderLevelAbsoluteValue(int sliderLevel, SliderLevelControl control)
         {
             // Ensures that the absolute-value of a level is alwys lower than the absolue value of the next level
-            if (mappingLevel + 1 < NumberOfLevels && control.AbsoluteValue >= mappingLevelControlList[mappingLevel + 1].AbsoluteValue)
+            if (sliderLevel + 1 < NumberOfLevels && control.AbsoluteValue >= sliderLevelControlList[sliderLevel + 1].AbsoluteValue)
             {
-                mainForm.Log("Tried to set the absolute value of level '" + (mappingLevel + 1) + "' to '" + control.AbsoluteValue +
-                    "'. But the absolute value of level '" + (mappingLevel + 2) + "' is '" + mappingLevelControlList[mappingLevel + 1].AbsoluteValue + "'");
-                control.AbsoluteValue = mappingLevelControlList[mappingLevel + 1].AbsoluteValue - 1;
+                mainForm.Log("Tried to set the absolute value of level '" + (sliderLevel + 1) + "' to '" + control.AbsoluteValue +
+                    "'. But the absolute value of level '" + (sliderLevel + 2) + "' is '" + sliderLevelControlList[sliderLevel + 1].AbsoluteValue + "'");
+                control.AbsoluteValue = sliderLevelControlList[sliderLevel + 1].AbsoluteValue - 1;
             }
 
             // Ensures that the absolute-value of a level is alwys higher than the absolue value of the previous level
-            if (mappingLevel > 0 && control.AbsoluteValue <= mappingLevelControlList[mappingLevel - 1].AbsoluteValue)
+            if (sliderLevel > 0 && control.AbsoluteValue <= sliderLevelControlList[sliderLevel - 1].AbsoluteValue)
             {
-                mainForm.Log("Tried to set the absolute value of level '" + (mappingLevel + 1) + "' to '" + control.AbsoluteValue +
-                    "'. But the absolute value of level '" + (mappingLevel) + "' is '" + mappingLevelControlList[mappingLevel - 1].AbsoluteValue + "'");
-                control.AbsoluteValue = mappingLevelControlList[mappingLevel - 1].AbsoluteValue + 1;
+                mainForm.Log("Tried to set the absolute value of level '" + (sliderLevel + 1) + "' to '" + control.AbsoluteValue +
+                    "'. But the absolute value of level '" + (sliderLevel) + "' is '" + sliderLevelControlList[sliderLevel - 1].AbsoluteValue + "'");
+                control.AbsoluteValue = sliderLevelControlList[sliderLevel - 1].AbsoluteValue + 1;
             }
         }
 
         public int IncreaseToNextLevel(int sliderValue)
         {
             // Checks if the sliderValue is already as high/higher than the absoluteValue of the highest-level
-            if (sliderValue >= mappingLevelControlList[NumberOfLevels-1].AbsoluteValue)
+            if (sliderValue >= sliderLevelControlList[NumberOfLevels-1].AbsoluteValue)
             {
                 mainForm.Log("The slider value is equal or higher than the highest-level's value");
                 return sliderValue;
@@ -151,10 +150,10 @@ namespace vSlide
 
             for (int i = 0; i < NumberOfLevels; i++)
             {
-                if (mappingLevelControlList[i].AbsoluteValue > sliderValue)
+                if (sliderLevelControlList[i].AbsoluteValue > sliderValue)
                 {
                     mainForm.Log("Setting slider value to Level '" + (i+1) + "'");
-                    return mappingLevelControlList[i].AbsoluteValue;
+                    return sliderLevelControlList[i].AbsoluteValue;
                 }
             }
 
@@ -166,7 +165,7 @@ namespace vSlide
         public int DecreaseToNextLevel(int sliderValue)
         {
             // Checks if the sliderValue is already as low/lower than the absoluteValue of the lowest-level
-            if (sliderValue <= mappingLevelControlList[0].AbsoluteValue)
+            if (sliderValue <= sliderLevelControlList[0].AbsoluteValue)
             {
                 mainForm.Log("The slider value is equal or smaller than the lowest-level's value");
                 return sliderValue;
@@ -176,10 +175,10 @@ namespace vSlide
             // 'sliderValue' then returns the absolute value of that level
             for (int i = NumberOfLevels-1; i >= 0; i--)
             {
-                if (mappingLevelControlList[i].AbsoluteValue < sliderValue)
+                if (sliderLevelControlList[i].AbsoluteValue < sliderValue)
                 {
                     mainForm.Log("Setting slider value to Level '" + (i+1) + "'");
-                    return mappingLevelControlList[i].AbsoluteValue;
+                    return sliderLevelControlList[i].AbsoluteValue;
                 }
             }
 
@@ -188,12 +187,12 @@ namespace vSlide
             return sliderValue;
         }
         
-        public void UpdateMaxSliderValueOfMappingLevelControls(uint newJoystickId, int newMax)
+        public void UpdateMaxSliderValueOfSliderLevelControls(uint newJoystickId, int newMax)
         {
-            // Updates 'MaxAbsoluteSliderValue' variable of every mappingLevelControl
-            foreach (MappingLevelControl mappingLevel in mappingLevelControlList)
+            // Updates 'MaxAbsoluteSliderValue' variable of every SliderLevelControl
+            foreach (SliderLevelControl sliderLevel in sliderLevelControlList)
             {
-                mappingLevel.MaxAbsoluteSliderValue = newMax;
+                sliderLevel.MaxAbsoluteSliderValue = newMax;
             }
         }
         
@@ -213,7 +212,7 @@ namespace vSlide
 
         private void numberOfLevelsNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            SyncMappingThemeFlowLayoutPanelToLevelNumber((int)numberOfLevelsNumericUpDown.Value);
+            SyncCountOfSliderLevelsToLevelNumber((int)numberOfLevelsNumericUpDown.Value);
         }
 
         private void setValuesEqualyButton_Click(object sender, EventArgs e)
@@ -221,26 +220,26 @@ namespace vSlide
             SetValuesOfLevelsEqualy();
         }
         
-        private void MappingLevelAbsoluteNumericUpDown_ValueChanged(int mappingLevel, MappingLevelControl control)
+        private void SliderLevelAbsoluteNumericUpDown_ValueChanged(int sliderLevel, SliderLevelControl control)
         {
-            CheckNewMappingLevelAbsoluteValue(mappingLevel, control);
-            mainForm.Log("The absolute value of level '" + (mappingLevel + 1) + "' was changed to '" + control.AbsoluteValue + "'");
+            CheckNewSliderLevelAbsoluteValue(sliderLevel, control);
+            mainForm.Log("The absolute value of level '" + (sliderLevel + 1) + "' was changed to '" + control.AbsoluteValue + "'");
         }
-        private void MappingLevelRelativeNumericUpDown_ValueChanged(int mappingLevel, MappingLevelControl control)
+        private void SliderLevelRelativeNumericUpDown_ValueChanged(int sliderLevel, SliderLevelControl control)
         {
-            CheckNewMappingLevelAbsoluteValue(mappingLevel, control);
-            mainForm.Log("The relative value of level '" + (mappingLevel + 1) + "' was changed to '" + control.RelativeNumericUpDownValue + "'");
+            CheckNewSliderLevelAbsoluteValue(sliderLevel, control);
+            mainForm.Log("The relative value of level '" + (sliderLevel + 1) + "' was changed to '" + control.RelativeNumericUpDownValue + "'");
         }
 
         #endregion
     }
 
-    public class MappingLevelControl
+    public class SliderLevelControl
     {
         #region Fields
 
-        // Stores the mapping level index of the control
-        int mappingLevel;
+        // Stores the slider level index of the control
+        int sliderLevel;
         // Stores the maximum value of the slider
         int maxAbsoluteSliderValue;
         public int MaxAbsoluteSliderValue
@@ -337,20 +336,20 @@ namespace vSlide
 
         #endregion
 
-        public delegate void MappingLevelControlEventHandler(int mappingLevel, MappingLevelControl control);
-        public event MappingLevelControlEventHandler MappingLevelAbsoluteNumericUpDown_ValueChanged;
-        public event MappingLevelControlEventHandler MappingLevelRelativeNumericUpDown_ValueChanged;
+        public delegate void SliderLevelControlEventHandler(int sliderLevel, SliderLevelControl control);
+        public event SliderLevelControlEventHandler SliderLevelAbsoluteNumericUpDown_ValueChanged;
+        public event SliderLevelControlEventHandler SliderLevelRelativeNumericUpDown_ValueChanged;
 
-        public MappingLevelControl(int mappingLevel, Control parent, int maxSliderValue)
+        public SliderLevelControl(int sliderLevel, Control parent, int maxSliderValue)
         {
-            // Saves the mapping level index of this controll and the maximum value oft he slider
-            this.mappingLevel = mappingLevel;
+            // Saves the slider level index of this control and the maximum value oft he slider
+            this.sliderLevel = sliderLevel;
             maxAbsoluteSliderValue = maxSliderValue;
 
-            // Creates a GroupBox that stores all controls of the MappingLevelControl
+            // Creates a GroupBox that stores all controls of the SliderLevelControl
             groupbox = new GroupBox();
             groupbox.Size = new Size(295, 68);
-            groupbox.Text = "Level " + (mappingLevel + 1);
+            groupbox.Text = "Level " + (sliderLevel + 1);
 
             //Creates an information label (has no advanced functionality)
             absoluteValueInfoLabel = new Label();
@@ -359,14 +358,14 @@ namespace vSlide
             absoluteValueInfoLabel.Text = "Absolute Value:";
             groupbox.Controls.Add(absoluteValueInfoLabel);
 
-            //Creates a label that displays the absolute value of the MappingLevelControl
+            //Creates a label that displays the absolute value of the SliderLevelControl
             absoluteValueLabel = new Label();
             absoluteValueLabel.AutoSize = true;
             absoluteValueLabel.Location = new Point(95, 18);
             absoluteValueLabel.Text = "-";
             groupbox.Controls.Add(absoluteValueLabel);
 
-            //Creates a NumericUpDown that lets the user set the absolute value of the MappingLevelControl
+            //Creates a NumericUpDown that lets the user set the absolute value of the SliderLevelControl
             absoluteNumericUpDown = new NumericUpDown();
             absoluteNumericUpDown.Maximum = maxAbsoluteSliderValue;
             absoluteNumericUpDown.Anchor = (AnchorStyles.Top | AnchorStyles.Right);
@@ -385,7 +384,7 @@ namespace vSlide
             relativeValueInfoLabel.Text = "Relative Value:";
             groupbox.Controls.Add(relativeValueInfoLabel);
 
-            //Creates a label that displays the relative value of the MappingLevelControl
+            //Creates a label that displays the relative value of the SliderLevelControl
             relativeValueLabel = new Label();
             relativeValueLabel.AutoSize = true;
             relativeValueLabel.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left);
@@ -393,7 +392,7 @@ namespace vSlide
             relativeValueLabel.Text = "-";
             groupbox.Controls.Add(relativeValueLabel);
 
-            //Creates a NumericUpDown that lets the user set the relative value of the MappingLevelControl
+            //Creates a NumericUpDown that lets the user set the relative value of the SliderLevelControl
             relativeNumericUpDown = new NumericUpDown();
             relativeNumericUpDown.Maximum = 100;
             relativeNumericUpDown.Minimum = 0;
@@ -409,7 +408,7 @@ namespace vSlide
         }
 
         /// <summary>
-        /// Removes all controls and unsubscribes off all events. Make sure that no method is subscribed to the events of the control!
+        /// Removes all controls and unsubscribes off all events. Make sure that no method is subscribed to the events of the control you are removing!
         /// </summary>
         public void Remove()
         {
@@ -433,9 +432,9 @@ namespace vSlide
             AbsoluteValue = (int)absoluteNumericUpDown.Value;
 
             // Invokes the event
-            if(MappingLevelAbsoluteNumericUpDown_ValueChanged != null)
+            if(SliderLevelAbsoluteNumericUpDown_ValueChanged != null)
             {
-                MappingLevelAbsoluteNumericUpDown_ValueChanged(mappingLevel, this);
+                SliderLevelAbsoluteNumericUpDown_ValueChanged(sliderLevel, this);
             }
         }
         private void RelativeNumericUpDown_ValueChanged(object sender, EventArgs e)
@@ -445,9 +444,9 @@ namespace vSlide
 
             RelativeValue = (int)relativeNumericUpDown.Value;
             // Invokes the event
-            if (MappingLevelRelativeNumericUpDown_ValueChanged != null)
+            if (SliderLevelRelativeNumericUpDown_ValueChanged != null)
             {
-                MappingLevelRelativeNumericUpDown_ValueChanged(mappingLevel, this);
+                SliderLevelRelativeNumericUpDown_ValueChanged(sliderLevel, this);
             }
         }
     }

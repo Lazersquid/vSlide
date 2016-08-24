@@ -37,7 +37,7 @@
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.setValuesEqualyButton = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
-            this.mappingThemeFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.sliderLevelsFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.numberOfLevelsNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.revertSliderLevelToDefaultButton = new System.Windows.Forms.Button();
             this.saveSliderLevelsButton = new System.Windows.Forms.Button();
@@ -143,15 +143,15 @@
             // 
             // mappingThemeFlowLayoutPanel
             // 
-            this.mappingThemeFlowLayoutPanel.AutoScroll = true;
-            this.mappingThemeFlowLayoutPanel.BackColor = System.Drawing.SystemColors.Control;
-            this.mappingThemeFlowLayoutPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.mappingThemeFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.mappingThemeFlowLayoutPanel.Location = new System.Drawing.Point(12, 33);
-            this.mappingThemeFlowLayoutPanel.Name = "mappingThemeFlowLayoutPanel";
-            this.mappingThemeFlowLayoutPanel.Size = new System.Drawing.Size(303, 586);
-            this.mappingThemeFlowLayoutPanel.TabIndex = 35;
-            this.mappingThemeFlowLayoutPanel.WrapContents = false;
+            this.sliderLevelsFlowLayoutPanel.AutoScroll = true;
+            this.sliderLevelsFlowLayoutPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.sliderLevelsFlowLayoutPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.sliderLevelsFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.sliderLevelsFlowLayoutPanel.Location = new System.Drawing.Point(12, 33);
+            this.sliderLevelsFlowLayoutPanel.Name = "mappingThemeFlowLayoutPanel";
+            this.sliderLevelsFlowLayoutPanel.Size = new System.Drawing.Size(303, 586);
+            this.sliderLevelsFlowLayoutPanel.TabIndex = 35;
+            this.sliderLevelsFlowLayoutPanel.WrapContents = false;
             // 
             // numberOfLevelsNumericUpDown
             // 
@@ -201,7 +201,7 @@
             this.Controls.Add(this.mappingLevelPrototypeGroupBox);
             this.Controls.Add(this.setValuesEqualyButton);
             this.Controls.Add(this.label18);
-            this.Controls.Add(this.mappingThemeFlowLayoutPanel);
+            this.Controls.Add(this.sliderLevelsFlowLayoutPanel);
             this.Controls.Add(this.numberOfLevelsNumericUpDown);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
@@ -229,7 +229,7 @@
         private System.Windows.Forms.NumericUpDown numericUpDown2;
         private System.Windows.Forms.Button setValuesEqualyButton;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.FlowLayoutPanel mappingThemeFlowLayoutPanel;
+        private System.Windows.Forms.FlowLayoutPanel sliderLevelsFlowLayoutPanel;
         private System.Windows.Forms.NumericUpDown numberOfLevelsNumericUpDown;
         private System.Windows.Forms.Button revertSliderLevelToDefaultButton;
         private System.Windows.Forms.Button saveSliderLevelsButton;
