@@ -571,8 +571,11 @@ namespace vSlide
 
             // Loads the settings
             Log("");
-            Log("Loading settings...");
             settingsForm.LoadSettings();
+
+            // Loads the slider levels
+            Log("");
+            sliderLevelsForm.LoadSliderLevels();
 
             // Enables the other forms menu strip
             otherFormsMenuStrip.Enabled = true;
@@ -979,7 +982,7 @@ namespace vSlide
                     // the keyHoldDownMode isn't in slider mode
                     if (holdDownModeLevel != KeyHoldDownMode.Slider)
                     {
-                        CurrSliderValue = sliderLevelsForm.IncreaseToNextLevel(CurrSliderValue);
+                        CurrSliderValue = sliderLevelsForm.GetSliderValueOfTheNextLevel(CurrSliderValue);
                         UpdateSliderInVJoyDriver();
                     }
                     nextLevelKeyState = KeyState.Down;
@@ -995,7 +998,7 @@ namespace vSlide
                     // the keyHoldDownMode is in slider mode
                     if (holdDownModeLevel == KeyHoldDownMode.Slider && nextLevelKeyState == KeyState.Down)
                     {
-                        CurrSliderValue = sliderLevelsForm.IncreaseToNextLevel(CurrSliderValue);
+                        CurrSliderValue = sliderLevelsForm.GetSliderValueOfTheNextLevel(CurrSliderValue);
                         UpdateSliderInVJoyDriver();
                     }
                     nextLevelKeyState = KeyState.Up;
@@ -1011,7 +1014,7 @@ namespace vSlide
                     // the keyHoldDownMode isn't in slider mode
                     if (holdDownModeLevel != KeyHoldDownMode.Slider)
                     {
-                        CurrSliderValue = sliderLevelsForm.DecreaseToNextLevel(CurrSliderValue);
+                        CurrSliderValue = sliderLevelsForm.GetSliderValueOfThePreviousLevel(CurrSliderValue);
                         UpdateSliderInVJoyDriver();
                     }
                     prevLevelKeyState = KeyState.Down;
@@ -1027,7 +1030,7 @@ namespace vSlide
                     // the keyHoldDownMode is in slider mode
                     if (holdDownModeLevel == KeyHoldDownMode.Slider && prevLevelKeyState == KeyState.Down)
                     {
-                        CurrSliderValue = sliderLevelsForm.DecreaseToNextLevel(CurrSliderValue);
+                        CurrSliderValue = sliderLevelsForm.GetSliderValueOfThePreviousLevel(CurrSliderValue);
                         UpdateSliderInVJoyDriver();
                     }
                     prevLevelKeyState = KeyState.Up;
@@ -1056,7 +1059,7 @@ namespace vSlide
 
                         if (holdDownModeLevel == KeyHoldDownMode.Level)
                         {
-                            CurrSliderValue = sliderLevelsForm.IncreaseToNextLevel(CurrSliderValue);
+                            CurrSliderValue = sliderLevelsForm.GetSliderValueOfTheNextLevel(CurrSliderValue);
                         }
                         else if (holdDownModeLevel == KeyHoldDownMode.Slider)
                         {
@@ -1085,7 +1088,7 @@ namespace vSlide
 
                         if (holdDownModeLevel == KeyHoldDownMode.Level)
                         {
-                            CurrSliderValue = sliderLevelsForm.DecreaseToNextLevel(CurrSliderValue);
+                            CurrSliderValue = sliderLevelsForm.GetSliderValueOfThePreviousLevel(CurrSliderValue);
                         }
                         else if (holdDownModeLevel == KeyHoldDownMode.Slider)
                         {

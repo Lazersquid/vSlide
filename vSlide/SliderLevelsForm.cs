@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace vSlide
@@ -10,7 +11,7 @@ namespace vSlide
         #region Fields
 
         MainForm mainForm;
-        int NumberOfLevels
+        int NumberOfSliderLevels
         {
             get { return sliderLevelControlList.Count; }
         }
@@ -41,7 +42,7 @@ namespace vSlide
         private void SyncCountOfSliderLevelsToLevelNumber(int numberOfLevels)
         {
             // Gets the difference of the current number of Levels (NumberOfLevels) and the target number (numberOfLevels)
-            int delta = numberOfLevels - NumberOfLevels;
+            int delta = numberOfLevels - NumberOfSliderLevels;
 
             // Creates the needed amount of SliderLevelControls if delta is positive
             if (delta > 0)
@@ -81,7 +82,7 @@ namespace vSlide
 
         private void DeleteLastSliderLevelControl()
         {
-            if(NumberOfLevels < 0 )
+            if(NumberOfSliderLevels < 0 )
             {
                 mainForm.Log("Tried to delete a SliderLevelControl while there were none, returning...");
                 return;
@@ -102,16 +103,16 @@ namespace vSlide
         private void SetValuesOfLevelsEqualy()
         {
             // Insures that the NumberOfLevels is between 0 and 100
-            if (NumberOfLevels < 2 || NumberOfLevels > 100)
+            if (NumberOfSliderLevels < 2 || NumberOfSliderLevels > 100)
             {
-                mainForm.Log("There is an illegal amount of levels '" + NumberOfLevels + "', returning...");
+                mainForm.Log("There is an illegal amount of levels '" + NumberOfSliderLevels + "', returning...");
                 return;
             }
 
-            float stepValueRel = 1f / (NumberOfLevels - 1);
+            float stepValueRel = 1f / (NumberOfSliderLevels - 1);
 
             // Iterates through all SliderLevelControl's and sets their absolute value
-            for (int i = 0; i < NumberOfLevels; i++)
+            for (int i = 0; i < NumberOfSliderLevels; i++)
             {
                 sliderLevelControlList[i].AbsoluteValue = (int)(mainForm.MaxSliderValue * (stepValueRel * i));
             }
@@ -120,7 +121,7 @@ namespace vSlide
         private void CheckNewSliderLevelAbsoluteValue(int sliderLevel, SliderLevelControl control)
         {
             // Ensures that the absolute-value of a level is alwys lower than the absolue value of the next level
-            if (sliderLevel + 1 < NumberOfLevels && control.AbsoluteValue >= sliderLevelControlList[sliderLevel + 1].AbsoluteValue)
+            if (sliderLevel + 1 < NumberOfSliderLevels && control.AbsoluteValue >= sliderLevelControlList[sliderLevel + 1].AbsoluteValue)
             {
                 mainForm.Log("Tried to set the absolute value of level '" + (sliderLevel + 1) + "' to '" + control.AbsoluteValue +
                     "'. But the absolute value of level '" + (sliderLevel + 2) + "' is '" + sliderLevelControlList[sliderLevel + 1].AbsoluteValue + "'");
@@ -136,21 +137,21 @@ namespace vSlide
             }
         }
 
-        public int IncreaseToNextLevel(int sliderValue)
+        public int GetSliderValueOfTheNextLevel(int currSliderValue)
         {
             // Checks if the sliderValue is already as high/higher than the absoluteValue of the highest-level
-            if (sliderValue >= sliderLevelControlList[NumberOfLevels-1].AbsoluteValue)
+            if (currSliderValue >= sliderLevelControlList[NumberOfSliderLevels-1].AbsoluteValue)
             {
                 mainForm.Log("The slider value is equal or higher than the highest-level's value");
-                return sliderValue;
+                return currSliderValue;
             }
 
             // Iterates through all levels, beginning with the lowest until the absolute value of a level is higher than
             // 'sliderValue' then returns the absolute value of that level
 
-            for (int i = 0; i < NumberOfLevels; i++)
+            for (int i = 0; i < NumberOfSliderLevels; i++)
             {
-                if (sliderLevelControlList[i].AbsoluteValue > sliderValue)
+                if (sliderLevelControlList[i].AbsoluteValue > currSliderValue)
                 {
                     mainForm.Log("Setting slider value to Level '" + (i+1) + "'");
                     return sliderLevelControlList[i].AbsoluteValue;
@@ -159,23 +160,23 @@ namespace vSlide
 
             // Fallback case that should never run
             mainForm.Log("Found no level to set the slider to!");
-            return sliderValue;
+            return currSliderValue;
         }
 
-        public int DecreaseToNextLevel(int sliderValue)
+        public int GetSliderValueOfThePreviousLevel(int currSliderValue)
         {
             // Checks if the sliderValue is already as low/lower than the absoluteValue of the lowest-level
-            if (sliderValue <= sliderLevelControlList[0].AbsoluteValue)
+            if (currSliderValue <= sliderLevelControlList[0].AbsoluteValue)
             {
                 mainForm.Log("The slider value is equal or smaller than the lowest-level's value");
-                return sliderValue;
+                return currSliderValue;
             }
 
             // Iterates through all levels, beginning with the highest until the absolute value of a level is lower than
             // 'sliderValue' then returns the absolute value of that level
-            for (int i = NumberOfLevels-1; i >= 0; i--)
+            for (int i = NumberOfSliderLevels-1; i >= 0; i--)
             {
-                if (sliderLevelControlList[i].AbsoluteValue < sliderValue)
+                if (sliderLevelControlList[i].AbsoluteValue < currSliderValue)
                 {
                     mainForm.Log("Setting slider value to Level '" + (i+1) + "'");
                     return sliderLevelControlList[i].AbsoluteValue;
@@ -184,7 +185,7 @@ namespace vSlide
 
             // Fallback case that should never run
             mainForm.Log("Found no level to set the slider to!");
-            return sliderValue;
+            return currSliderValue;
         }
         
         public void UpdateMaxSliderValueOfSliderLevelControls(uint newJoystickId, int newMax)
@@ -195,7 +196,46 @@ namespace vSlide
                 sliderLevel.MaxAbsoluteSliderValue = newMax;
             }
         }
-        
+
+        public void SaveSliderLevels()
+        {
+            mainForm.Log("Saving slider levels...");
+
+            // Adds all sliderLevels absolute values to an array
+            int[] sliderLevelsArray = new int[NumberOfSliderLevels];
+            for (int i = 0; i < NumberOfSliderLevels; i++)
+            {
+                sliderLevelsArray[i] = sliderLevelControlList[i].AbsoluteValue;
+            }
+
+            // Converts the array that stores the absolute values of the slider values to a string, seperating values with a ','
+            Properties.Settings.Default["sliderLevels"] = String.Join(",", sliderLevelsArray.Select(i => i.ToString()).ToArray());
+            Properties.Settings.Default.Save();
+        }
+
+        public void LoadSliderLevels()
+        {
+            mainForm.Log("Loading slider levels...");
+
+            int[] sliderLevelsArray;
+            try
+            {
+                sliderLevelsArray = ((string)Properties.Settings.Default["sliderLevels"]).Split(',').Select(s => Int32.Parse(s)).ToArray();
+            }
+            catch (Exception exc)
+            {
+                mainForm.Log("Unhandlex exception '" + exc +"' was thrown while loading slider levels!");
+                return;
+            }
+            
+            // 
+            numberOfLevelsNumericUpDown.Value = sliderLevelsArray.Length;
+            for (int i = 0; i < sliderLevelsArray.Length; i++)
+            {
+                sliderLevelControlList[i].AbsoluteValue = sliderLevelsArray[i];
+            }
+        }
+
         #endregion
 
         #region Event Methods
@@ -219,7 +259,23 @@ namespace vSlide
         {
             SetValuesOfLevelsEqualy();
         }
-        
+
+        private void saveSliderLevelsButton_Click(object sender, EventArgs e)
+        {
+            SaveSliderLevels();
+        }
+
+        private void revertSliderLevelsButton_Click(object sender, EventArgs e)
+        {
+            LoadSliderLevels();
+        }
+
+        private void revertSliderLevelToDefaultButton_Click(object sender, EventArgs e)
+        {
+            numberOfLevelsNumericUpDown.Value = 7;
+            SetValuesOfLevelsEqualy();
+        }
+
         private void SliderLevelAbsoluteNumericUpDown_ValueChanged(int sliderLevel, SliderLevelControl control)
         {
             CheckNewSliderLevelAbsoluteValue(sliderLevel, control);

@@ -382,5 +382,17 @@ namespace vSlide.Properties {
                 this["sliderDeltaSPNumericUpDown"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("avasasf.3a")]
+        public string sliderLevels {
+            get {
+                return ((string)(this["sliderLevels"]));
+            }
+            set {
+                this["sliderLevels"] = value;
+            }
+        }
     }
 }
