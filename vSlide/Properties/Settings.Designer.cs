@@ -217,7 +217,7 @@ namespace vSlide.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
         public int keySetupRadioButton {
             get {
                 return ((int)(this["keySetupRadioButton"]));
@@ -229,7 +229,7 @@ namespace vSlide.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
         public int levelKeysOnlyRadioButton {
             get {
                 return ((int)(this["levelKeysOnlyRadioButton"]));
@@ -241,7 +241,7 @@ namespace vSlide.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool useHoldDownBothKeysChecked {
             get {
                 return ((bool)(this["useHoldDownBothKeysChecked"]));
@@ -385,7 +385,7 @@ namespace vSlide.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 1")]
         public string sliderLevelsAbsolute {
             get {
                 return ((string)(this["sliderLevelsAbsolute"]));
@@ -397,7 +397,7 @@ namespace vSlide.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0;100")]
         public string sliderLevelsRelative {
             get {
                 return ((string)(this["sliderLevelsRelative"]));

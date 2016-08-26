@@ -51,13 +51,13 @@
       <Value Profile="(Default)">None</Value>
     </Setting>
     <Setting Name="keySetupRadioButton" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">2</Value>
     </Setting>
     <Setting Name="levelKeysOnlyRadioButton" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">2</Value>
     </Setting>
     <Setting Name="useHoldDownBothKeysChecked" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="pressTresholdHoldLevelLPNumericUpDown" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">80</Value>
@@ -93,10 +93,10 @@
       <Value Profile="(Default)">170</Value>
     </Setting>
     <Setting Name="sliderLevelsAbsolute" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">0, 1</Value>
     </Setting>
     <Setting Name="sliderLevelsRelative" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">0;100</Value>
     </Setting>
   </Settings>
 </SettingsFile>
