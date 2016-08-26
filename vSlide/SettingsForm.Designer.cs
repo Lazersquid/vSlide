@@ -114,6 +114,7 @@
             this.devicesComboBox = new System.Windows.Forms.ComboBox();
             this.saveSettingsButton = new System.Windows.Forms.Button();
             this.revertToDefaultButton = new System.Windows.Forms.Button();
+            this.revertChangesButton = new System.Windows.Forms.Button();
             this.levelKeyBindsGroupBox.SuspendLayout();
             this.sliderKeyBindsGroupBox.SuspendLayout();
             this.levelKeysOnlyPanel.SuspendLayout();
@@ -1506,9 +1507,9 @@
             // saveSettingsButton
             // 
             this.saveSettingsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.saveSettingsButton.Location = new System.Drawing.Point(12, 703);
+            this.saveSettingsButton.Location = new System.Drawing.Point(12, 719);
             this.saveSettingsButton.Name = "saveSettingsButton";
-            this.saveSettingsButton.Size = new System.Drawing.Size(101, 23);
+            this.saveSettingsButton.Size = new System.Drawing.Size(91, 23);
             this.saveSettingsButton.TabIndex = 24;
             this.saveSettingsButton.Text = "Save Settings";
             this.saveSettingsButton.UseVisualStyleBackColor = true;
@@ -1517,7 +1518,7 @@
             // revertToDefaultButton
             // 
             this.revertToDefaultButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.revertToDefaultButton.Location = new System.Drawing.Point(119, 703);
+            this.revertToDefaultButton.Location = new System.Drawing.Point(899, 719);
             this.revertToDefaultButton.Name = "revertToDefaultButton";
             this.revertToDefaultButton.Size = new System.Drawing.Size(101, 23);
             this.revertToDefaultButton.TabIndex = 32;
@@ -1525,11 +1526,23 @@
             this.revertToDefaultButton.UseVisualStyleBackColor = true;
             this.revertToDefaultButton.Click += new System.EventHandler(this.revertToDefaultButton_Click);
             // 
+            // revertChangesButton
+            // 
+            this.revertChangesButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.revertChangesButton.Location = new System.Drawing.Point(109, 719);
+            this.revertChangesButton.Name = "revertChangesButton";
+            this.revertChangesButton.Size = new System.Drawing.Size(101, 23);
+            this.revertChangesButton.TabIndex = 33;
+            this.revertChangesButton.Text = "Revert Changes";
+            this.revertChangesButton.UseVisualStyleBackColor = true;
+            this.revertChangesButton.Click += new System.EventHandler(this.revertChangesButton_Click);
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1012, 738);
+            this.ClientSize = new System.Drawing.Size(1012, 754);
+            this.Controls.Add(this.revertChangesButton);
             this.Controls.Add(this.revertToDefaultButton);
             this.Controls.Add(this.saveSettingsButton);
             this.Controls.Add(this.groupBox1);
@@ -1668,5 +1681,6 @@
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Button saveSettingsButton;
         private System.Windows.Forms.Button revertToDefaultButton;
+        private System.Windows.Forms.Button revertChangesButton;
     }
 }

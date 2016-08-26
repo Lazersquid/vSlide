@@ -1153,6 +1153,11 @@ namespace vSlide
             SaveCurrSettings();
         }
 
+        private void revertChangesButton_Click(object sender, EventArgs e)
+        {
+            LoadSettings();
+        }
+
         private void revertToDefaultButton_Click(object sender, EventArgs e)
         {
 
