@@ -572,17 +572,14 @@ namespace vSlide
                 prevLevelComboBox.SelectedItem = (string)Properties.Settings.Default["prevLevelKey"];
                 incrSliderComboBox.SelectedItem = (string)Properties.Settings.Default["incrSliderKey"];
                 decrSliderComboBox.SelectedItem = (string)Properties.Settings.Default["decrSliderKey"];
-
                 controlModNextLevelComboBox.SelectedItem = (string)Properties.Settings.Default["controlModNextLevelKey"];
                 controlModPrevLevelComboBox.SelectedItem = (string)Properties.Settings.Default["controlModPrevLevelKey"];
                 controlModIncrSliderComboBox.SelectedItem = (string)Properties.Settings.Default["controlModIncrSliderKey"];
                 controlModDecrSliderComboBox.SelectedItem = (string)Properties.Settings.Default["controlModDecrSliderKey"];
-
                 shiftModNextLevelComboBox.SelectedItem = (string)Properties.Settings.Default["shiftModNextLevelKey"];
                 shiftModPrevLevelComboBox.SelectedItem = (string)Properties.Settings.Default["shiftModPrevLevelKey"];
                 shiftModIncrSliderComboBox.SelectedItem = (string)Properties.Settings.Default["shiftModIncrSliderKey"];
                 shiftModDecrSliderComboBox.SelectedItem = (string)Properties.Settings.Default["shiftModDecrSliderKey"];
-
                 altModNextLevelComboBox.SelectedItem = (string)Properties.Settings.Default["altModNextLevelKey"];
                 altModPrevLevelComboBox.SelectedItem = (string)Properties.Settings.Default["altModPrevLevelKey"];
                 altModIncrSliderComboBox.SelectedItem = (string)Properties.Settings.Default["altModIncrSliderKey"];
@@ -671,7 +668,41 @@ namespace vSlide
 
         public void RevertSettingsToDefault()
         {
+            // Key binds
+            nextLevelComboBox.SelectedItem = "Shift Left";
+            prevLevelComboBox.SelectedItem = "Control Left";
+            incrSliderComboBox.SelectedItem = "E";
+            decrSliderComboBox.SelectedItem = "Q";
+            controlModNextLevelComboBox.SelectedItem = "None";
+            controlModPrevLevelComboBox.SelectedItem = "None";
+            controlModIncrSliderComboBox.SelectedItem = "None";
+            controlModDecrSliderComboBox.SelectedItem = "None";
+            shiftModNextLevelComboBox.SelectedItem = "None";
+            shiftModPrevLevelComboBox.SelectedItem = "None";
+            shiftModIncrSliderComboBox.SelectedItem = "None";
+            shiftModDecrSliderComboBox.SelectedItem = "None";
+            altModNextLevelComboBox.SelectedItem = "None";
+            altModPrevLevelComboBox.SelectedItem = "None";
+            altModIncrSliderComboBox.SelectedItem = "None";
+            altModDecrSliderComboBox.SelectedItem = "None";
 
+            // Key Setup
+            useBothKeysRadioButton.Checked = true;
+            holdSliderLPRadioButton.Checked = true;
+            useHoldDownLevelSystemBPGroupBox.Checked = true;
+
+            // 'NumericUpDown' values
+            pressTresholdHoldLevelLPNumericUpDown.Value = 80;
+            tickIntervalHoldLevelLPNumericUpDown.Value = 55;
+            pressTresholdHoldSliderLPNumericUpDown.Value = 55;
+            tickIntervalHoldSliderLPNumericUpDown.Value = 5;
+            sliderDeltaHoldSliderLPNumericUpDown.Value = 200;
+            pressTresholdLevelSystemBPNumericUpDown.Value = 80;
+            tickIntervalLevelSystemBPNumericUpDown.Value = 55;
+            tickIntervalSliderSystemBPNumericUpDown.Value = 5;
+            sliderDeltaSliderSystemBPNumericUpDown.Value = 200;
+            tickIntervalSPNumericUpDown.Value = 5;
+            sliderDeltaSPNumericUpDown.Value = 200;
         }
 
         #endregion
@@ -1160,7 +1191,7 @@ namespace vSlide
 
         private void revertToDefaultButton_Click(object sender, EventArgs e)
         {
-
+            RevertSettingsToDefault();
         }
 
         #endregion

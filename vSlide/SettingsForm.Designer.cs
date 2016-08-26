@@ -1091,6 +1091,8 @@
             // useHoldDownLevelSystemBPGroupBox
             // 
             this.useHoldDownLevelSystemBPGroupBox.AutoSize = true;
+            this.useHoldDownLevelSystemBPGroupBox.Checked = true;
+            this.useHoldDownLevelSystemBPGroupBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.useHoldDownLevelSystemBPGroupBox.Location = new System.Drawing.Point(44, 17);
             this.useHoldDownLevelSystemBPGroupBox.Name = "useHoldDownLevelSystemBPGroupBox";
             this.useHoldDownLevelSystemBPGroupBox.Size = new System.Drawing.Size(258, 17);
@@ -1369,7 +1371,7 @@
             this.sliderDeltaSPNumericUpDown.Size = new System.Drawing.Size(109, 20);
             this.sliderDeltaSPNumericUpDown.TabIndex = 29;
             this.sliderDeltaSPNumericUpDown.Value = new decimal(new int[] {
-            170,
+            200,
             0,
             0,
             0});
