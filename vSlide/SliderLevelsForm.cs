@@ -369,7 +369,7 @@ namespace vSlide
 
             // Creates a GroupBox that stores all controls of the SliderLevelControl
             groupbox = new GroupBox();
-            groupbox.Size = new Size(192, 48);
+            groupbox.Size = new Size(136, 48);
             groupbox.Text = "Level " + (sliderLevel + 1);
 
             //Creates an information label (has no advanced functionality)

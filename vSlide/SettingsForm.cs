@@ -10,13 +10,7 @@ namespace vSlide
 
         MainForm mainForm;
         SettingsFormState currState = SettingsFormState.SettingUp;
-
-        // Default values for the settings:
-        readonly string nextSliderLevelKeyDefault = "Shift Left";
-        readonly string prevSliderLevelKeyDefault = "Control Left";
-        readonly string incrSliderKeyDefault = "E";
-        readonly string decrSliderKeyDefault = "Q";
-
+        
         #endregion
 
         public SettingsForm(MainForm mainForm, List<uint> availableVJoyIds)

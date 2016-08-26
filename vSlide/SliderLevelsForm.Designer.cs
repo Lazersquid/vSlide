@@ -52,7 +52,7 @@
             this.mappingLevelPrototypeGroupBox.Controls.Add(this.relativePrototypeNumericUpDown);
             this.mappingLevelPrototypeGroupBox.Location = new System.Drawing.Point(3, 3);
             this.mappingLevelPrototypeGroupBox.Name = "mappingLevelPrototypeGroupBox";
-            this.mappingLevelPrototypeGroupBox.Size = new System.Drawing.Size(192, 48);
+            this.mappingLevelPrototypeGroupBox.Size = new System.Drawing.Size(136, 48);
             this.mappingLevelPrototypeGroupBox.TabIndex = 36;
             this.mappingLevelPrototypeGroupBox.TabStop = false;
             this.mappingLevelPrototypeGroupBox.Text = "Level 1";
@@ -91,7 +91,8 @@
             // 
             // setValuesEqualyButton
             // 
-            this.setValuesEqualyButton.Location = new System.Drawing.Point(248, 33);
+            this.setValuesEqualyButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.setValuesEqualyButton.Location = new System.Drawing.Point(191, 33);
             this.setValuesEqualyButton.Name = "setValuesEqualyButton";
             this.setValuesEqualyButton.Size = new System.Drawing.Size(96, 38);
             this.setValuesEqualyButton.TabIndex = 39;
@@ -117,7 +118,7 @@
             this.sliderLevelsFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.sliderLevelsFlowLayoutPanel.Location = new System.Drawing.Point(12, 33);
             this.sliderLevelsFlowLayoutPanel.Name = "sliderLevelsFlowLayoutPanel";
-            this.sliderLevelsFlowLayoutPanel.Size = new System.Drawing.Size(217, 586);
+            this.sliderLevelsFlowLayoutPanel.Size = new System.Drawing.Size(164, 552);
             this.sliderLevelsFlowLayoutPanel.TabIndex = 35;
             this.sliderLevelsFlowLayoutPanel.WrapContents = false;
             // 
@@ -142,7 +143,7 @@
             // revertSliderLevelToDefaultButton
             // 
             this.revertSliderLevelToDefaultButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.revertSliderLevelToDefaultButton.Location = new System.Drawing.Point(248, 518);
+            this.revertSliderLevelToDefaultButton.Location = new System.Drawing.Point(191, 484);
             this.revertSliderLevelToDefaultButton.Name = "revertSliderLevelToDefaultButton";
             this.revertSliderLevelToDefaultButton.Size = new System.Drawing.Size(96, 23);
             this.revertSliderLevelToDefaultButton.TabIndex = 41;
@@ -153,7 +154,7 @@
             // saveSliderLevelsButton
             // 
             this.saveSliderLevelsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.saveSliderLevelsButton.Location = new System.Drawing.Point(248, 596);
+            this.saveSliderLevelsButton.Location = new System.Drawing.Point(191, 562);
             this.saveSliderLevelsButton.Name = "saveSliderLevelsButton";
             this.saveSliderLevelsButton.Size = new System.Drawing.Size(96, 23);
             this.saveSliderLevelsButton.TabIndex = 40;
@@ -164,7 +165,7 @@
             // revertSliderLevelsButton
             // 
             this.revertSliderLevelsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.revertSliderLevelsButton.Location = new System.Drawing.Point(248, 567);
+            this.revertSliderLevelsButton.Location = new System.Drawing.Point(191, 533);
             this.revertSliderLevelsButton.Name = "revertSliderLevelsButton";
             this.revertSliderLevelsButton.Size = new System.Drawing.Size(96, 23);
             this.revertSliderLevelsButton.TabIndex = 42;
@@ -176,7 +177,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(356, 633);
+            this.ClientSize = new System.Drawing.Size(299, 599);
             this.Controls.Add(this.revertSliderLevelsButton);
             this.Controls.Add(this.revertSliderLevelToDefaultButton);
             this.Controls.Add(this.saveSliderLevelsButton);
