@@ -3,16 +3,16 @@
   <Profiles />
   <Settings>
     <Setting Name="nextLevelKey" Type="System.String" Scope="User">
-      <Value Profile="(Default)">None</Value>
+      <Value Profile="(Default)">Shift Left</Value>
     </Setting>
     <Setting Name="prevLevelKey" Type="System.String" Scope="User">
-      <Value Profile="(Default)">None</Value>
+      <Value Profile="(Default)">Control Left</Value>
     </Setting>
     <Setting Name="incrSliderKey" Type="System.String" Scope="User">
-      <Value Profile="(Default)">None</Value>
+      <Value Profile="(Default)">E</Value>
     </Setting>
     <Setting Name="decrSliderKey" Type="System.String" Scope="User">
-      <Value Profile="(Default)">None</Value>
+      <Value Profile="(Default)">Q</Value>
     </Setting>
     <Setting Name="controlModNextLevelKey" Type="System.String" Scope="User">
       <Value Profile="(Default)">None</Value>
@@ -90,10 +90,10 @@
       <Value Profile="(Default)">5</Value>
     </Setting>
     <Setting Name="sliderDeltaSPNumericUpDown" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">170</Value>
+      <Value Profile="(Default)">200</Value>
     </Setting>
     <Setting Name="sliderLevelsAbsolute" Type="System.String" Scope="User">
-      <Value Profile="(Default)">0, 1</Value>
+      <Value Profile="(Default)">0, 32767</Value>
     </Setting>
     <Setting Name="sliderLevelsRelative" Type="System.String" Scope="User">
       <Value Profile="(Default)">0;100</Value>

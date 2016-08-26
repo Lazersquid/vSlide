@@ -25,7 +25,7 @@ namespace vSlide.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("None")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Shift Left")]
         public string nextLevelKey {
             get {
                 return ((string)(this["nextLevelKey"]));
@@ -37,7 +37,7 @@ namespace vSlide.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("None")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Control Left")]
         public string prevLevelKey {
             get {
                 return ((string)(this["prevLevelKey"]));
@@ -49,7 +49,7 @@ namespace vSlide.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("None")]
+        [global::System.Configuration.DefaultSettingValueAttribute("E")]
         public string incrSliderKey {
             get {
                 return ((string)(this["incrSliderKey"]));
@@ -61,7 +61,7 @@ namespace vSlide.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("None")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Q")]
         public string decrSliderKey {
             get {
                 return ((string)(this["decrSliderKey"]));
@@ -373,7 +373,7 @@ namespace vSlide.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("170")]
+        [global::System.Configuration.DefaultSettingValueAttribute("200")]
         public int sliderDeltaSPNumericUpDown {
             get {
                 return ((int)(this["sliderDeltaSPNumericUpDown"]));
@@ -385,7 +385,7 @@ namespace vSlide.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 32767")]
         public string sliderLevelsAbsolute {
             get {
                 return ((string)(this["sliderLevelsAbsolute"]));
