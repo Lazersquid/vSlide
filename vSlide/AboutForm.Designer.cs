@@ -28,19 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label2 = new System.Windows.Forms.Label();
+            this.copyrightNoticeLabel = new System.Windows.Forms.Label();
             this.vSlideVersionLabel = new System.Windows.Forms.Label();
             this.vSlideVersionInfoLabel = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // label2
+            // copyrightNoticeLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 46);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(138, 13);
-            this.label2.TabIndex = 66;
-            this.label2.Text = "Created by \'Lukas Schwarz\'";
+            this.copyrightNoticeLabel.AutoSize = true;
+            this.copyrightNoticeLabel.Location = new System.Drawing.Point(12, 66);
+            this.copyrightNoticeLabel.Name = "copyrightNoticeLabel";
+            this.copyrightNoticeLabel.Size = new System.Drawing.Size(166, 26);
+            this.copyrightNoticeLabel.TabIndex = 66;
+            this.copyrightNoticeLabel.Text = "Copyright © 2016 Lukas Schwarz\r\nAll rights reserved";
             // 
             // vSlideVersionLabel
             // 
@@ -60,14 +61,24 @@
             this.vSlideVersionInfoLabel.TabIndex = 67;
             this.vSlideVersionInfoLabel.Text = "vSlide Version:";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 31);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(173, 13);
+            this.label1.TabIndex = 69;
+            this.label1.Text = "Created with/for vJoy Version 2.1.6";
+            // 
             // AboutForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(183, 71);
+            this.ClientSize = new System.Drawing.Size(245, 101);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.vSlideVersionLabel);
             this.Controls.Add(this.vSlideVersionInfoLabel);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.copyrightNoticeLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.Name = "AboutForm";
@@ -80,8 +91,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label copyrightNoticeLabel;
         private System.Windows.Forms.Label vSlideVersionLabel;
         private System.Windows.Forms.Label vSlideVersionInfoLabel;
+        private System.Windows.Forms.Label label1;
     }
 }
