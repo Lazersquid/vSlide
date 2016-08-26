@@ -92,8 +92,11 @@
     <Setting Name="sliderDeltaSPNumericUpDown" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">170</Value>
     </Setting>
-    <Setting Name="sliderLevels" Type="System.String" Scope="User">
-      <Value Profile="(Default)">avasasf.3a</Value>
+    <Setting Name="sliderLevelsAbsolute" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="sliderLevelsRelative" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>

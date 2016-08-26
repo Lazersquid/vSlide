@@ -72,12 +72,11 @@ namespace vSlide
             SliderLevelControl newLevelControl = new SliderLevelControl(sliderLevelIndex, sliderLevelsFlowLayoutPanel, (int)mainForm.MaxSliderValue);
             sliderLevelControlList.Add(newLevelControl);
 
-            // Subscribes to the value changed events of the control
-            newLevelControl.SliderLevelAbsoluteNumericUpDown_ValueChanged += SliderLevelAbsoluteNumericUpDown_ValueChanged;
+            // Subscribes to the value changed event of the control
             newLevelControl.SliderLevelRelativeNumericUpDown_ValueChanged += SliderLevelRelativeNumericUpDown_ValueChanged;
 
             // Sets the value of the SliderLevelControl to the max value of the slider
-            newLevelControl.AbsoluteValue = mainForm.MaxSliderValue;
+            newLevelControl.RelativeValue = 100;
         }
 
         private void DeleteLastSliderLevelControl()
@@ -93,8 +92,7 @@ namespace vSlide
             SliderLevelControl sliderLevelControlToRemove = sliderLevelControlList[sliderLevelControlList.Count - 1];
             sliderLevelControlList.RemoveAt(sliderLevelControlList.Count - 1);
 
-            // Unsubscribes from the value changed events of the control
-            sliderLevelControlToRemove.SliderLevelAbsoluteNumericUpDown_ValueChanged -= SliderLevelAbsoluteNumericUpDown_ValueChanged;
+            // Unsubscribes from the value changed event of the control
             sliderLevelControlToRemove.SliderLevelRelativeNumericUpDown_ValueChanged -= SliderLevelRelativeNumericUpDown_ValueChanged;
 
             sliderLevelControlToRemove.Remove();
@@ -109,31 +107,31 @@ namespace vSlide
                 return;
             }
 
-            float stepValueRel = 1f / (NumberOfSliderLevels - 1);
+            decimal stepValueRel = 1m / (NumberOfSliderLevels - 1);
 
-            // Iterates through all SliderLevelControl's and sets their absolute value
+            // Iterates through all SliderLevelControl's and sets their relative value
             for (int i = 0; i < NumberOfSliderLevels; i++)
             {
-                sliderLevelControlList[i].AbsoluteValue = (int)(mainForm.MaxSliderValue * (stepValueRel * i));
+                sliderLevelControlList[i].RelativeValue = (stepValueRel * i) * 100;
             }
         }
 
-        private void CheckNewSliderLevelAbsoluteValue(int sliderLevel, SliderLevelControl control)
+        private void CheckNewSliderLevelRelativeValue(int sliderLevel, SliderLevelControl control)
         {
-            // Ensures that the absolute-value of a level is alwys lower than the absolue value of the next level
-            if (sliderLevel + 1 < NumberOfSliderLevels && control.AbsoluteValue >= sliderLevelControlList[sliderLevel + 1].AbsoluteValue)
+            // Ensures that the relaitve-value of a level is alwys lower than the relative value of the next level
+            if (sliderLevel + 1 < NumberOfSliderLevels && control.RelativeValue >= sliderLevelControlList[sliderLevel + 1].RelativeValue)
             {
-                mainForm.Log("Tried to set the absolute value of level '" + (sliderLevel + 1) + "' to '" + control.AbsoluteValue +
-                    "'. But the absolute value of level '" + (sliderLevel + 2) + "' is '" + sliderLevelControlList[sliderLevel + 1].AbsoluteValue + "'");
-                control.AbsoluteValue = sliderLevelControlList[sliderLevel + 1].AbsoluteValue - 1;
+                mainForm.Log("Tried to set the relative value of level '" + (sliderLevel + 1) + "' to '" + control.RelativeValue +
+                    "'. But the relative value of level '" + (sliderLevel + 2) + "' is '" + sliderLevelControlList[sliderLevel + 1].RelativeValue + "'");
+                control.RelativeValue = sliderLevelControlList[sliderLevel + 1].RelativeValue - 1;
             }
 
-            // Ensures that the absolute-value of a level is alwys higher than the absolue value of the previous level
-            if (sliderLevel > 0 && control.AbsoluteValue <= sliderLevelControlList[sliderLevel - 1].AbsoluteValue)
+            // Ensures that the relative-value of a level is alwys higher than the relative value of the previous level
+            if (sliderLevel > 0 && control.RelativeValue <= sliderLevelControlList[sliderLevel - 1].RelativeValue)
             {
-                mainForm.Log("Tried to set the absolute value of level '" + (sliderLevel + 1) + "' to '" + control.AbsoluteValue +
-                    "'. But the absolute value of level '" + (sliderLevel) + "' is '" + sliderLevelControlList[sliderLevel - 1].AbsoluteValue + "'");
-                control.AbsoluteValue = sliderLevelControlList[sliderLevel - 1].AbsoluteValue + 1;
+                mainForm.Log("Tried to set the absolute value of level '" + (sliderLevel + 1) + "' to '" + control.RelativeValue +
+                    "'. But the absolute value of level '" + (sliderLevel) + "' is '" + sliderLevelControlList[sliderLevel - 1].RelativeValue + "'");
+                control.RelativeValue = sliderLevelControlList[sliderLevel - 1].RelativeValue + 1;
             }
         }
 
@@ -196,31 +194,41 @@ namespace vSlide
                 sliderLevel.MaxAbsoluteSliderValue = newMax;
             }
         }
-
+        
         public void SaveSliderLevels()
         {
             mainForm.Log("Saving slider levels...");
 
             // Adds all sliderLevels absolute values to an array
-            int[] sliderLevelsArray = new int[NumberOfSliderLevels];
+            int[] sliderLevelsAbsoluteArray = new int[NumberOfSliderLevels];
             for (int i = 0; i < NumberOfSliderLevels; i++)
             {
-                sliderLevelsArray[i] = sliderLevelControlList[i].AbsoluteValue;
+                sliderLevelsAbsoluteArray[i] = sliderLevelControlList[i].AbsoluteValue;
             }
 
-            // Converts the array that stores the absolute values of the slider values to a string, seperating values with a ','
-            Properties.Settings.Default["sliderLevels"] = String.Join(",", sliderLevelsArray.Select(i => i.ToString()).ToArray());
+            // Adds all sliderLevels relative values to an array
+            decimal[] sliderLevelsRelativeArray = new decimal[NumberOfSliderLevels];
+            for (int i = 0; i < NumberOfSliderLevels; i++)
+            {
+                sliderLevelsRelativeArray[i] = sliderLevelControlList[i].RelativeValue;
+            }
+
+            // Converts the arrays that store the values of the slider levels to a string, seperating values with a ';'
+            Properties.Settings.Default["sliderLevelsAbsolute"] = String.Join(";", sliderLevelsAbsoluteArray.Select(i => i.ToString()).ToArray());
+            Properties.Settings.Default["sliderLevelsRelative"] = String.Join(";", sliderLevelsRelativeArray.Select(i => i.ToString()).ToArray());
             Properties.Settings.Default.Save();
         }
-
+        
         public void LoadSliderLevels()
         {
             mainForm.Log("Loading slider levels...");
 
-            int[] sliderLevelsArray;
+            // Converts the saved relative values of the slider levels from a string to an int array.
+            // The slider values are saved in the 'sliderLevelsRelative' setting as a string, where all valus are seperated by a ';'
+            decimal[] sliderLevelsRelativeArray;
             try
             {
-                sliderLevelsArray = ((string)Properties.Settings.Default["sliderLevels"]).Split(',').Select(s => Int32.Parse(s)).ToArray();
+                sliderLevelsRelativeArray = ((string)Properties.Settings.Default["sliderLevelsRelative"]).Split(';').Select(s => Decimal.Parse(s)).ToArray();
             }
             catch (Exception exc)
             {
@@ -228,11 +236,13 @@ namespace vSlide
                 return;
             }
             
-            // 
-            numberOfLevelsNumericUpDown.Value = sliderLevelsArray.Length;
-            for (int i = 0; i < sliderLevelsArray.Length; i++)
+            // Sets the number of slider levels and their relative values
+            numberOfLevelsNumericUpDown.Value = sliderLevelsRelativeArray.Length;
+            for (int i = 0; i < sliderLevelsRelativeArray.Length; i++)
             {
-                sliderLevelControlList[i].AbsoluteValue = sliderLevelsArray[i];
+                // Ensures that only values between 0 and 100 are loaded
+                if (sliderLevelsRelativeArray[i] < 0 || sliderLevelsRelativeArray[i] > 100) continue;
+                sliderLevelControlList[i].RelativeValue = sliderLevelsRelativeArray[i];
             }
         }
 
@@ -275,15 +285,9 @@ namespace vSlide
             numberOfLevelsNumericUpDown.Value = 7;
             SetValuesOfLevelsEqualy();
         }
-
-        private void SliderLevelAbsoluteNumericUpDown_ValueChanged(int sliderLevel, SliderLevelControl control)
-        {
-            CheckNewSliderLevelAbsoluteValue(sliderLevel, control);
-            mainForm.Log("The absolute value of level '" + (sliderLevel + 1) + "' was changed to '" + control.AbsoluteValue + "'");
-        }
         private void SliderLevelRelativeNumericUpDown_ValueChanged(int sliderLevel, SliderLevelControl control)
         {
-            CheckNewSliderLevelAbsoluteValue(sliderLevel, control);
+            CheckNewSliderLevelRelativeValue(sliderLevel, control);
             mainForm.Log("The relative value of level '" + (sliderLevel + 1) + "' was changed to '" + control.RelativeNumericUpDownValue + "'");
         }
 
@@ -305,9 +309,6 @@ namespace vSlide
             {
                 // Ensures that the 'maxAbsoluteSliderValue' is higher than 0
                 maxAbsoluteSliderValue = Math.Max(1, value);
-
-                // Updates the maximum variable of the 'absoluteNumericUpDown'
-                absoluteNumericUpDown.Maximum = maxAbsoluteSliderValue;
             }
         }
         // Stores the GroupBox control
@@ -321,43 +322,11 @@ namespace vSlide
         public int AbsoluteValue
         {
             get { return absoluteValue; }
-            set
-            {
-                // Insures that value is between 0 and 'maxAbsoluteSliderValue'
-                value = Math.Max(value, 0);
-                value = Math.Min(value, maxAbsoluteSliderValue);
-
-                // Makes this control ignore events until all controls of this control
-                // have been modified
-                ignoreEvents = true;
-
-                absoluteValue = value;
-                absoluteValueLabel.Text = value.ToString();
-                absoluteNumericUpDown.Value = value;
-
-                decimal newRelative = Math.Max(0, (int)((value / (decimal)maxAbsoluteSliderValue) * 100));
-                newRelative = Math.Min(100, newRelative);
-
-                relativeValue = (int)newRelative;
-                relativeValueLabel.Text = relativeValue + "%";
-                relativeNumericUpDown.Value = relativeValue;
-
-                // Disables event ignoring
-                ignoreEvents = false;
-
-            }
-        }
-        Label absoluteValueInfoLabel;
-        Label absoluteValueLabel;
-        NumericUpDown absoluteNumericUpDown;
-        public int AbsoluteNumericUpDownValue
-        {
-            get { return (int)absoluteNumericUpDown.Value; }
         }
 
         // Variables related to the relativeValue
-        int relativeValue;
-        public int RelativeValue
+        decimal relativeValue;
+        public decimal RelativeValue
         {
             get { return relativeValue; }
             set
@@ -371,20 +340,17 @@ namespace vSlide
                 ignoreEvents = true;
 
                 relativeValue = value;
-                relativeValueLabel.Text = value + "%";
                 relativeNumericUpDown.Value = value;
 
-                absoluteValue = (int)(maxAbsoluteSliderValue * (relativeValue / 100f));
-                absoluteValueLabel.Text = absoluteValue.ToString();
-                absoluteNumericUpDown.Value = absoluteValue;
+                absoluteValue = (int)(maxAbsoluteSliderValue * (relativeValue / 100));
 
                 // Disables event ignoring
                 ignoreEvents = false;
             }
         }
         Label relativeValueInfoLabel;
-        Label relativeValueLabel;
         NumericUpDown relativeNumericUpDown;
+        Label percentValueInfoLabel;
         public int RelativeNumericUpDownValue
         {
             get { return (int)relativeNumericUpDown.Value; }
@@ -393,7 +359,6 @@ namespace vSlide
         #endregion
 
         public delegate void SliderLevelControlEventHandler(int sliderLevel, SliderLevelControl control);
-        public event SliderLevelControlEventHandler SliderLevelAbsoluteNumericUpDown_ValueChanged;
         public event SliderLevelControlEventHandler SliderLevelRelativeNumericUpDown_ValueChanged;
 
         public SliderLevelControl(int sliderLevel, Control parent, int maxSliderValue)
@@ -404,56 +369,30 @@ namespace vSlide
 
             // Creates a GroupBox that stores all controls of the SliderLevelControl
             groupbox = new GroupBox();
-            groupbox.Size = new Size(295, 68);
+            groupbox.Size = new Size(192, 48);
             groupbox.Text = "Level " + (sliderLevel + 1);
-
-            //Creates an information label (has no advanced functionality)
-            absoluteValueInfoLabel = new Label();
-            absoluteValueInfoLabel.AutoSize = true;
-            absoluteValueInfoLabel.Location = new Point(8, 18);
-            absoluteValueInfoLabel.Text = "Absolute Value:";
-            groupbox.Controls.Add(absoluteValueInfoLabel);
-
-            //Creates a label that displays the absolute value of the SliderLevelControl
-            absoluteValueLabel = new Label();
-            absoluteValueLabel.AutoSize = true;
-            absoluteValueLabel.Location = new Point(95, 18);
-            absoluteValueLabel.Text = "-";
-            groupbox.Controls.Add(absoluteValueLabel);
-
-            //Creates a NumericUpDown that lets the user set the absolute value of the SliderLevelControl
-            absoluteNumericUpDown = new NumericUpDown();
-            absoluteNumericUpDown.Maximum = maxAbsoluteSliderValue;
-            absoluteNumericUpDown.Anchor = (AnchorStyles.Top | AnchorStyles.Right);
-            absoluteNumericUpDown.Location = new Point(200, 16);
-            absoluteNumericUpDown.Size = new Size(84, 20);
-            groupbox.Controls.Add(absoluteNumericUpDown);
-
-            //Subscribes to the NumericUpDown's ValueChanged event
-            absoluteNumericUpDown.ValueChanged += AbsoluteNumericUpDown_ValueChanged;
 
             //Creates an information label (has no advanced functionality)
             relativeValueInfoLabel = new Label();
             relativeValueInfoLabel.AutoSize = true;
-            relativeValueInfoLabel.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left);
-            relativeValueInfoLabel.Location = new Point(8, 42);
-            relativeValueInfoLabel.Text = "Relative Value:";
+            relativeValueInfoLabel.Location = new Point(12, 21);
+            relativeValueInfoLabel.Text = "Value:";
             groupbox.Controls.Add(relativeValueInfoLabel);
 
-            //Creates a label that displays the relative value of the SliderLevelControl
-            relativeValueLabel = new Label();
-            relativeValueLabel.AutoSize = true;
-            relativeValueLabel.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left);
-            relativeValueLabel.Location = new Point(95, 42);
-            relativeValueLabel.Text = "-";
-            groupbox.Controls.Add(relativeValueLabel);
+            //Creates an information label (has no advanced functionality)
+            percentValueInfoLabel = new Label();
+            percentValueInfoLabel.AutoSize = true;
+            percentValueInfoLabel.Location = new Point(114, 23);
+            percentValueInfoLabel.Text = "%";
+            groupbox.Controls.Add(percentValueInfoLabel);
 
             //Creates a NumericUpDown that lets the user set the relative value of the SliderLevelControl
             relativeNumericUpDown = new NumericUpDown();
+            relativeNumericUpDown.DecimalPlaces = 2;
+            relativeNumericUpDown.Increment = 0.5m;
             relativeNumericUpDown.Maximum = 100;
             relativeNumericUpDown.Minimum = 0;
-            relativeNumericUpDown.Anchor = (AnchorStyles.Bottom | AnchorStyles.Right);
-            relativeNumericUpDown.Location = new Point(200, 42);
+            relativeNumericUpDown.Location = new Point(55, 19);
             relativeNumericUpDown.Size = new Size(59, 20);
             groupbox.Controls.Add(relativeNumericUpDown);
 
@@ -468,37 +407,20 @@ namespace vSlide
         /// </summary>
         public void Remove()
         {
-            absoluteNumericUpDown.ValueChanged -= AbsoluteNumericUpDown_ValueChanged;
             relativeNumericUpDown.ValueChanged -= RelativeNumericUpDown_ValueChanged;
-
-            groupbox.Controls.Remove(absoluteValueInfoLabel);
-            groupbox.Controls.Remove(absoluteValueLabel);
-            groupbox.Controls.Remove(absoluteNumericUpDown);
+            
             groupbox.Controls.Remove(relativeValueInfoLabel);
-            groupbox.Controls.Remove(relativeValueLabel);
+            groupbox.Controls.Remove(percentValueInfoLabel);
             groupbox.Controls.Remove(relativeNumericUpDown);
             groupbox.Parent.Controls.Remove(groupbox);
         }
-
-        private void AbsoluteNumericUpDown_ValueChanged(object sender, EventArgs e)
-        {
-            // Ignores the event
-            if (ignoreEvents) return;
-
-            AbsoluteValue = (int)absoluteNumericUpDown.Value;
-
-            // Invokes the event
-            if(SliderLevelAbsoluteNumericUpDown_ValueChanged != null)
-            {
-                SliderLevelAbsoluteNumericUpDown_ValueChanged(sliderLevel, this);
-            }
-        }
+        
         private void RelativeNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             // Ignores the event
             if (ignoreEvents) return;
 
-            RelativeValue = (int)relativeNumericUpDown.Value;
+            RelativeValue = relativeNumericUpDown.Value;
             // Invokes the event
             if (SliderLevelRelativeNumericUpDown_ValueChanged != null)
             {
