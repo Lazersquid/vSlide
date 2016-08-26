@@ -121,7 +121,7 @@
             // 
             this.currSliderValueRelLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.currSliderValueRelLabel.AutoSize = true;
-            this.currSliderValueRelLabel.Location = new System.Drawing.Point(739, 134);
+            this.currSliderValueRelLabel.Location = new System.Drawing.Point(730, 134);
             this.currSliderValueRelLabel.Name = "currSliderValueRelLabel";
             this.currSliderValueRelLabel.Size = new System.Drawing.Size(21, 13);
             this.currSliderValueRelLabel.TabIndex = 9;
@@ -322,7 +322,7 @@
             // 
             this.sliderAxisInfoLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.sliderAxisInfoLabel2.AutoSize = true;
-            this.sliderAxisInfoLabel2.Location = new System.Drawing.Point(280, 442);
+            this.sliderAxisInfoLabel2.Location = new System.Drawing.Point(275, 442);
             this.sliderAxisInfoLabel2.Name = "sliderAxisInfoLabel2";
             this.sliderAxisInfoLabel2.Size = new System.Drawing.Size(27, 13);
             this.sliderAxisInfoLabel2.TabIndex = 37;
@@ -371,7 +371,7 @@
             this.sliderTrackBar.Size = new System.Drawing.Size(557, 45);
             this.sliderTrackBar.TabIndex = 33;
             this.sliderTrackBar.TickStyle = System.Windows.Forms.TickStyle.Both;
-            this.sliderTrackBar.Value = 50;
+            this.sliderTrackBar.Value = 49;
             this.sliderTrackBar.Scroll += new System.EventHandler(this.sliderTrackBar_Scroll);
             // 
             // label1

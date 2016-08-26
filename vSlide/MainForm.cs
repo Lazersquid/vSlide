@@ -358,12 +358,12 @@ namespace vSlide
             {
                 // Clamps the value between 0 and 'maxSliderValue'
                 value = Math.Max(value, 0);
-                value = Math.Min(value, (int)maxSliderValue);
+                value = Math.Min(value, maxSliderValue);
                 currSliderValue = value;
 
                 // Updates the labels in the form
                 currSliderValueLabel.Text = currSliderValue.ToString();
-                currSliderValueRelLabel.Text = ((currSliderValue * 100) / maxSliderValue).ToString() + "%";
+                currSliderValueRelLabel.Text = String.Format("{0:F2}", (currSliderValue * 100m) / maxSliderValue) + "%";
 
                 // Updates the sliderTrackBar
                 sliderTrackBar.Value = (int)(((float)currSliderValue / maxSliderValue) * 100);
