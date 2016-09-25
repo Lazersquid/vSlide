@@ -123,9 +123,9 @@
             this.currSliderValueRelLabel.AutoSize = true;
             this.currSliderValueRelLabel.Location = new System.Drawing.Point(730, 134);
             this.currSliderValueRelLabel.Name = "currSliderValueRelLabel";
-            this.currSliderValueRelLabel.Size = new System.Drawing.Size(21, 13);
+            this.currSliderValueRelLabel.Size = new System.Drawing.Size(36, 13);
             this.currSliderValueRelLabel.TabIndex = 9;
-            this.currSliderValueRelLabel.Text = "0%";
+            this.currSliderValueRelLabel.Text = "0,00%";
             // 
             // currSliderValueInfoLabel
             // 
