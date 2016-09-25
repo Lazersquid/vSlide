@@ -6,9 +6,9 @@ vJoy device in a number of different ways via your Keyboard.
 Setup vSlide
 -
 - Download and install vJoy
-  http://vjoystick.sourceforge.net/site/index.php/download-a-install/72-download
-- Download and unzip vSlide
-  Download the latest build from the 'Builds' folder and unzip it
+http://vjoystick.sourceforge.net/site/index.php/download-a-install/72-download
+- Download the latest vSlide build (Version 1.1) from the 'Builds' folder and unzip it
+- Run the executable and click the instructions tab at the top
 
 Remove vSlide
 -
