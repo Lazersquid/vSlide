@@ -199,13 +199,6 @@ namespace vSlide
         {
             mainForm.Log("Saving slider levels...");
 
-            // Adds all sliderLevels absolute values to an array
-            int[] sliderLevelsAbsoluteArray = new int[NumberOfSliderLevels];
-            for (int i = 0; i < NumberOfSliderLevels; i++)
-            {
-                sliderLevelsAbsoluteArray[i] = sliderLevelControlList[i].AbsoluteValue;
-            }
-
             // Adds all sliderLevels relative values to an array
             decimal[] sliderLevelsRelativeArray = new decimal[NumberOfSliderLevels];
             for (int i = 0; i < NumberOfSliderLevels; i++)
@@ -213,8 +206,7 @@ namespace vSlide
                 sliderLevelsRelativeArray[i] = sliderLevelControlList[i].RelativeValue;
             }
 
-            // Converts the arrays that store the values of the slider levels to a string, seperating values with a ';'
-            Properties.Settings.Default["sliderLevelsAbsolute"] = String.Join(";", sliderLevelsAbsoluteArray.Select(i => i.ToString()).ToArray());
+            // Converts the sliderLevelsRelativeArray that stores the values of the slider levels to a string, seperating values with a ';'
             Properties.Settings.Default["sliderLevelsRelative"] = String.Join(";", sliderLevelsRelativeArray.Select(i => i.ToString()).ToArray());
             Properties.Settings.Default.Save();
         }
@@ -223,7 +215,7 @@ namespace vSlide
         {
             mainForm.Log("Loading slider levels...");
 
-            // Converts the saved relative values of the slider levels from a string to an int array.
+            // Converts the saved relative values of the slider levels from a string to an decimal array.
             // The slider values are saved in the 'sliderLevelsRelative' setting as a string, where all valus are seperated by a ';'
             decimal[] sliderLevelsRelativeArray;
             try
@@ -232,7 +224,7 @@ namespace vSlide
             }
             catch (Exception exc)
             {
-                mainForm.Log("Unhandlex exception '" + exc +"' was thrown while loading slider levels!");
+                mainForm.Log("Unhandlex exception '" + exc +"' was thrown while loading slider levels! Returning...");
                 return;
             }
             

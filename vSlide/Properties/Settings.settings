@@ -92,11 +92,8 @@
     <Setting Name="sliderDeltaSPNumericUpDown" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">200</Value>
     </Setting>
-    <Setting Name="sliderLevelsAbsolute" Type="System.String" Scope="User">
-      <Value Profile="(Default)">0, 32767</Value>
-    </Setting>
     <Setting Name="sliderLevelsRelative" Type="System.String" Scope="User">
-      <Value Profile="(Default)">0;100</Value>
+      <Value Profile="(Default)">0;16,67;33.33;50;66.67;83.33;100</Value>
     </Setting>
   </Settings>
 </SettingsFile>

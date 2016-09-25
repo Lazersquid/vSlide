@@ -385,19 +385,7 @@ namespace vSlide.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 32767")]
-        public string sliderLevelsAbsolute {
-            get {
-                return ((string)(this["sliderLevelsAbsolute"]));
-            }
-            set {
-                this["sliderLevelsAbsolute"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0;100")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0;16,67;33.33;50;66.67;83.33;100")]
         public string sliderLevelsRelative {
             get {
                 return ((string)(this["sliderLevelsRelative"]));
