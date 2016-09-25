@@ -32,8 +32,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.instructionsTabControl = new System.Windows.Forms.TabControl();
             this.introductionTabPage = new System.Windows.Forms.TabPage();
-            this.advancedTabPage = new System.Windows.Forms.TabPage();
             this.instructionsInfoLabel = new System.Windows.Forms.Label();
+            this.advancedTabPage = new System.Windows.Forms.TabPage();
             this.label5 = new System.Windows.Forms.Label();
             this.instructionsTabControl.SuspendLayout();
             this.introductionTabPage.SuspendLayout();
@@ -70,6 +70,16 @@
             this.introductionTabPage.Text = "Introduction";
             this.introductionTabPage.UseVisualStyleBackColor = true;
             // 
+            // instructionsInfoLabel
+            // 
+            this.instructionsInfoLabel.AutoSize = true;
+            this.instructionsInfoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.instructionsInfoLabel.Location = new System.Drawing.Point(6, 8);
+            this.instructionsInfoLabel.Name = "instructionsInfoLabel";
+            this.instructionsInfoLabel.Size = new System.Drawing.Size(496, 247);
+            this.instructionsInfoLabel.TabIndex = 7;
+            this.instructionsInfoLabel.Text = resources.GetString("instructionsInfoLabel.Text");
+            // 
             // advancedTabPage
             // 
             this.advancedTabPage.Controls.Add(this.label1);
@@ -80,16 +90,6 @@
             this.advancedTabPage.TabIndex = 1;
             this.advancedTabPage.Text = "Advanced";
             this.advancedTabPage.UseVisualStyleBackColor = true;
-            // 
-            // instructionsInfoLabel
-            // 
-            this.instructionsInfoLabel.AutoSize = true;
-            this.instructionsInfoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.instructionsInfoLabel.Location = new System.Drawing.Point(6, 8);
-            this.instructionsInfoLabel.Name = "instructionsInfoLabel";
-            this.instructionsInfoLabel.Size = new System.Drawing.Size(496, 247);
-            this.instructionsInfoLabel.TabIndex = 7;
-            this.instructionsInfoLabel.Text = resources.GetString("instructionsInfoLabel.Text");
             // 
             // label5
             // 
