@@ -25,18 +25,17 @@ Note: The directory in "%appdata%/../Local" only exists if you saved your vSlide
 
 How to bind the vJoy slider to Arma3's 'Collective raise(analogue)' & 'Collective lower(analogue)'?
 -
-- The following steps all focus on the startup window that opens when you start vSlide
-- Press the 'Start Feeding' Button if you haven't already
-- Check the 'Do Ping Pong Lerping' Checkbox
-- The slider value will no be lerping from 0% to 100% and back again
+- Press the 'Start Feeding' Button  in the main window of vSlide if you haven't already
+- Check the 'Do Ping Pong Lerping' checkbox in the main window of vSlide
+- The slider value should now be lerping from 0% to 100% and back again
 - Go into the Arma3 control menu
-- Click the 'Collective raise(analogue)'
+- Click the 'Collective raise(analogue)' keybinding
 - Now wait for Arma3 to detect 'vjoy device Stick Slider 1+'.
 - Press ok.
-- Click the 'Collective lower(analogue)'
+- Click the 'Collective lower(analogue)' keybinding
 - Now wait for Arma3 to detect 'vjoy device Stick Slider 1-'
-- Now press ok again.
+- Press ok again
 - Assure that 'Collective raise(analogue)' is only bound to 'vjoy device Stick Slider 1+'
 - And that 'Collective lower(analogue)' is only bound to 'vjoy device Stick Slider 1-'
-- Uncheck the 'Do Ping Pong Lerping'
+- Uncheck the 'Do Ping Pong Lerping' in the main window of vSlide
 - Everything should work now
