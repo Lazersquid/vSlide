@@ -36,5 +36,7 @@ How to bind the vJoy axis to Arma3's 'Collective raise(analogue)' & 'Collective 
 - Click the 'Collective lower(analogue)'
 - Now wait for Arma3 to detect 'vjoy device Stick Slider 1-'
 - Now press ok again.
+- Assure that 'Collective raise(analogue)' is only bound to 'vjoy device Stick Slider 1+'
+- And that 'Collective lower(analogue)' is only bound to 'vjoy device Stick Slider 1-'
 - Uncheck the 'Do Ping Pong Lerping'
 - Everything should work now
