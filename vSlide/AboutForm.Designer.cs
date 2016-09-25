@@ -50,7 +50,7 @@
             this.vSlideVersionLabel.Name = "vSlideVersionLabel";
             this.vSlideVersionLabel.Size = new System.Drawing.Size(22, 13);
             this.vSlideVersionLabel.TabIndex = 68;
-            this.vSlideVersionLabel.Text = "0.5";
+            this.vSlideVersionLabel.Text = "1.0";
             // 
             // vSlideVersionInfoLabel
             // 

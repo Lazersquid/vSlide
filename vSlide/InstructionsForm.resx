@@ -117,39 +117,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="instructionsInfoLabel.Text" xml:space="preserve">
-    <value>Press the 'Start feeding' button in the lower left corner of the startup window to start the feeder.
-The slider-bar in the lower right corner represents the slider value of the virtual vJoy device.
-
-- Key Binds:
-Increase slider value to the next level: 'left shift' key (default)
-Decrease slider value to the previous level: 'left control' key (default)
-
-Increase slider value by small amount: e (default)
-Decreease slider value by a small amount: q (default)
-
-Key binds can be changed in the lower left corner in the settings menu.
-
-- Ping Pong Lerping
-Lerps the slider value from zero to the maximum and back to zero again until stopped.
-Use this to bind the slider axis to the 'Analogue Collective' in Amra!</value>
-  </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>- Key Setup:
+    <value>1. Key Setup:
+
 You think 4 keys are too many?
 Customize the behaviour of the feeder in the 'Key Setup'-category in the settings!
 
 Checking 'Use Level Keys only' and 'Use the hold down logic for the slider system'
-maps the 4 available ways of altering the slider value to only 2 keys:
+maps the 4 available ways of altering the slider to only 2 keys:
 A short tab on the key will change the slider-level, while holding the key down will alter the slider
 value only by a small amount.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2. Manage Slider Levels
 
-- Manage Slider Levels
 You can edit the existing slider levels in the 'Manage Slider Levels' window.
 Add or remove slider levels, adjust their value manually or map their values automatically
 using the 'Arrange Levels Equally' button.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+3.  vJoy Device:
 
-- vJoy Device:
 You can switch to another vJoy device in the lower right corner in the settings menu.</value>
+  </data>
+  <data name="instructionsInfoLabel.Text" xml:space="preserve">
+    <value>1. Start the Feeder
+
+Press the 'Start feeding' button in the bottom right corner of the startup window to start the feeder.
+The slider-bar in the bottom left corner represents the slider value of the virtual vJoy device.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2. Key Binds:
+
+Increase slider value to the next level: 'left shift' key (default)
+Decrease slider value to the previous level: 'left control' key (default)
+
+Increase slider value by small amount: e (default)
+Decrease slider value by a small amount: q (default)
+
+Key binds can be changed in the lower left corner in the settings menu.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+3. Ping Pong Lerping:
+
+Lerps the slider value from zero to the maximum and back to zero again until stopped.
+Use this to bind the slider axis to the 'Analogue Collective' in Amra!</value>
   </data>
 </root>

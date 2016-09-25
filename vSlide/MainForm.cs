@@ -445,6 +445,10 @@ namespace vSlide
         {
             InitializeComponent();
 
+            Log("Thank you for using vSlide");
+            Log("Feel free to contact me if you are stuck or need help.");
+            Log("");
+
             // Create a vJoy instance
             vJoyDriver = new vJoy();
             VjdStat status;
