@@ -21,3 +21,19 @@ Remove vSlide
 - Delete the vSlide directory (it should only contain a *.config file)
 
 Note: The directory in "%appdata%/../Local" only exists if you saved your vSlide settings
+
+How to bind the vJoy axis to Arma3's 'Collective raise(analogue)' & 'Collective lower(analogue)'?
+-
+- The following steps all focus on the startup window that opens when you start vSlide
+- Press the 'Start Feeding' Button if you haven't already
+- Check the 'Do Ping Pong Lerping' Checkbox
+- The slider value will no be lerping from 0% to 100% and back again
+- Go into the Arma3 control menu
+- Click the 'Collective raise(analogue)'
+- Now wait for Arma3 to detect 'vjoy device Stick Slider 1+'.
+- Press ok.
+- Click the 'Collective lower(analogue)'
+- Now wait for Arma3 to detect 'vjoy device Stick Slider 1-'
+- Now press ok again.
+- Uncheck the 'Do Ping Pong Lerping'
+- Everything should work now
