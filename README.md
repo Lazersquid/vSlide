@@ -15,4 +15,5 @@ Remove vSlide
 - Delete the unziped vSlide build
 - Navigate to "%appdata%/../Local"
 - Delete the vSlide directory (it should only contain a *.config file)
+
 Note: The directory in "%appdata%/../Local" only exists if you saved your vSlide settings
