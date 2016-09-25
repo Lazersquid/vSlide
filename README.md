@@ -23,7 +23,7 @@ Remove vSlide
 
 Note: The directory in "%appdata%/../Local" only exists if you saved your vSlide settings
 
-How to bind the vJoy axis to Arma3's 'Collective raise(analogue)' & 'Collective lower(analogue)'?
+How to bind the vJoy slider to Arma3's 'Collective raise(analogue)' & 'Collective lower(analogue)'?
 -
 - The following steps all focus on the startup window that opens when you start vSlide
 - Press the 'Start Feeding' Button if you haven't already
