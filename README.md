@@ -13,6 +13,7 @@ http://vjoystick.sourceforge.net/site/index.php/download-a-install/72-download
 https://github.com/Lazersquid/vSlide/raw/master/Builds/vSlide_v.1.1.zip
 - Unzip the downloaded vSlide build
 - Run the executable and click the instructions tab at the top
+- Bind your collective to the vJoy device using the explanation below
 
 Remove vSlide
 -
