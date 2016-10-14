@@ -50,7 +50,7 @@
             this.vSlideVersionLabel.Name = "vSlideVersionLabel";
             this.vSlideVersionLabel.Size = new System.Drawing.Size(22, 13);
             this.vSlideVersionLabel.TabIndex = 68;
-            this.vSlideVersionLabel.Text = "1.1";
+            this.vSlideVersionLabel.Text = "1.2";
             // 
             // vSlideVersionInfoLabel
             // 
@@ -68,7 +68,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(173, 13);
             this.label1.TabIndex = 69;
-            this.label1.Text = "Created with/for vJoy Version 2.1.6";
+            this.label1.Text = "Created with/for vJoy Version 2.1.7";
             // 
             // AboutForm
             // 

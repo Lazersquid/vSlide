@@ -60,7 +60,7 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="vJoyInterfaceWrap">
-      <HintPath>..\vJoyInterface\x86\vJoyInterfaceWrap.dll</HintPath>
+      <HintPath>..\vJoyInterface_x86\vJoyInterfaceWrap.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
