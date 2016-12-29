@@ -702,6 +702,9 @@ namespace vSlide
                 CurrState = FeederState.ReadyToFeed;
             }
 
+            CurrSliderValue = maxSliderValue / 2;
+            UpdateSliderInVJoyDriver();
+
             // Invokes the 'NewJoystickAcquired' event
             if (NewJoystickAcquired != null)
             {
@@ -1261,6 +1264,11 @@ namespace vSlide
             // Relinquishs the current joystick if there is one aquired
             if (currJoystickId != 0)
             {
+                if(currState == FeederState.Feeding || currState == FeederState.ReadyToFeed)
+                {
+                    CurrSliderValue = MaxSliderValue / 2;
+                    UpdateSliderInVJoyDriver();
+                }
                 vJoyDriver.RelinquishVJD(currJoystickId);
             }
         }
