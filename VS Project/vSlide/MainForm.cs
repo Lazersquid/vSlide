@@ -12,6 +12,7 @@ namespace vSlide
         #region Fields
 
         // Keys
+        public KeyBind NextLevelKeyBind;
         private Keys nextLevelKey = Keys.LShiftKey;
         public Keys NextLevelKey
         {
@@ -66,6 +67,7 @@ namespace vSlide
         private KeyState nextLevelKeyState = KeyState.Up;
         private int nextLevelKeyCurrDownTime = 0;
 
+        public KeyBind PrevLevelKeyBind;
         private Keys prevLevelKey = Keys.LControlKey;
         public Keys PrevLevelKey
         {
@@ -120,6 +122,7 @@ namespace vSlide
         private KeyState prevLevelKeyState = KeyState.Up;
         private int prevLevelKeyCurrDownTime = 0;
 
+        public KeyBind IncrSliderKeyBind;
         private Keys incrSliderKey = Keys.E;
         public Keys IncrSliderKey
         {
@@ -174,6 +177,7 @@ namespace vSlide
         private KeyState incrSliderKeyState = KeyState.Up;
         private int incrSliderKeyCurrDownTime = 0;
 
+        public KeyBind DecrSliderKeyBind;
         private Keys decrSliderKey = Keys.Q;
         public Keys DecrSliderKey
         {
@@ -556,7 +560,7 @@ namespace vSlide
 
             // Checks if the key variables are set up correctly
             CheckKeyBinds();
-            
+
             Log("");
             Log("Creating mapping-theme-form...");
             sliderLevelsForm = new SliderLevelsForm(this, 7);
@@ -580,6 +584,22 @@ namespace vSlide
             // Loads the slider levels
             Log("");
             sliderLevelsForm.LoadSliderLevels();
+
+            // Creates keybinds
+            NextLevelKeyBind = new KeyBind(Keys.LShiftKey);
+            PrevLevelKeyBind = new KeyBind(Keys.LControlKey);
+            if (holdDownModeLevel != KeyHoldDownMode.None)
+            {
+                Log("Level treshold: " + (uint)holdTresholdLevel);
+                Log("Level tick interal: " + (uint)HoldTickIntervalLevel);
+                NextLevelKeyBind.EnableHeldDown((uint)holdTresholdLevel, (uint)holdTickIntervalLevel);
+                PrevLevelKeyBind.EnableHeldDown((uint)holdTresholdLevel, (uint)holdTickIntervalLevel);
+            }
+
+            IncrSliderKeyBind = new KeyBind(Keys.E);
+            DecrSliderKeyBind = new KeyBind(Keys.Q);
+            IncrSliderKeyBind.EnableHeldDown(0, (uint)holdTickIntervalSlider);
+            DecrSliderKeyBind.EnableHeldDown(0, (uint)holdTickIntervalSlider);
 
             // Enables the other forms menu strip
             otherFormsMenuStrip.Enabled = true;
@@ -968,226 +988,109 @@ namespace vSlide
             #region Level Keys
             if (isUsingLevelKeys)
             {
-                KeyState newNextLevelKeyState = KeyState.Down;
-                newNextLevelKeyState = GetAsyncKeyState(nextLevelKey) == 0 ? KeyState.Up : newNextLevelKeyState;
-                newNextLevelKeyState = controlModNextLevelKey != Keys.None && GetAsyncKeyState(controlModNextLevelKey) == 0 ? KeyState.Up : newNextLevelKeyState;
-                newNextLevelKeyState = shiftModNextLevelKey != Keys.None && GetAsyncKeyState(shiftModNextLevelKey) == 0 ? KeyState.Up : newNextLevelKeyState;
-                newNextLevelKeyState = altModNextLevelKey != Keys.None && GetAsyncKeyState(altModNextLevelKey) == 0 ? KeyState.Up : newNextLevelKeyState;
+                // Updates the KeyBinds to get the changes that were made to the keys since the last update
+                KeyUpdateReport nextLevelReport = NextLevelKeyBind.UpdateKey((uint)inputCheckTimer.Interval);
+                KeyUpdateReport prevLevelReport = PrevLevelKeyBind.UpdateKey((uint)inputCheckTimer.Interval);
 
-                KeyState newPrevLevelKeyState = KeyState.Down;
-                newPrevLevelKeyState = GetAsyncKeyState(prevLevelKey) == 0 ? KeyState.Up : newPrevLevelKeyState;
-                newPrevLevelKeyState = controlModPrevLevelKey != Keys.None && GetAsyncKeyState(controlModPrevLevelKey) == 0 ? KeyState.Up : newPrevLevelKeyState;
-                newPrevLevelKeyState = shiftModPrevLevelKey != Keys.None && GetAsyncKeyState(shiftModPrevLevelKey) == 0 ? KeyState.Up : newPrevLevelKeyState;
-                newPrevLevelKeyState = altModPrevLevelKey != Keys.None && GetAsyncKeyState(altModPrevLevelKey) == 0 ? KeyState.Up : newPrevLevelKeyState;
-
-                // Checks if the 'nextLevelKey' was 'Up' when last checked and if its now 'Down'
-                if (nextLevelKeyState == KeyState.Up && newNextLevelKeyState == KeyState.Down)
+                if(nextLevelReport.KeyStateChanged)
                 {
-                    Log("Next-Level-Key '" + nextLevelKey.ToString() + "' is now down...");
+                    Log("Next-Level-Key is now " + nextLevelReport.NewState);
+                }
 
-                    // Increases the currSliderValue to the next Level when the key is down only when
-                    // the keyHoldDownMode isn't in slider mode
-                    if (holdDownModeLevel != KeyHoldDownMode.Slider)
+                if (prevLevelReport.KeyStateChanged)
+                {
+                    Log("Previous-Level-Key is now " + prevLevelReport.NewState);
+                }
+
+                if (holdDownModeLevel == KeyHoldDownMode.Slider)
+                {
+                    // Changes 'CurrSliderValue' by one level if a level-key-bind was released since the last update
+                    if (nextLevelReport.KeyStateChanged && nextLevelReport.OldState == KeyState.Down && nextLevelReport.NewState == KeyState.Up)
                     {
                         CurrSliderValue = sliderLevelsForm.GetSliderValueOfTheNextLevel(CurrSliderValue);
-                        UpdateSliderInVJoyDriver();
                     }
-                    nextLevelKeyState = KeyState.Down;
-                    nextLevelKeyCurrDownTime = 0;
+
+                    if (prevLevelReport.KeyStateChanged && prevLevelReport.OldState == KeyState.Down && prevLevelReport.NewState == KeyState.Up)
+                    {
+                        CurrSliderValue = sliderLevelsForm.GetSliderValueOfThePreviousLevel(CurrSliderValue);
+                    }
+
+                    // Changes CurrSliderValue by the defined detla if a level-key-bind reached the heldDownTickInterval
+                    // since the last update
+                    if (nextLevelReport.ReachedHeldDownTick)
+                    {
+                        CurrSliderValue += holdSliderDeltaPerTick;
+                    }
+
+                    if (prevLevelReport.ReachedHeldDownTick)
+                    {
+                        CurrSliderValue -= holdSliderDeltaPerTick;
+                    }
                 }
-
-                // Checks if the 'nextLevelKey' was 'Down' or 'HeldDown' when last checked and if its now up
-                if ((nextLevelKeyState == KeyState.Down || nextLevelKeyState == KeyState.HeldDown) && newNextLevelKeyState == KeyState.Up)
+                else
                 {
-                    Log("Next-Level-Key '" + nextLevelKey.ToString() + "' is now up...");
-
-                    // Increases the currSliderValue to the next Level when the key is up only when
-                    // the keyHoldDownMode is in slider mode
-                    if (holdDownModeLevel == KeyHoldDownMode.Slider && nextLevelKeyState == KeyState.Down)
+                    // Changes 'CurrSliderValue' by one level if a level-key-bind was pressed since the last update
+                    if (nextLevelReport.KeyStateChanged && nextLevelReport.NewState == KeyState.Down)
                     {
                         CurrSliderValue = sliderLevelsForm.GetSliderValueOfTheNextLevel(CurrSliderValue);
-                        UpdateSliderInVJoyDriver();
                     }
-                    nextLevelKeyState = KeyState.Up;
-                    nextLevelKeyCurrDownTime = 0;
-                }
 
-                // Checks if the 'prevLevelKey' was 'Up' when last checked and if its now 'Down'
-                if (prevLevelKeyState == KeyState.Up && newPrevLevelKeyState == KeyState.Down)
-                {
-                    Log("Previous-Level-Key '" + prevLevelKey.ToString() + "' is now down...");
-                    
-                    // Decreases the currSliderValue to the previous Level when the key is down only when
-                    // the keyHoldDownMode isn't in slider mode
-                    if (holdDownModeLevel != KeyHoldDownMode.Slider)
+                    if (prevLevelReport.KeyStateChanged && prevLevelReport.NewState == KeyState.Down)
                     {
                         CurrSliderValue = sliderLevelsForm.GetSliderValueOfThePreviousLevel(CurrSliderValue);
-                        UpdateSliderInVJoyDriver();
-                    }
-                    prevLevelKeyState = KeyState.Down;
-                    prevLevelKeyCurrDownTime = 0;
-                }
-
-                // Checks if the 'prevLevelKey' was 'Down' or 'HeldDown' when last checked and if its now up
-                if ((prevLevelKeyState == KeyState.Down || prevLevelKeyState == KeyState.HeldDown) && newPrevLevelKeyState == KeyState.Up)
-                {
-                    Log("Previous-Level-Key '" + prevLevelKey.ToString() + "' is now up...");
-
-                    // Decreases the currSliderValue to the previous Level when the key is up only when
-                    // the keyHoldDownMode is in slider mode
-                    if (holdDownModeLevel == KeyHoldDownMode.Slider && prevLevelKeyState == KeyState.Down)
-                    {
-                        CurrSliderValue = sliderLevelsForm.GetSliderValueOfThePreviousLevel(CurrSliderValue);
-                        UpdateSliderInVJoyDriver();
-                    }
-                    prevLevelKeyState = KeyState.Up;
-                    prevLevelKeyCurrDownTime = 0;
-                }
-                
-                // Rund the 'hold down logic' if the hold down mode isn't 'None' 
-                if (holdDownModeLevel != KeyHoldDownMode.None)
-                {
-                    // Increases the current down time of the key if its state is 'Down' or 'HeldDown'
-                    if (nextLevelKeyState == KeyState.Down || nextLevelKeyState == KeyState.HeldDown)
-                    {
-                        nextLevelKeyCurrDownTime += inputCheckTimer.Interval;
                     }
 
-                    // Sets the keyState to 'HeldDown' if its currently 'Down' and the currDownTime reached the holdTreshold
-                    if (nextLevelKeyState == KeyState.Down && nextLevelKeyCurrDownTime >= holdTresholdLevel)
+                    // Changes CurrSliderValue by one level if a level-key-bind reached the heldDownTickInterval
+                    // since the last update
+                    if (holdDownModeLevel == KeyHoldDownMode.Level)
                     {
-                        nextLevelKeyState = KeyState.HeldDown;
-                    }
-
-                    // Increases the slider if its state is 'HeldDown' and the currDownTime reached the holdTickInterval
-                    if (nextLevelKeyState == KeyState.HeldDown && nextLevelKeyCurrDownTime >= holdTickIntervalLevel)
-                    {
-                        nextLevelKeyCurrDownTime = 0;
-
-                        if (holdDownModeLevel == KeyHoldDownMode.Level)
+                        if (nextLevelReport.ReachedHeldDownTick)
                         {
                             CurrSliderValue = sliderLevelsForm.GetSliderValueOfTheNextLevel(CurrSliderValue);
                         }
-                        else if (holdDownModeLevel == KeyHoldDownMode.Slider)
-                        {
-                            CurrSliderValue += holdSliderDeltaPerTick;
-                        }
 
-                        UpdateSliderInVJoyDriver();
-                    }
-
-                    // Increases the current down time of the key if its state is 'Down' or 'HeldDown'
-                    if (prevLevelKeyState == KeyState.Down || prevLevelKeyState == KeyState.HeldDown)
-                    {
-                        prevLevelKeyCurrDownTime += inputCheckTimer.Interval;
-                    }
-
-                    // Sets the keyState to 'HeldDown' if its currently 'Down' and the currDownTime reached the holdTreshold
-                    if (prevLevelKeyState == KeyState.Down && prevLevelKeyCurrDownTime >= holdTresholdLevel)
-                    {
-                        prevLevelKeyState = KeyState.HeldDown;
-                    }
-
-                    // Decreases the slider if its state is 'HeldDown' and the currDownTime reached the holdTickInterval
-                    if (prevLevelKeyState == KeyState.HeldDown && prevLevelKeyCurrDownTime >= holdTickIntervalLevel)
-                    {
-                        prevLevelKeyCurrDownTime = 0;
-
-                        if (holdDownModeLevel == KeyHoldDownMode.Level)
+                        if (prevLevelReport.ReachedHeldDownTick)
                         {
                             CurrSliderValue = sliderLevelsForm.GetSliderValueOfThePreviousLevel(CurrSliderValue);
                         }
-                        else if (holdDownModeLevel == KeyHoldDownMode.Slider)
-                        {
-                            CurrSliderValue -= holdSliderDeltaPerTick;
-                        }
-                        UpdateSliderInVJoyDriver();
                     }
+
                 }
 
+
+                // Updates the slider of the vJoy device once all changes to CurrSliderValue have been made
+                UpdateSliderInVJoyDriver();
             }
             #endregion
 
             #region Slider Keys
             if (isUsingSliderKeys)
             {
-                KeyState newIncrSliderKeyState = KeyState.Down;
-                newIncrSliderKeyState = GetAsyncKeyState(incrSliderKey) == 0 ? KeyState.Up : newIncrSliderKeyState;
-                newIncrSliderKeyState = controlModIncrSliderKey != Keys.None && GetAsyncKeyState(controlModIncrSliderKey) == 0 ? KeyState.Up : newIncrSliderKeyState;
-                newIncrSliderKeyState = shiftModIncrSliderKey != Keys.None && GetAsyncKeyState(shiftModIncrSliderKey) == 0 ? KeyState.Up : newIncrSliderKeyState;
-                newIncrSliderKeyState = altModIncrSliderKey != Keys.None && GetAsyncKeyState(altModIncrSliderKey) == 0 ? KeyState.Up : newIncrSliderKeyState;
+                // Updates the KeyBinds to get the changes that were made to the keys since the last update
+                KeyUpdateReport incrSliderReport = IncrSliderKeyBind.UpdateKey((uint)inputCheckTimer.Interval);
+                KeyUpdateReport decrSliderReport = DecrSliderKeyBind.UpdateKey((uint)inputCheckTimer.Interval);
 
-                KeyState newDecrSliderKeyState = KeyState.Down;
-                newDecrSliderKeyState = GetAsyncKeyState(decrSliderKey) == 0 ? KeyState.Up : newDecrSliderKeyState;
-                newDecrSliderKeyState = controlModDecrSliderKey != Keys.None && GetAsyncKeyState(controlModDecrSliderKey) == 0 ? KeyState.Up : newDecrSliderKeyState;
-                newDecrSliderKeyState = shiftModDecrSliderKey != Keys.None && GetAsyncKeyState(shiftModDecrSliderKey) == 0 ? KeyState.Up : newDecrSliderKeyState;
-                newDecrSliderKeyState = altModDecrSliderKey != Keys.None && GetAsyncKeyState(altModDecrSliderKey) == 0 ? KeyState.Up : newDecrSliderKeyState;
-
-                // Checks if the 'incrSliderKey' was 'Up' when last checked and if its now 'Down'
-                if (incrSliderKeyState == KeyState.Up && newIncrSliderKeyState == KeyState.Down)
+                if (incrSliderReport.KeyStateChanged)
                 {
-                    Log("Increase-Slider-Key '" + incrSliderKey.ToString() + "' is now down...");
-                    
-                    incrSliderKeyState = KeyState.Down;
-                    incrSliderKeyCurrDownTime = 0;
+                    Log("Next-Level-Key is now " + incrSliderReport.NewState);
                 }
 
-                // Checks if the 'incrSliderKey' was 'Down' or 'HeldDown' when last checked and if its now up
-                if (incrSliderKeyState == KeyState.Down && newIncrSliderKeyState == KeyState.Up)
+                if (decrSliderReport.KeyStateChanged)
                 {
-                    Log("Increase-Slider-Key '" + incrSliderKey.ToString() + "' is now up...");
-                    
-                    incrSliderKeyState = KeyState.Up;
-                    incrSliderKeyCurrDownTime = 0;
+                    Log("Previous-Level-Key is now " + decrSliderReport.NewState);
                 }
 
-                // Checks if the 'decrSliderKey' was 'Up' when last checked and if its now 'Down'
-                if (decrSliderKeyState == KeyState.Up && newDecrSliderKeyState == KeyState.Down)
+                if (incrSliderReport.ReachedHeldDownTick)
                 {
-                    Log("Decrease-Slider-Key '" + decrSliderKey.ToString() + "' is now down...");
-                    
-                    decrSliderKeyState = KeyState.Down;
-                    decrSliderKeyCurrDownTime = 0;
-                }
-
-                // Checks if the 'decrSliderKey' was 'Down' or 'HeldDown' when last checked and if its now up
-                if (decrSliderKeyState == KeyState.Down && newDecrSliderKeyState == KeyState.Up)
-                {
-                    Log("Decrease-Slider-Key '" + decrSliderKey.ToString() + "' is now up...");
-                    
-                    decrSliderKeyState = KeyState.Up;
-                    decrSliderKeyCurrDownTime = 0;
-                }
-
-                // 'hold down logic':
-
-                // Increases the current down time of the key if its state is 'Down'
-                if (incrSliderKeyState == KeyState.Down)
-                {
-                    incrSliderKeyCurrDownTime += inputCheckTimer.Interval;
-                }
-
-                // Increases the slider if its state is 'Down' and the currDownTime reached the holdTickIntervalSlider
-                if (incrSliderKeyState == KeyState.Down && incrSliderKeyCurrDownTime >= holdTickIntervalSlider)
-                {
-                    incrSliderKeyCurrDownTime = 0;
                     CurrSliderValue += holdSliderDeltaPerTick;
-                    UpdateSliderInVJoyDriver();
                 }
-
-                // Increases the current down time of the key if its state is 'Down'
-                if (decrSliderKeyState == KeyState.Down)
+                if (decrSliderReport.ReachedHeldDownTick)
                 {
-                    decrSliderKeyCurrDownTime += inputCheckTimer.Interval;
-                }
-
-                // Increases the slider if its state is 'Down' and the currDownTime reached the holdTickIntervalSlider
-                if (decrSliderKeyState == KeyState.Down && decrSliderKeyCurrDownTime >= holdTickIntervalSlider)
-                {
-                    decrSliderKeyCurrDownTime = 0;
                     CurrSliderValue -= holdSliderDeltaPerTick;
-                    UpdateSliderInVJoyDriver();
                 }
+
+                // Updates the slider of the vJoy device once all changes to CurrSliderValue have been made
+                UpdateSliderInVJoyDriver();
             }
             #endregion
         }
@@ -1278,5 +1181,5 @@ namespace vSlide
 
     public enum FeederState { SettingUp, NoVJoyDevice, ReadyToFeed, Feeding };
 
-    public enum KeyState { Up, Down, HeldDown };
+    public enum KeyState { Undefined, Up, Down, HeldDown };
 }
