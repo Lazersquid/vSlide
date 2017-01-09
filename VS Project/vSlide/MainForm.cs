@@ -13,224 +13,9 @@ namespace vSlide
 
         // Keys
         public KeyBind NextLevelKeyBind;
-        private Keys nextLevelKey = Keys.LShiftKey;
-        public Keys NextLevelKey
-        {
-            get { return nextLevelKey; }
-            set
-            {
-                // Prevents the key from getting set to None
-                if(value == Keys.None)
-                {
-                    Log("Tried to set the 'NextLevelKey' to None, returning...");
-                    return;
-                }
-
-                nextLevelKey = value;
-                nextLevelKeyState = KeyState.Up;
-                nextLevelKeyCurrDownTime = 0;
-            }
-        }
-        private Keys controlModNextLevelKey = Keys.None;
-        public Keys ControlModNextLevelKey
-        {
-            get { return controlModNextLevelKey; }
-            set
-            {
-                controlModNextLevelKey = value;
-                nextLevelKeyState = KeyState.Up;
-                nextLevelKeyCurrDownTime = 0;
-            }
-        }
-        private Keys shiftModNextLevelKey = Keys.None;
-        public Keys ShiftModNextLevelKey
-        {
-            get { return shiftModNextLevelKey; }
-            set
-            {
-                shiftModNextLevelKey = value;
-                nextLevelKeyState = KeyState.Up;
-                nextLevelKeyCurrDownTime = 0;
-            }
-        }
-        private Keys altModNextLevelKey = Keys.None;
-        public Keys AltModNextLevelKey
-        {
-            get { return altModNextLevelKey; }
-            set
-            {
-                altModNextLevelKey = value;
-                nextLevelKeyState = KeyState.Up;
-                nextLevelKeyCurrDownTime = 0;
-            }
-        }
-        private KeyState nextLevelKeyState = KeyState.Up;
-        private int nextLevelKeyCurrDownTime = 0;
-
         public KeyBind PrevLevelKeyBind;
-        private Keys prevLevelKey = Keys.LControlKey;
-        public Keys PrevLevelKey
-        {
-            get { return prevLevelKey; }
-            set
-            {
-                // Prevents the key from getting set to None
-                if (value == Keys.None)
-                {
-                    Log("Tried to set the 'PrevLevelKey' to None, returning...");
-                    return;
-                }
-
-                prevLevelKey = value;
-                prevLevelKeyState = KeyState.Up;
-                prevLevelKeyCurrDownTime = 0;
-            }
-        }
-        private Keys controlModPrevLevelKey = Keys.None;
-        public Keys ControlModPrevLevelKey
-        {
-            get { return controlModPrevLevelKey; }
-            set
-            {
-                controlModPrevLevelKey = value;
-                prevLevelKeyState = KeyState.Up;
-                prevLevelKeyCurrDownTime = 0;
-            }
-        }
-        private Keys shiftModPrevLevelKey = Keys.None;
-        public Keys ShiftModPrevLevelKey
-        {
-            get { return shiftModPrevLevelKey; }
-            set
-            {
-                shiftModPrevLevelKey = value;
-                prevLevelKeyState = KeyState.Up;
-                prevLevelKeyCurrDownTime = 0;
-            }
-        }
-        private Keys altModPrevLevelKey = Keys.None;
-        public Keys AltModPrevLevelKey
-        {
-            get { return altModPrevLevelKey; }
-            set
-            {
-                altModPrevLevelKey = value;
-                prevLevelKeyState = KeyState.Up;
-                prevLevelKeyCurrDownTime = 0;
-            }
-        }
-        private KeyState prevLevelKeyState = KeyState.Up;
-        private int prevLevelKeyCurrDownTime = 0;
-
         public KeyBind IncrSliderKeyBind;
-        private Keys incrSliderKey = Keys.E;
-        public Keys IncrSliderKey
-        {
-            get { return incrSliderKey; }
-            set
-            {
-                // Prevents the key from getting set to None
-                if (value == Keys.None)
-                {
-                    Log("Tried to set the 'IncrSliderKey' to None, returning...");
-                    return;
-                }
-
-                incrSliderKey = value;
-                incrSliderKeyState = KeyState.Up;
-                incrSliderKeyCurrDownTime = 0;
-            }
-        }
-        private Keys controlModIncrSliderKey = Keys.None;
-        public Keys ControlModIncrSliderKey
-        {
-            get { return controlModIncrSliderKey; }
-            set
-            {
-                controlModIncrSliderKey = value;
-                incrSliderKeyState = KeyState.Up;
-                incrSliderKeyCurrDownTime = 0;
-            }
-        }
-        private Keys shiftModIncrSliderKey = Keys.None;
-        public Keys ShiftModIncrSliderKey
-        {
-            get { return shiftModIncrSliderKey; }
-            set
-            {
-                shiftModIncrSliderKey = value;
-                incrSliderKeyState = KeyState.Up;
-                incrSliderKeyCurrDownTime = 0;
-            }
-        }
-        private Keys altModIncrSliderKey = Keys.None;
-        public Keys AltModIncrSliderKey
-        {
-            get { return altModIncrSliderKey; }
-            set
-            {
-                altModIncrSliderKey = value;
-                incrSliderKeyState = KeyState.Up;
-                incrSliderKeyCurrDownTime = 0;
-            }
-        }
-        private KeyState incrSliderKeyState = KeyState.Up;
-        private int incrSliderKeyCurrDownTime = 0;
-
         public KeyBind DecrSliderKeyBind;
-        private Keys decrSliderKey = Keys.Q;
-        public Keys DecrSliderKey
-        {
-            get { return decrSliderKey; }
-            set
-            {
-                // Prevents the key from getting set to None
-                if (value == Keys.None)
-                {
-                    Log("Tried to set the 'DecrSliderKey' to None, returning...");
-                    return;
-                }
-
-                decrSliderKey = value;
-                decrSliderKeyState = KeyState.Up;
-                decrSliderKeyCurrDownTime = 0;
-            }
-        }
-        private Keys controlModDecrSliderKey = Keys.None;
-        public Keys ControlModDecrSliderKey
-        {
-            get { return controlModDecrSliderKey; }
-            set
-            {
-                controlModDecrSliderKey = value;
-                decrSliderKeyState = KeyState.Up;
-                decrSliderKeyCurrDownTime = 0;
-            }
-        }
-        private Keys shiftModDecrSliderKey = Keys.None;
-        public Keys ShiftModDecrSliderKey
-        {
-            get { return shiftModDecrSliderKey; }
-            set
-            {
-                shiftModDecrSliderKey = value;
-                decrSliderKeyState = KeyState.Up;
-                decrSliderKeyCurrDownTime = 0;
-            }
-        }
-        private Keys altModDecrSliderKey = Keys.None;
-        public Keys AltModDecrSliderKey
-        {
-            get { return altModDecrSliderKey; }
-            set
-            {
-                altModDecrSliderKey = value;
-                decrSliderKeyState = KeyState.Up;
-                decrSliderKeyCurrDownTime = 0;
-            }
-        }
-        private KeyState decrSliderKeyState = KeyState.Up;
-        private int decrSliderKeyCurrDownTime = 0;
 
         // Variables related to the level keys
         bool isUsingLevelKeys;
@@ -557,9 +342,12 @@ namespace vSlide
             {
                 Log("Couldn't acquire a device: There was no free vJoy device!");
             }
-
-            // Checks if the key variables are set up correctly
-            CheckKeyBinds();
+            
+            // Creates keybinds
+            NextLevelKeyBind = new KeyBind(Keys.LShiftKey);
+            PrevLevelKeyBind = new KeyBind(Keys.LControlKey);
+            IncrSliderKeyBind = new KeyBind(Keys.E);
+            DecrSliderKeyBind = new KeyBind(Keys.Q);
 
             Log("");
             Log("Creating mapping-theme-form...");
@@ -576,40 +364,36 @@ namespace vSlide
             Log("");
             Log("Creating instuctions-form...");
             instructionsForm = new InstructionsForm();
-
+            
             // Loads the settings
             Log("");
             settingsForm.LoadSettings();
 
-            // Loads the slider levels
-            Log("");
-            sliderLevelsForm.LoadSliderLevels();
-
-            // Creates keybinds
-            NextLevelKeyBind = new KeyBind(Keys.LShiftKey);
-            PrevLevelKeyBind = new KeyBind(Keys.LControlKey);
+            // Enables the held down modes for the keybindes
             if (holdDownModeLevel != KeyHoldDownMode.None)
             {
-                Log("Level treshold: " + (uint)holdTresholdLevel);
-                Log("Level tick interal: " + (uint)HoldTickIntervalLevel);
                 NextLevelKeyBind.EnableHeldDown((uint)holdTresholdLevel, (uint)holdTickIntervalLevel);
                 PrevLevelKeyBind.EnableHeldDown((uint)holdTresholdLevel, (uint)holdTickIntervalLevel);
             }
-
-            IncrSliderKeyBind = new KeyBind(Keys.E);
-            DecrSliderKeyBind = new KeyBind(Keys.Q);
             IncrSliderKeyBind.EnableHeldDown(0, (uint)holdTickIntervalSlider);
             DecrSliderKeyBind.EnableHeldDown(0, (uint)holdTickIntervalSlider);
 
+            // Loads the slider levels
+            Log("");
+            sliderLevelsForm.LoadSliderLevels();
+            
             // Enables the other forms menu strip
             otherFormsMenuStrip.Enabled = true;
 
+            // Checks if the key variables are set up correctly
+            CheckKeyBinds();
+
             // Debugs aditional information
             Log("");
-            Log("The Next-Level-Key is bound to '" + nextLevelKey.ToString() + "'");
-            Log("The Previous-Level-Key is bound to '" + prevLevelKey.ToString() + "'");
-            Log("The Increase-Slider-Key is bound to '" + incrSliderKey.ToString() + "'");
-            Log("The Decrease-Slider-Key is bound to '" + decrSliderKey.ToString() + "'");
+            Log("The Next-Level-Key is bound to '" + NextLevelKeyBind.BoundKey.ToString() + "'");
+            Log("The Previous-Level-Key is bound to '" + PrevLevelKeyBind.BoundKey.ToString() + "'");
+            Log("The Increase-Slider-Key is bound to '" + IncrSliderKeyBind.BoundKey.ToString() + "'");
+            Log("The Decrease-Slider-Key is bound to '" + DecrSliderKeyBind.BoundKey.ToString() + "'");
             Log("");
 
             // Checks if a device was aquired
@@ -740,42 +524,42 @@ namespace vSlide
         private void CheckKeyBinds()
         {
             // Checks if the incrSliderKey value is valid
-            if (!Enum.IsDefined(typeof(Keys), nextLevelKey))
+            if (!Enum.IsDefined(typeof(Keys), NextLevelKeyBind.BoundKey))
             {
-                Log("The 'nextLevelKey' has the invalid value '" + nextLevelKey + "' this value does not represent a key, returning...");
+                Log("The 'nextLevelKey' has the invalid value '" + NextLevelKeyBind.BoundKey + "' this value does not represent a key, returning...");
                 return;
             }
             // Checks if the decrSliderKey value is valid
-            if (!Enum.IsDefined(typeof(Keys), prevLevelKey))
+            if (!Enum.IsDefined(typeof(Keys), PrevLevelKeyBind.BoundKey))
             {
-                Log("The 'prevLevelKey' has the invalid value '" + prevLevelKey + "' this value does not represent a key, returning...");
+                Log("The 'prevLevelKey' has the invalid value '" + PrevLevelKeyBind.BoundKey + "' this value does not represent a key, returning...");
                 return;
             }
 
             // Checks if the nextLevelKey and prevLevelKey are bound to the same key
-            if (incrSliderKey == decrSliderKey)
+            if (IncrSliderKeyBind.BoundKey == DecrSliderKeyBind.BoundKey)
             {
-                Log("The 'nextLevelKey' and 'prevLevelKey' are bound to the same key '" + nextLevelKey + "', returning...");
+                Log("The 'nextLevelKey' and 'prevLevelKey' are bound to the same key '" + NextLevelKeyBind.BoundKey + "', returning...");
                 return;
             }
 
             // Checks if the incrSliderKey value is valid
-            if (!Enum.IsDefined(typeof(Keys), incrSliderKey))
+            if (!Enum.IsDefined(typeof(Keys), IncrSliderKeyBind.BoundKey))
             {
-                Log("The 'incrSliderKey' has the invalid value '" + incrSliderKey + "' this value does not represent a key, returning...");
+                Log("The 'incrSliderKey' has the invalid value '" + IncrSliderKeyBind.BoundKey + "' this value does not represent a key, returning...");
                 return;
             }
             // Checks if the decrSliderKey value is valid
-            if (!Enum.IsDefined(typeof(Keys), decrSliderKey))
+            if (!Enum.IsDefined(typeof(Keys), DecrSliderKeyBind.BoundKey))
             {
-                Log("The 'decrSliderKey' has the invalid value '" + decrSliderKey + "' this value does not represent a key, returning...");
+                Log("The 'decrSliderKey' has the invalid value '" + DecrSliderKeyBind.BoundKey + "' this value does not represent a key, returning...");
                 return;
             }
 
             // Checks if the incrSliderKey and decrSliderKey are the same
-            if (incrSliderKey == decrSliderKey)
+            if (IncrSliderKeyBind.BoundKey == DecrSliderKeyBind.BoundKey)
             {
-                Log("The 'incrSliderKey' and 'decrSliderKey' are bound to the same key '" + Enum.GetName(typeof(Keys), incrSliderKey) + "', returning...");
+                Log("The 'incrSliderKey' and 'decrSliderKey' are bound to the same key '" + Enum.GetName(typeof(Keys), IncrSliderKeyBind.BoundKey) + "', returning...");
                 return;
             }
         }
@@ -789,14 +573,10 @@ namespace vSlide
             if (CurrState != FeederState.ReadyToFeed) return;
 
             CurrState = FeederState.Feeding;
-            nextLevelKeyState = KeyState.Up;
-            prevLevelKeyState = KeyState.Up;
-            incrSliderKeyState = KeyState.Up;
-            decrSliderKeyState = KeyState.Up;
-            nextLevelKeyCurrDownTime = 0;
-            prevLevelKeyCurrDownTime = 0;
-            incrSliderKeyCurrDownTime = 0;
-            decrSliderKeyCurrDownTime = 0;
+            NextLevelKeyBind.Reset();
+            PrevLevelKeyBind.Reset();
+            IncrSliderKeyBind.Reset();
+            DecrSliderKeyBind.Reset();
 
             toggleFeedingButton.Text = "Stop feeding";
             sliderTrackBar.Enabled = true;
@@ -814,14 +594,10 @@ namespace vSlide
             if (CurrState != FeederState.Feeding) return;
 
             CurrState = FeederState.ReadyToFeed;
-            nextLevelKeyState = KeyState.Up;
-            prevLevelKeyState = KeyState.Up;
-            incrSliderKeyState = KeyState.Up;
-            decrSliderKeyState = KeyState.Up;
-            nextLevelKeyCurrDownTime = 0;
-            prevLevelKeyCurrDownTime = 0;
-            incrSliderKeyCurrDownTime = 0;
-            decrSliderKeyCurrDownTime = 0;
+            NextLevelKeyBind.Reset();
+            PrevLevelKeyBind.Reset();
+            IncrSliderKeyBind.Reset();
+            DecrSliderKeyBind.Reset();
 
             toggleFeedingButton.Text = "Start feeding";
             sliderTrackBar.Enabled = false;

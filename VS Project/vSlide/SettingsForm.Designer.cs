@@ -211,7 +211,9 @@
             // 
             // altModNextLevelComboBox
             // 
+            this.altModNextLevelComboBox.BackColor = System.Drawing.SystemColors.Window;
             this.altModNextLevelComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.altModNextLevelComboBox.ForeColor = System.Drawing.SystemColors.WindowText;
             this.altModNextLevelComboBox.FormattingEnabled = true;
             this.altModNextLevelComboBox.Items.AddRange(new object[] {
             "None",

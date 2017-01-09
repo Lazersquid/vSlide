@@ -20,25 +20,25 @@ namespace vSlide
             this.mainForm = mainForm;
 
             // Sets the key-bind comboboxes to the default values
-            controlModNextLevelComboBox.SelectedItem = KeyToString(mainForm.ControlModNextLevelKey);
-            shiftModNextLevelComboBox.SelectedItem = KeyToString(mainForm.ShiftModNextLevelKey);
-            altModNextLevelComboBox.SelectedItem = KeyToString(mainForm.AltModNextLevelKey);
-            nextLevelComboBox.SelectedItem = KeyToString(mainForm.NextLevelKey);
+            controlModNextLevelComboBox.SelectedItem = KeyToString(mainForm.NextLevelKeyBind.ControlMod);
+            shiftModNextLevelComboBox.SelectedItem = KeyToString(mainForm.NextLevelKeyBind.ShiftMod);
+            altModNextLevelComboBox.SelectedItem = KeyToString(mainForm.NextLevelKeyBind.AltMod);
+            nextLevelComboBox.SelectedItem = KeyToString(mainForm.NextLevelKeyBind.BoundKey);
 
-            controlModPrevLevelComboBox.SelectedItem = KeyToString(mainForm.ControlModPrevLevelKey);
-            shiftModPrevLevelComboBox.SelectedItem = KeyToString(mainForm.ShiftModPrevLevelKey);
-            altModPrevLevelComboBox.SelectedItem = KeyToString(mainForm.AltModPrevLevelKey);
-            prevLevelComboBox.SelectedItem = KeyToString(mainForm.PrevLevelKey);
+            controlModPrevLevelComboBox.SelectedItem = KeyToString(mainForm.PrevLevelKeyBind.ControlMod);
+            shiftModPrevLevelComboBox.SelectedItem = KeyToString(mainForm.PrevLevelKeyBind.ShiftMod);
+            altModPrevLevelComboBox.SelectedItem = KeyToString(mainForm.PrevLevelKeyBind.AltMod);
+            prevLevelComboBox.SelectedItem = KeyToString(mainForm.PrevLevelKeyBind.BoundKey);
             
-            controlModIncrSliderComboBox.SelectedItem = KeyToString(mainForm.ControlModIncrSliderKey);
-            shiftModIncrSliderComboBox.SelectedItem = KeyToString(mainForm.ShiftModIncrSliderKey);
-            altModIncrSliderComboBox.SelectedItem = KeyToString(mainForm.AltModIncrSliderKey);
-            incrSliderComboBox.SelectedItem = KeyToString(mainForm.IncrSliderKey);
+            controlModIncrSliderComboBox.SelectedItem = KeyToString(mainForm.IncrSliderKeyBind.ControlMod);
+            shiftModIncrSliderComboBox.SelectedItem = KeyToString(mainForm.IncrSliderKeyBind.ShiftMod);
+            altModIncrSliderComboBox.SelectedItem = KeyToString(mainForm.IncrSliderKeyBind.AltMod);
+            incrSliderComboBox.SelectedItem = KeyToString(mainForm.IncrSliderKeyBind.BoundKey);
             
-            controlModDecrSliderComboBox.SelectedItem = KeyToString(mainForm.ControlModDecrSliderKey);
-            shiftModDecrSliderComboBox.SelectedItem = KeyToString(mainForm.ShiftModDecrSliderKey);
-            altModDecrSliderComboBox.SelectedItem = KeyToString(mainForm.AltModDecrSliderKey);
-            decrSliderComboBox.SelectedItem = KeyToString(mainForm.DecrSliderKey);
+            controlModDecrSliderComboBox.SelectedItem = KeyToString(mainForm.DecrSliderKeyBind.ControlMod);
+            shiftModDecrSliderComboBox.SelectedItem = KeyToString(mainForm.DecrSliderKeyBind.ShiftMod);
+            altModDecrSliderComboBox.SelectedItem = KeyToString(mainForm.DecrSliderKeyBind.AltMod);
+            decrSliderComboBox.SelectedItem = KeyToString(mainForm.DecrSliderKeyBind.BoundKey);
 
             // Adds all free or busy vJoy joysticks to the 'devicesComboBox' and updates the groupBox
             foreach (uint id in availableVJoyIds)
@@ -197,6 +197,38 @@ namespace vSlide
                 devicesComboBox.SelectedItem = newJoystickId;
                 acquiredDeviceIdLabel.Text = newJoystickId.ToString();
             }
+        }
+
+        public void SyncUIToKeybinds()
+        {
+            // Next level key bind
+            controlModNextLevelComboBox.SelectedItem = KeyToString(mainForm.NextLevelKeyBind.ControlMod);
+            shiftModNextLevelComboBox.SelectedItem = KeyToString(mainForm.NextLevelKeyBind.ShiftMod);
+            altModNextLevelComboBox.SelectedItem = KeyToString(mainForm.NextLevelKeyBind.AltMod);
+            nextLevelComboBox.SelectedItem = KeyToString(mainForm.NextLevelKeyBind.BoundKey);
+
+            // Previous level key bind
+            controlModPrevLevelComboBox.SelectedItem = KeyToString(mainForm.PrevLevelKeyBind.ControlMod);
+            shiftModPrevLevelComboBox.SelectedItem = KeyToString(mainForm.PrevLevelKeyBind.ShiftMod);
+            altModPrevLevelComboBox.SelectedItem = KeyToString(mainForm.PrevLevelKeyBind.AltMod);
+            prevLevelComboBox.SelectedItem = KeyToString(mainForm.PrevLevelKeyBind.BoundKey);
+
+            // Increase slider key bind
+            controlModIncrSliderComboBox.SelectedItem = KeyToString(mainForm.IncrSliderKeyBind.ControlMod);
+            shiftModIncrSliderComboBox.SelectedItem = KeyToString(mainForm.IncrSliderKeyBind.ShiftMod);
+            altModIncrSliderComboBox.SelectedItem = KeyToString(mainForm.IncrSliderKeyBind.AltMod);
+            incrSliderComboBox.SelectedItem = KeyToString(mainForm.IncrSliderKeyBind.BoundKey);
+
+            // Decrease slider key bind
+            controlModDecrSliderComboBox.SelectedItem = KeyToString(mainForm.DecrSliderKeyBind.ControlMod);
+            shiftModDecrSliderComboBox.SelectedItem = KeyToString(mainForm.DecrSliderKeyBind.ShiftMod);
+            altModDecrSliderComboBox.SelectedItem = KeyToString(mainForm.DecrSliderKeyBind.AltMod);
+            decrSliderComboBox.SelectedItem = KeyToString(mainForm.DecrSliderKeyBind.BoundKey);
+        }
+
+        public void SwapKeyBinds()
+        {
+
         }
 
         public Keys StringToKey (string keyName)
@@ -467,37 +499,30 @@ namespace vSlide
             }
         }
 
-        public void SwapKeys (Keys key1, Keys key2)
-        {
-            Keys temp = key1;
-            key1 = key2;
-            key2 = temp;
-        }
-
         public void SaveCurrSettings()
         {
             try
             {
                 // Saves key binds
-                Properties.Settings.Default["nextLevelKey"] = KeyToString(mainForm.NextLevelKey);
-                Properties.Settings.Default["prevLevelKey"] = KeyToString(mainForm.PrevLevelKey);
-                Properties.Settings.Default["incrSliderKey"] = KeyToString(mainForm.IncrSliderKey);
-                Properties.Settings.Default["decrSliderKey"] = KeyToString(mainForm.DecrSliderKey);
+                Properties.Settings.Default["nextLevelKey"] = KeyToString(mainForm.NextLevelKeyBind.BoundKey);
+                Properties.Settings.Default["prevLevelKey"] = KeyToString(mainForm.PrevLevelKeyBind.BoundKey);
+                Properties.Settings.Default["incrSliderKey"] = KeyToString(mainForm.IncrSliderKeyBind.BoundKey);
+                Properties.Settings.Default["decrSliderKey"] = KeyToString(mainForm.DecrSliderKeyBind.BoundKey);
 
-                Properties.Settings.Default["controlModNextLevelKey"] = KeyToString(mainForm.ControlModNextLevelKey);
-                Properties.Settings.Default["controlModPrevLevelKey"] = KeyToString(mainForm.ControlModPrevLevelKey);
-                Properties.Settings.Default["controlModIncrSliderKey"] = KeyToString(mainForm.ControlModIncrSliderKey);
-                Properties.Settings.Default["controlModDecrSliderKey"] = KeyToString(mainForm.ControlModDecrSliderKey);
+                Properties.Settings.Default["controlModNextLevelKey"] = KeyToString(mainForm.NextLevelKeyBind.ControlMod);
+                Properties.Settings.Default["controlModPrevLevelKey"] = KeyToString(mainForm.PrevLevelKeyBind.ControlMod);
+                Properties.Settings.Default["controlModIncrSliderKey"] = KeyToString(mainForm.IncrSliderKeyBind.ControlMod);
+                Properties.Settings.Default["controlModDecrSliderKey"] = KeyToString(mainForm.DecrSliderKeyBind.ControlMod);
 
-                Properties.Settings.Default["shiftModNextLevelKey"] = KeyToString(mainForm.ShiftModNextLevelKey);
-                Properties.Settings.Default["shiftModPrevLevelKey"] = KeyToString(mainForm.ShiftModPrevLevelKey);
-                Properties.Settings.Default["shiftModIncrSliderKey"] = KeyToString(mainForm.ShiftModIncrSliderKey);
-                Properties.Settings.Default["shiftModDecrSliderKey"] = KeyToString(mainForm.ShiftModDecrSliderKey);
+                Properties.Settings.Default["shiftModNextLevelKey"] = KeyToString(mainForm.NextLevelKeyBind.ShiftMod);
+                Properties.Settings.Default["shiftModPrevLevelKey"] = KeyToString(mainForm.PrevLevelKeyBind.ShiftMod);
+                Properties.Settings.Default["shiftModIncrSliderKey"] = KeyToString(mainForm.IncrSliderKeyBind.ShiftMod);
+                Properties.Settings.Default["shiftModDecrSliderKey"] = KeyToString(mainForm.DecrSliderKeyBind.ShiftMod);
 
-                Properties.Settings.Default["altModNextLevelKey"] = KeyToString(mainForm.AltModNextLevelKey);
-                Properties.Settings.Default["altModPrevLevelKey"] = KeyToString(mainForm.AltModPrevLevelKey);
-                Properties.Settings.Default["altModIncrSliderKey"] = KeyToString(mainForm.AltModIncrSliderKey);
-                Properties.Settings.Default["altModDecrSliderKey"] = KeyToString(mainForm.AltModDecrSliderKey);
+                Properties.Settings.Default["altModNextLevelKey"] = KeyToString(mainForm.NextLevelKeyBind.AltMod);
+                Properties.Settings.Default["altModPrevLevelKey"] = KeyToString(mainForm.PrevLevelKeyBind.AltMod);
+                Properties.Settings.Default["altModIncrSliderKey"] = KeyToString(mainForm.IncrSliderKeyBind.AltMod);
+                Properties.Settings.Default["altModDecrSliderKey"] = KeyToString(mainForm.DecrSliderKeyBind.AltMod);
 
                 // The checked RadioButton of the 'keySetupGroupBox'
                 if (useLevelKeysOnlyRadioButton.Checked)
@@ -771,7 +796,10 @@ namespace vSlide
         private void KeyBindComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Ignores the call if the form is still stetting up
-            if(currState == SettingsFormState.SettingUp) { return; }
+            if(currState == SettingsFormState.SettingUp || currState == SettingsFormState.UpdatingKeyBinds) { return; }
+            
+            SettingsFormState oldState = currState;
+            currState = SettingsFormState.UpdatingKeyBinds;
 
             // Casts the sender into a ComboBox, this never fails since this method is only added
             // to the events of combo boxes
@@ -783,400 +811,150 @@ namespace vSlide
             // Determines the respective Keys value
             Keys newKey = StringToKey(newValue);
 
+            KeyBind oldKeyBind;
+
             mainForm.Log("Determined key-value '" + newKey + "' from the selected string '"+ newValue + "'");
+            
 
             // Checks which key bind ComboBox's SelectedIndex changed:
             // Next level comboBox's
             if (senderComboBox.Name == "controlModNextLevelComboBox")
             {
-                // Returns if the key is already bound to that key
-                if (mainForm.ControlModNextLevelKey == newKey)
-                {
-                    mainForm.Log("The controlModNextLevelKey is already bound to that key, returning...");
-                    return;
-                }
-                // Checks if the nextLevelKey is already bound to a control key and if the newKey is a control key aswell
-                if ((mainForm.NextLevelKey == Keys.ControlKey || mainForm.NextLevelKey == Keys.LControlKey || mainForm.NextLevelKey == Keys.RControlKey) && newKey != Keys.None)
-                {
-                    controlModNextLevelComboBox.SelectedItem = "None";
-                }
-                else
-                {
-                    mainForm.ControlModNextLevelKey = newKey;
-                }
+                mainForm.NextLevelKeyBind.ControlMod = newKey;
             }
             else if (senderComboBox.Name == "shiftModNextLevelComboBox")
             {
-                // Returns if the key is already bound to that key
-                if (mainForm.ShiftModNextLevelKey == newKey)
-                {
-                    mainForm.Log("The shiftModNextLevelKey is already bound to that key, returning...");
-                    return;
-                }
-                // Checks if the nextLevelKey is already bound to a shift key and if the newKey is a shift key aswell
-                if ((mainForm.NextLevelKey == Keys.ShiftKey || mainForm.NextLevelKey == Keys.LShiftKey || mainForm.NextLevelKey == Keys.RShiftKey) && newKey != Keys.None)
-                {
-                    shiftModNextLevelComboBox.SelectedItem = "None";
-                }
-                else
-                {
-                    mainForm.ShiftModNextLevelKey = newKey;
-                }
+                mainForm.NextLevelKeyBind.ShiftMod = newKey;
             }
             else if (senderComboBox.Name == "altModNextLevelComboBox")
             {
-                // Returns if the key is already bound to that key
-                if (mainForm.AltModNextLevelKey == newKey)
-                {
-                    mainForm.Log("The altModNextLevelKey is already bound to that key, returning...");
-                    return;
-                }
-                // Checks if the nextLevelKey is already bound to a alt key and if the newKey is a alt key aswell
-                if ((mainForm.NextLevelKey == Keys.Menu || mainForm.NextLevelKey == Keys.LMenu || mainForm.NextLevelKey == Keys.RMenu) && newKey != Keys.None)
-                {
-                    altModNextLevelComboBox.SelectedItem = "None";
-                }
-                else
-                {
-                    mainForm.AltModNextLevelKey = newKey;
-                }
+                mainForm.NextLevelKeyBind.AltMod = newKey;
             }
             else if (senderComboBox.Name == "nextLevelComboBox")
             {
-                // Returns if the key is already bound to that key
-                if (mainForm.NextLevelKey == newKey)
-                {
-                    mainForm.Log("The nextLevelKey is already bound to that key, returning...");
-                    return;
-                }
+                // Stores the key bind before modifying it
+                oldKeyBind = new KeyBind(mainForm.NextLevelKeyBind.BoundKey, mainForm.NextLevelKeyBind.ControlMod, mainForm.NextLevelKeyBind.ShiftMod, mainForm.NextLevelKeyBind.AltMod);
+                mainForm.NextLevelKeyBind.BoundKey = newKey;
 
-                // Checks if the ControlModNextLevelKey is bound to a control key and if the newKey is a control key aswell
-                if (mainForm.ControlModNextLevelKey != Keys.None && (newKey == Keys.ControlKey || newKey == Keys.LControlKey || newKey == Keys.RControlKey))
-                {
-                    controlModNextLevelComboBox.SelectedItem = "None";
-                }
-                // Checks if the ShiftModNextLevelKey is bound to a shift key and if the newKey is a shift key aswell
-                else if (mainForm.ShiftModNextLevelKey != Keys.None && (newKey == Keys.ShiftKey || newKey == Keys.LShiftKey || newKey == Keys.RShiftKey))
-                {
-                    shiftModNextLevelComboBox.SelectedItem = "None";
-                }
-                // Checks if the AltModNextLevelKey is bound to a alt key and if the newKey is a alt key aswell
-                else if (mainForm.AltModNextLevelKey != Keys.None && (newKey == Keys.Menu || newKey == Keys.LMenu || newKey == Keys.RMenu))
-                {
-                    altModNextLevelComboBox.SelectedItem = "None";
-                }
-
-                // Gets the name of the key that the nextLevelKey currently has
-                string oldKeyName = KeyToString(mainForm.NextLevelKey);
                 // Checks if another key is already bound to that key and swaps the keys
-                if (mainForm.PrevLevelKey == newKey)
+                if (mainForm.PrevLevelKeyBind.Equals(mainForm.NextLevelKeyBind))
                 {
-                    prevLevelComboBox.SelectedItem = oldKeyName;
+                    mainForm.PrevLevelKeyBind = oldKeyBind;
                 }
-                if (mainForm.IncrSliderKey == newKey)
+                if (mainForm.IncrSliderKeyBind.Equals(mainForm.NextLevelKeyBind))
                 {
-                    incrSliderComboBox.SelectedItem = oldKeyName;
+                    mainForm.IncrSliderKeyBind = oldKeyBind;
                 }
-                if (mainForm.DecrSliderKey == newKey)
+                if (mainForm.DecrSliderKeyBind.Equals(mainForm.NextLevelKeyBind))
                 {
-                    decrSliderComboBox.SelectedItem = oldKeyName;
+                    mainForm.DecrSliderKeyBind = oldKeyBind;
                 }
-                mainForm.NextLevelKey = newKey;
             }
 
             // Previous level comboBox's
             else if (senderComboBox.Name == "controlModPrevLevelComboBox")
             {
-                // Returns if the key is already bound to that key
-                if (mainForm.ControlModPrevLevelKey == newKey)
-                {
-                    mainForm.Log("The controlModPrevLevelKey is already bound to that key, returning...");
-                    return;
-                }
-                // Checks if the PrevLevelKey is already bound to a control key and if the newKey is a control key aswell
-                if ((mainForm.PrevLevelKey == Keys.ControlKey || mainForm.PrevLevelKey == Keys.LControlKey || mainForm.PrevLevelKey == Keys.RControlKey) && newKey != Keys.None)
-                {
-                    controlModPrevLevelComboBox.SelectedItem = "None";
-                }
-                else
-                {
-                    mainForm.ControlModPrevLevelKey = newKey;
-                }
+                mainForm.PrevLevelKeyBind.ControlMod = newKey;
             }
             else if (senderComboBox.Name == "shiftModPrevLevelComboBox")
             {
-                // Returns if the key is already bound to that key
-                if (mainForm.ShiftModPrevLevelKey == newKey)
-                {
-                    mainForm.Log("The shiftModPrevLevelKey is already bound to that key, returning...");
-                    return;
-                }
-                // Checks if the PrevLevelKey is already bound to a shift key and if the newKey is a shift key aswell
-                if ((mainForm.PrevLevelKey == Keys.ShiftKey || mainForm.PrevLevelKey == Keys.LShiftKey || mainForm.PrevLevelKey == Keys.RShiftKey) && newKey != Keys.None)
-                {
-                    shiftModPrevLevelComboBox.SelectedItem = "None";
-                }
-                else
-                {
-                    mainForm.ShiftModPrevLevelKey = newKey;
-                }
+                mainForm.PrevLevelKeyBind.ShiftMod = newKey;
             }
             else if (senderComboBox.Name == "altModPrevLevelComboBox")
             {
-                // Returns if the key is already bound to that key
-                if (mainForm.AltModPrevLevelKey == newKey)
-                {
-                    mainForm.Log("The altModPrevLevelKey is already bound to that key, returning...");
-                    return;
-                }
-                // Checks if the PrevLevelKey is already bound to a alt key and if the newKey is a alt key aswell
-                if ((mainForm.PrevLevelKey == Keys.Menu || mainForm.PrevLevelKey == Keys.LMenu || mainForm.PrevLevelKey == Keys.RMenu) && newKey != Keys.None)
-                {
-                    altModPrevLevelComboBox.SelectedItem = "None";
-                }
-                else
-                {
-                    mainForm.AltModPrevLevelKey = newKey;
-                }
+                mainForm.PrevLevelKeyBind.AltMod = newKey;
             }
             else if (senderComboBox.Name == "prevLevelComboBox")
             {
-                // Returns if the key is already bound to that key
-                if (mainForm.PrevLevelKey == newKey)
-                {
-                    mainForm.Log("The prevLevelKey is already bound to that key, returning...");
-                    return;
-                }
+                // Stores the key bind before modifying it
+                oldKeyBind = new KeyBind(mainForm.PrevLevelKeyBind.BoundKey, mainForm.PrevLevelKeyBind.ControlMod, mainForm.PrevLevelKeyBind.ShiftMod, mainForm.PrevLevelKeyBind.AltMod);
+                mainForm.PrevLevelKeyBind.BoundKey = newKey;
 
-                // Checks if the ControlModPrevLevelKey is bound to a control key and if the newKey is a control key aswell
-                if (mainForm.ControlModPrevLevelKey != Keys.None && (newKey == Keys.ControlKey || newKey == Keys.LControlKey || newKey == Keys.RControlKey))
-                {
-                    controlModPrevLevelComboBox.SelectedItem = "None";
-                }
-                // Checks if the ShiftModPrevLevelKey is bound to a shift key and if the newKey is a shift key aswell
-                else if (mainForm.ShiftModPrevLevelKey != Keys.None && (newKey == Keys.ShiftKey || newKey == Keys.LShiftKey || newKey == Keys.RShiftKey))
-                {
-                    shiftModPrevLevelComboBox.SelectedItem = "None";
-                }
-                // Checks if the AltModPrevLevelKey is bound to a alt key and if the newKey is a alt key aswell
-                else if (mainForm.AltModPrevLevelKey != Keys.None && (newKey == Keys.Menu || newKey == Keys.LMenu || newKey == Keys.RMenu))
-                {
-                    altModPrevLevelComboBox.SelectedItem = "None";
-                }
-
-                // Gets the name of the key that the prevLevelKey currently has
-                string oldKeyName = KeyToString(mainForm.PrevLevelKey);
                 // Checks if another key is already bound to that key and swaps the keys
-                if (mainForm.NextLevelKey == newKey)
+                if (mainForm.NextLevelKeyBind.Equals(mainForm.PrevLevelKeyBind))
                 {
-                    nextLevelComboBox.SelectedItem = oldKeyName;
+                    mainForm.NextLevelKeyBind = oldKeyBind;
                 }
-                if (mainForm.IncrSliderKey == newKey)
+                if (mainForm.IncrSliderKeyBind.Equals(mainForm.PrevLevelKeyBind))
                 {
-                    incrSliderComboBox.SelectedItem = oldKeyName;
+                    mainForm.IncrSliderKeyBind = oldKeyBind;
                 }
-                if (mainForm.DecrSliderKey == newKey)
+                if (mainForm.DecrSliderKeyBind.Equals(mainForm.PrevLevelKeyBind))
                 {
-                    decrSliderComboBox.SelectedItem = oldKeyName;
+                    mainForm.DecrSliderKeyBind = oldKeyBind;
                 }
-                mainForm.PrevLevelKey = newKey;
             }
 
             // Increase slider comboBox's
             else if (senderComboBox.Name == "controlModIncrSliderComboBox")
             {
-                // Returns if the key is already bound to that key
-                if (mainForm.ControlModIncrSliderKey == newKey)
-                {
-                    mainForm.Log("The controlModIncrSliderKey is already bound to that key, returning...");
-                    return;
-                }
-                // Checks if the incrSliderKey is already bound to a control key and if the newKey is a control key aswell
-                if ((mainForm.IncrSliderKey == Keys.ControlKey || mainForm.IncrSliderKey == Keys.LControlKey || mainForm.IncrSliderKey == Keys.RControlKey) && newKey != Keys.None)
-                {
-                    controlModIncrSliderComboBox.SelectedItem = "None";
-                }
-                else
-                {
-                    mainForm.ControlModIncrSliderKey = newKey;
-                }
+                mainForm.IncrSliderKeyBind.ControlMod = newKey;
             }
             else if (senderComboBox.Name == "shiftModIncrSliderComboBox")
             {
-                // Returns if the key is already bound to that key
-                if (mainForm.ShiftModIncrSliderKey == newKey)
-                {
-                    mainForm.Log("The shiftModIncrSliderKey is already bound to that key, returning...");
-                    return;
-                }
-                // Checks if the incrSliderKey is already bound to a shift key and if the newKey is a shift key aswell
-                if ((mainForm.IncrSliderKey == Keys.ShiftKey || mainForm.IncrSliderKey == Keys.LShiftKey || mainForm.IncrSliderKey == Keys.RShiftKey) && newKey != Keys.None)
-                {
-                    shiftModIncrSliderComboBox.SelectedItem = "None";
-                }
-                else
-                {
-                    mainForm.ShiftModIncrSliderKey = newKey;
-                }
+                mainForm.IncrSliderKeyBind.ShiftMod = newKey;
             }
             else if (senderComboBox.Name == "altModIncrSliderComboBox")
             {
-                // Returns if the key is already bound to that key
-                if (mainForm.AltModIncrSliderKey == newKey)
-                {
-                    mainForm.Log("The altModIncrSliderKey is already bound to that key, returning...");
-                    return;
-                }
-                // Checks if the incrSliderKey is already bound to a alt key and if the newKey is a alt key aswell
-                if ((mainForm.IncrSliderKey == Keys.Menu || mainForm.IncrSliderKey == Keys.LMenu || mainForm.IncrSliderKey == Keys.RMenu) && newKey != Keys.None)
-                {
-                    altModIncrSliderComboBox.SelectedItem = "None";
-                }
-                else
-                {
-                    mainForm.AltModIncrSliderKey = newKey;
-                }
+                mainForm.IncrSliderKeyBind.AltMod = newKey;
             }
             else if (senderComboBox.Name == "incrSliderComboBox")
             {
-                // Returns if the key is already bound to that key
-                if (mainForm.IncrSliderKey == newKey)
-                {
-                    mainForm.Log("The incrSliderKey is already bound to that key, returning...");
-                    return;
-                }
+                // Stores the key bind before modifying it
+                oldKeyBind = new KeyBind(mainForm.IncrSliderKeyBind.BoundKey, mainForm.IncrSliderKeyBind.ControlMod, mainForm.IncrSliderKeyBind.ShiftMod, mainForm.IncrSliderKeyBind.AltMod);
+                mainForm.IncrSliderKeyBind.BoundKey = newKey;
 
-                // Checks if the ControlModIncrSliderKey is bound to a control key and if the newKey is a control key aswell
-                if (mainForm.ControlModIncrSliderKey != Keys.None && (newKey == Keys.ControlKey || newKey == Keys.LControlKey || newKey == Keys.RControlKey))
-                {
-                    controlModIncrSliderComboBox.SelectedItem = "None";
-                }
-                // Checks if the ShiftModIncrSliderKey is bound to a shift key and if the newKey is a shift key aswell
-                else if (mainForm.ShiftModIncrSliderKey != Keys.None && (newKey == Keys.ShiftKey || newKey == Keys.LShiftKey || newKey == Keys.RShiftKey))
-                {
-                    shiftModIncrSliderComboBox.SelectedItem = "None";
-                }
-                // Checks if the AltModIncrSliderKey is bound to a alt key and if the newKey is a alt key aswell
-                else if (mainForm.AltModIncrSliderKey != Keys.None && (newKey == Keys.Menu || newKey == Keys.LMenu || newKey == Keys.RMenu))
-                {
-                    altModIncrSliderComboBox.SelectedItem = "None";
-                }
-
-                // Gets the name of the key that the incrSliderKey currently has
-                string oldKeyName = KeyToString(mainForm.IncrSliderKey);
                 // Checks if another key is already bound to that key and swaps the keys
-                if (mainForm.NextLevelKey == newKey)
+                if (mainForm.NextLevelKeyBind.Equals(mainForm.IncrSliderKeyBind))
                 {
-                    nextLevelComboBox.SelectedItem = oldKeyName;
+                    mainForm.NextLevelKeyBind = oldKeyBind;
                 }
-                if (mainForm.PrevLevelKey == newKey)
+                if (mainForm.PrevLevelKeyBind.Equals(mainForm.IncrSliderKeyBind))
                 {
-                    prevLevelComboBox.SelectedItem = oldKeyName;
+                    mainForm.PrevLevelKeyBind = oldKeyBind;
                 }
-                if (mainForm.DecrSliderKey == newKey)
+                if (mainForm.DecrSliderKeyBind.Equals(mainForm.IncrSliderKeyBind))
                 {
-                    decrSliderComboBox.SelectedItem = oldKeyName;
+                    mainForm.DecrSliderKeyBind = oldKeyBind;
                 }
-                mainForm.IncrSliderKey = newKey;
             }
 
             // Decrease slider comboBox's
             else if (senderComboBox.Name == "controlModDecrSliderComboBox")
             {
-                // Returns if the key is already bound to that key
-                if (mainForm.ControlModDecrSliderKey == newKey)
-                {
-                    mainForm.Log("The controlModDecrSliderKey is already bound to that key, returning...");
-                    return;
-                }
-                // Checks if the decrSliderKey is already bound to a control key and if the newKey is a control key aswell
-                if ((mainForm.DecrSliderKey == Keys.ControlKey || mainForm.DecrSliderKey == Keys.LControlKey || mainForm.DecrSliderKey == Keys.RControlKey) && newKey != Keys.None)
-                {
-                    controlModDecrSliderComboBox.SelectedItem = "None";
-                }
-                else
-                {
-                    mainForm.ControlModDecrSliderKey = newKey;
-                }
+                mainForm.DecrSliderKeyBind.ControlMod = newKey;
             }
             else if (senderComboBox.Name == "shiftModDecrSliderComboBox")
-            {                
-                // Returns if the key is already bound to that key
-                if (mainForm.ShiftModDecrSliderKey == newKey)
-                {
-                    mainForm.Log("The shiftModDecrSliderKey is already bound to that key, returning...");
-                    return;
-                }
-                // Checks if the decrSliderKey is already bound to a shift key and if the newKey is a shift key aswell
-                if ((mainForm.DecrSliderKey == Keys.ShiftKey || mainForm.DecrSliderKey == Keys.LShiftKey || mainForm.DecrSliderKey == Keys.RShiftKey) && newKey != Keys.None)
-                {
-                    shiftModDecrSliderComboBox.SelectedItem = "None";
-                }
-                else
-                {
-                    mainForm.ShiftModDecrSliderKey = newKey;
-                }
+            {
+                mainForm.DecrSliderKeyBind.ShiftMod = newKey;
             }
             else if (senderComboBox.Name == "altModDecrSliderComboBox")
             {
-                // Returns if the key is already bound to that key
-                if (mainForm.AltModDecrSliderKey == newKey)
-                {
-                    mainForm.Log("The altModDecrSliderKey is already bound to that key, returning...");
-                    return;
-                }
-                // Checks if the decrSliderKey is already bound to a alt key and if the newKey is a alt key aswell
-                if ((mainForm.DecrSliderKey == Keys.Menu || mainForm.DecrSliderKey == Keys.LMenu || mainForm.DecrSliderKey == Keys.RMenu) && newKey != Keys.None)
-                {
-                    altModDecrSliderComboBox.SelectedItem = "None";
-                }
-                else
-                {
-                    mainForm.AltModDecrSliderKey = newKey;
-                }
+                mainForm.DecrSliderKeyBind.AltMod = newKey;
             }
             else if (senderComboBox.Name == "decrSliderComboBox")
             {
-                // Returns if the key is already bound to that key
-                if (mainForm.DecrSliderKey == newKey)
-                {
-                    mainForm.Log("The decrSliderKey is already bound to that key, returning...");
-                    return;
-                }
+                // Stores the key bind before modifying it
+                oldKeyBind = new KeyBind(mainForm.DecrSliderKeyBind.BoundKey, mainForm.DecrSliderKeyBind.ControlMod, mainForm.DecrSliderKeyBind.ShiftMod, mainForm.DecrSliderKeyBind.AltMod);
+                mainForm.DecrSliderKeyBind.BoundKey = newKey;
 
-                // Checks if the ControlModDecrSliderKey is bound to a control key and if the newKey is a control key aswell
-                if (mainForm.ControlModDecrSliderKey != Keys.None && (newKey == Keys.ControlKey || newKey == Keys.LControlKey || newKey == Keys.RControlKey))
+                // Checks if the new key bind is a duplicate
+                if (mainForm.NextLevelKeyBind.Equals(mainForm.DecrSliderKeyBind))
                 {
-                    controlModDecrSliderComboBox.SelectedItem = "None";
+                    mainForm.NextLevelKeyBind = oldKeyBind;
                 }
-                // Checks if the ShiftModDecrSliderKey is bound to a shift key and if the newKey is a shift key aswell
-                else if (mainForm.ShiftModDecrSliderKey != Keys.None && (newKey == Keys.ShiftKey || newKey == Keys.LShiftKey || newKey == Keys.RShiftKey))
+                if (mainForm.PrevLevelKeyBind.Equals(mainForm.DecrSliderKeyBind))
                 {
-                    shiftModDecrSliderComboBox.SelectedItem = "None";
+                    mainForm.PrevLevelKeyBind = oldKeyBind;
                 }
-                // Checks if the AltModDecrSliderKey is bound to a alt key and if the newKey is a alt key aswell
-                else if (mainForm.AltModDecrSliderKey != Keys.None && (newKey == Keys.Menu || newKey == Keys.LMenu || newKey == Keys.RMenu))
+                if (mainForm.IncrSliderKeyBind.Equals(mainForm.DecrSliderKeyBind))
                 {
-                    altModDecrSliderComboBox.SelectedItem = "None";
+                    mainForm.IncrSliderKeyBind = oldKeyBind;
                 }
-
-                // Gets the name of the key that the decrSliderKey currently has
-                string oldKeyName = KeyToString(mainForm.DecrSliderKey);
-                // Checks if another key is already bound to that key and swaps the keys
-                if (mainForm.NextLevelKey == newKey)
-                {
-                    nextLevelComboBox.SelectedItem = oldKeyName;
-                }
-                if (mainForm.PrevLevelKey == newKey)
-                {
-                    prevLevelComboBox.SelectedItem = oldKeyName;
-                }
-                if (mainForm.IncrSliderKey == newKey)
-                {
-                    incrSliderComboBox.SelectedItem = oldKeyName;
-                }
-                mainForm.DecrSliderKey = newKey;
             }
+
+            SyncUIToKeybinds();
+            currState = oldState;
         }
 
         private void saveSettingsButton_Click(object sender, EventArgs e)
@@ -1198,5 +976,5 @@ namespace vSlide
     }
 
     public enum KeyHoldDownMode { None, Level, Slider };
-    public enum SettingsFormState { SettingUp, Idle, UpdatingForm};
+    public enum SettingsFormState { SettingUp, Idle, UpdatingForm, UpdatingKeyBinds};
 }
