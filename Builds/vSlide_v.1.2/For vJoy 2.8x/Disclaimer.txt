@@ -1,2 +1,0 @@
-I am not the developer/creator of vJoy.
-All *.dll files are properties of their respective owners. I, Lukas Schwarz, do not claim ownership of any of the *.dll files that may be found in this repository.
