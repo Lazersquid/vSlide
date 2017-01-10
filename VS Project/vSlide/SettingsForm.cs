@@ -63,14 +63,139 @@ namespace vSlide
             mainForm.Log("Updating the controls in the settings form...");
             currState = SettingsFormState.UpdatingForm;
 
+            // New Key Setup
+            uint holdTresholdLevel = 0;
+            uint holdTickIntervalLevel = 0;
+            if (mainForm.NextLevelKeyBind.UseHeldDown) { mainForm.NextLevelKeyBind.DisableHeldDown(); }
+            if (mainForm.PrevLevelKeyBind.UseHeldDown) { mainForm.PrevLevelKeyBind.DisableHeldDown(); }
+            
+            uint holdTickIntervalSlider = 0;
+            mainForm.HoldSliderDeltaPerTick = 0;
+            if (mainForm.IncrSliderKeyBind.UseHeldDown) { mainForm.IncrSliderKeyBind.DisableHeldDown(); }
+            if (mainForm.DecrSliderKeyBind.UseHeldDown) { mainForm.DecrSliderKeyBind.DisableHeldDown(); }
+
+
+            #region Use Level Keys Only
+            if (useLevelKeysOnlyRadioButton.Checked)
+            {
+                mainForm.IsUsingLevelKeys = true;
+                mainForm.IsUsingSliderKeys = false;
+                levelKeysOnlyPanel.Enabled = true;
+
+                if (holdLevelLPRadioButton.Checked)
+                {
+                    mainForm.HoldDownModeLevel = KeyHoldDownMode.Level;
+
+                    // Ensures that the 'pressTresholdHoldLevelLPNumericUpDown' value is dividable by 5
+                    pressTresholdHoldLevelLPNumericUpDown.Value -= pressTresholdHoldLevelLPNumericUpDown.Value % 5;
+                    holdTresholdLevel = (uint)pressTresholdHoldLevelLPNumericUpDown.Value;
+
+                    // Ensures that the 'tickIntervalHoldLevelLPNumericUpDown' value is dividable by 5
+                    tickIntervalHoldLevelLPNumericUpDown.Value -= tickIntervalHoldLevelLPNumericUpDown.Value % 5;
+                    holdTickIntervalLevel = (uint)tickIntervalHoldLevelLPNumericUpDown.Value;
+                    holdDownLPPanel.Enabled = true;
+                }
+                else { holdDownLPPanel.Enabled = false; }
+
+                if (holdSliderLPRadioButton.Checked)
+                {
+                    mainForm.HoldDownModeLevel = KeyHoldDownMode.Slider;
+
+                    // Ensures that the 'pressTresholdHoldSliderLPNumericUpDown' value is dividable by 5
+                    pressTresholdHoldSliderLPNumericUpDown.Value -= pressTresholdHoldSliderLPNumericUpDown.Value % 5;
+                    holdTresholdLevel = (uint)pressTresholdHoldSliderLPNumericUpDown.Value;
+
+                    // Ensures that the 'tickIntervalHoldSliderLPNumericUpDown' value is dividable by 5
+                    tickIntervalHoldSliderLPNumericUpDown.Value -= tickIntervalHoldSliderLPNumericUpDown.Value % 5;
+                    holdTickIntervalLevel = (uint)tickIntervalHoldSliderLPNumericUpDown.Value;
+                    mainForm.HoldSliderDeltaPerTick = (int)sliderDeltaHoldSliderLPNumericUpDown.Value;
+                    holdSliderLPPanel.Enabled = true;
+                }
+                else { holdSliderLPPanel.Enabled = false; }
+
+                if (doNothingLPRadioButton.Checked)
+                {
+                    mainForm.HoldDownModeLevel = KeyHoldDownMode.None;
+                }
+
+            }
+            else { levelKeysOnlyPanel.Enabled = false; }
+            #endregion
+
+            #region Use Both
+            if (useBothKeysRadioButton.Checked)
+            {
+                mainForm.IsUsingLevelKeys = true;
+                mainForm.IsUsingSliderKeys = true;
+
+                // Ensures that the 'tickIntervalSliderSystemBPNumericUpDown' value is dividable by 5
+                tickIntervalSliderSystemBPNumericUpDown.Value -= tickIntervalSliderSystemBPNumericUpDown.Value % 5;
+                holdTickIntervalSlider = (uint)tickIntervalSliderSystemBPNumericUpDown.Value;
+                mainForm.HoldSliderDeltaPerTick = (int)sliderDeltaSliderSystemBPNumericUpDown.Value;
+                bothKeysPanel.Enabled = true;
+
+                if (useHoldDownLevelSystemBPGroupBox.Checked)
+                {
+                    mainForm.HoldDownModeLevel = KeyHoldDownMode.Level;
+
+                    // Ensures that the 'pressTresholdLevelSystemBPNumericUpDown' value is dividable by 5
+                    pressTresholdLevelSystemBPNumericUpDown.Value -= pressTresholdLevelSystemBPNumericUpDown.Value % 5;
+                    holdTresholdLevel = (uint)pressTresholdLevelSystemBPNumericUpDown.Value;
+
+                    // Ensures that the 'tickIntervalLevelSystemBPNumericUpDown' value is dividable by 5
+                    tickIntervalLevelSystemBPNumericUpDown.Value -= tickIntervalLevelSystemBPNumericUpDown.Value % 5;
+                    holdTickIntervalLevel = (uint)tickIntervalLevelSystemBPNumericUpDown.Value;
+                    levelSystemBPGroupBox.Enabled = true;
+                }
+                else
+                {
+                    mainForm.HoldDownModeLevel = KeyHoldDownMode.None;
+                    levelSystemBPGroupBox.Enabled = false;
+                }
+            }
+            else { bothKeysPanel.Enabled = false; }
+            #endregion
+
+            #region Use SliderKeys Only
+            if (useSliderKeysOnlyRadioButton.Checked)
+            {
+                mainForm.IsUsingLevelKeys = false;
+                mainForm.IsUsingSliderKeys = true;
+
+                // Ensures that the 'tickIntervalSPNumericUpDown' value is dividable by 5
+                tickIntervalSPNumericUpDown.Value -= tickIntervalSPNumericUpDown.Value % 5;
+                holdTickIntervalSlider = (uint)tickIntervalSPNumericUpDown.Value;
+                mainForm.HoldSliderDeltaPerTick = (int)sliderDeltaSPNumericUpDown.Value;
+                sliderKeysOnlyPanel.Enabled = true;
+            }
+            else { sliderKeysOnlyPanel.Enabled = false; }
+            #endregion
+
+            if (mainForm.HoldDownModeLevel != KeyHoldDownMode.None)
+            {
+                mainForm.NextLevelKeyBind.EnableHeldDown(holdTresholdLevel, holdTickIntervalLevel);
+                mainForm.PrevLevelKeyBind.EnableHeldDown(holdTresholdLevel, holdTickIntervalLevel);
+            }
+            
+            if (mainForm.IsUsingSliderKeys)
+            {
+                mainForm.IncrSliderKeyBind.EnableHeldDown(0, holdTickIntervalSlider);
+                mainForm.DecrSliderKeyBind.EnableHeldDown(0, holdTickIntervalSlider);
+            }
+            
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            /*
+            // Old Key Setup
             mainForm.HoldTresholdLevel = 0;
             mainForm.HoldTickIntervalLevel = 0;
 
-            mainForm.HoldTresholdLevel = 0;
-            mainForm.HoldTickIntervalLevel = 0;
+            mainForm.HoldTresholdSlider = 0;
+            mainForm.HoldTickIntervalSlider = 0;
             mainForm.HoldSliderDeltaPerTick = 0;
 
-            // Key Setup
             #region Use Level Keys Only
             if (useLevelKeysOnlyRadioButton.Checked)
             {
@@ -170,6 +295,7 @@ namespace vSlide
             }
             else { sliderKeysOnlyPanel.Enabled = false; }
             #endregion
+            */
 
             // Key Binds
             levelKeyBindsGroupBox.Enabled = mainForm.IsUsingLevelKeys;
@@ -201,6 +327,9 @@ namespace vSlide
 
         public void SyncUIToKeybinds()
         {
+            SettingsFormState oldState = currState;
+            currState = SettingsFormState.UpdatingKeyBinds;
+
             // Next level key bind
             controlModNextLevelComboBox.SelectedItem = KeyToString(mainForm.NextLevelKeyBind.ControlMod);
             shiftModNextLevelComboBox.SelectedItem = KeyToString(mainForm.NextLevelKeyBind.ShiftMod);
@@ -224,11 +353,8 @@ namespace vSlide
             shiftModDecrSliderComboBox.SelectedItem = KeyToString(mainForm.DecrSliderKeyBind.ShiftMod);
             altModDecrSliderComboBox.SelectedItem = KeyToString(mainForm.DecrSliderKeyBind.AltMod);
             decrSliderComboBox.SelectedItem = KeyToString(mainForm.DecrSliderKeyBind.BoundKey);
-        }
 
-        public void SwapKeyBinds()
-        {
-
+            currState = oldState;
         }
 
         public Keys StringToKey (string keyName)
@@ -593,22 +719,31 @@ namespace vSlide
             try
             {
                 // Loads key binds
-                nextLevelComboBox.SelectedItem = (string)Properties.Settings.Default["nextLevelKey"];
-                prevLevelComboBox.SelectedItem = (string)Properties.Settings.Default["prevLevelKey"];
-                incrSliderComboBox.SelectedItem = (string)Properties.Settings.Default["incrSliderKey"];
-                decrSliderComboBox.SelectedItem = (string)Properties.Settings.Default["decrSliderKey"];
-                controlModNextLevelComboBox.SelectedItem = (string)Properties.Settings.Default["controlModNextLevelKey"];
-                controlModPrevLevelComboBox.SelectedItem = (string)Properties.Settings.Default["controlModPrevLevelKey"];
-                controlModIncrSliderComboBox.SelectedItem = (string)Properties.Settings.Default["controlModIncrSliderKey"];
-                controlModDecrSliderComboBox.SelectedItem = (string)Properties.Settings.Default["controlModDecrSliderKey"];
-                shiftModNextLevelComboBox.SelectedItem = (string)Properties.Settings.Default["shiftModNextLevelKey"];
-                shiftModPrevLevelComboBox.SelectedItem = (string)Properties.Settings.Default["shiftModPrevLevelKey"];
-                shiftModIncrSliderComboBox.SelectedItem = (string)Properties.Settings.Default["shiftModIncrSliderKey"];
-                shiftModDecrSliderComboBox.SelectedItem = (string)Properties.Settings.Default["shiftModDecrSliderKey"];
-                altModNextLevelComboBox.SelectedItem = (string)Properties.Settings.Default["altModNextLevelKey"];
-                altModPrevLevelComboBox.SelectedItem = (string)Properties.Settings.Default["altModPrevLevelKey"];
-                altModIncrSliderComboBox.SelectedItem = (string)Properties.Settings.Default["altModIncrSliderKey"];
-                altModDecrSliderComboBox.SelectedItem = (string)Properties.Settings.Default["altModDecrSliderKey"];
+                Keys controlMod = StringToKey((string)Properties.Settings.Default["controlModNextLevelKey"]);
+                Keys shiftMod  = StringToKey((string)Properties.Settings.Default["shiftModNextLevelKey"]);
+                Keys altMod = StringToKey((string)Properties.Settings.Default["altModNextLevelKey"]);
+                Keys key = StringToKey((string)Properties.Settings.Default["nextLevelKey"]);
+                mainForm.NextLevelKeyBind.SetKeys(key, controlMod, shiftMod, altMod);
+
+                controlMod = StringToKey((string)Properties.Settings.Default["controlModPrevLevelKey"]);
+                shiftMod = StringToKey((string)Properties.Settings.Default["shiftModPrevLevelKey"]);
+                altMod = StringToKey((string)Properties.Settings.Default["altModPrevLevelKey"]);
+                key = StringToKey((string)Properties.Settings.Default["prevLevelKey"]);
+                mainForm.PrevLevelKeyBind.SetKeys(key, controlMod, shiftMod, altMod);
+
+                controlMod = StringToKey((string)Properties.Settings.Default["controlModIncrSliderKey"]);
+                shiftMod = StringToKey((string)Properties.Settings.Default["shiftModIncrSliderKey"]);
+                altMod = StringToKey((string)Properties.Settings.Default["altModIncrSliderKey"]);
+                key = StringToKey((string)Properties.Settings.Default["incrSliderKey"]);
+                mainForm.IncrSliderKeyBind.SetKeys(key, controlMod, shiftMod, altMod);
+
+                controlMod = StringToKey((string)Properties.Settings.Default["controlModDecrSliderKey"]);
+                shiftMod = StringToKey((string)Properties.Settings.Default["shiftModDecrSliderKey"]);
+                altMod = StringToKey((string)Properties.Settings.Default["altModDecrSliderKey"]);
+                key = StringToKey((string)Properties.Settings.Default["decrSliderKey"]);
+                mainForm.DecrSliderKeyBind.SetKeys(key, controlMod, shiftMod, altMod);
+
+                SyncUIToKeybinds();
 
                 // The checked RadioButton of the 'keySetupGroupBox'
                 if ((int)Properties.Settings.Default["keySetupRadioButton"] == 1)
@@ -693,23 +828,12 @@ namespace vSlide
 
         public void RevertSettingsToDefault()
         {
-            // Key binds
-            nextLevelComboBox.SelectedItem = "Shift Left";
-            prevLevelComboBox.SelectedItem = "Control Left";
-            incrSliderComboBox.SelectedItem = "E";
-            decrSliderComboBox.SelectedItem = "Q";
-            controlModNextLevelComboBox.SelectedItem = "None";
-            controlModPrevLevelComboBox.SelectedItem = "None";
-            controlModIncrSliderComboBox.SelectedItem = "None";
-            controlModDecrSliderComboBox.SelectedItem = "None";
-            shiftModNextLevelComboBox.SelectedItem = "None";
-            shiftModPrevLevelComboBox.SelectedItem = "None";
-            shiftModIncrSliderComboBox.SelectedItem = "None";
-            shiftModDecrSliderComboBox.SelectedItem = "None";
-            altModNextLevelComboBox.SelectedItem = "None";
-            altModPrevLevelComboBox.SelectedItem = "None";
-            altModIncrSliderComboBox.SelectedItem = "None";
-            altModDecrSliderComboBox.SelectedItem = "None";
+            // Key Binds
+            mainForm.NextLevelKeyBind.SetKeys(Keys.ShiftKey, Keys.None, Keys.None, Keys.None);
+            mainForm.PrevLevelKeyBind.SetKeys(Keys.ControlKey, Keys.None, Keys.None, Keys.None);
+            mainForm.IncrSliderKeyBind.SetKeys(Keys.E, Keys.None, Keys.None, Keys.None);
+            mainForm.DecrSliderKeyBind.SetKeys(Keys.Q, Keys.None, Keys.None, Keys.None);
+            SyncUIToKeybinds();
 
             // Key Setup
             useBothKeysRadioButton.Checked = true;
@@ -798,9 +922,6 @@ namespace vSlide
             // Ignores the call if the form is still stetting up
             if(currState == SettingsFormState.SettingUp || currState == SettingsFormState.UpdatingKeyBinds) { return; }
             
-            SettingsFormState oldState = currState;
-            currState = SettingsFormState.UpdatingKeyBinds;
-
             // Casts the sender into a ComboBox, this never fails since this method is only added
             // to the events of combo boxes
             ComboBox senderComboBox = (ComboBox)sender;
@@ -810,31 +931,37 @@ namespace vSlide
             string newValue = (string)senderComboBox.SelectedItem;
             // Determines the respective Keys value
             Keys newKey = StringToKey(newValue);
+            mainForm.Log("Determined key-value '" + newKey + "' from the selected string '" + newValue + "'");
 
-            KeyBind oldKeyBind;
-
-            mainForm.Log("Determined key-value '" + newKey + "' from the selected string '"+ newValue + "'");
-            
-
+            KeyBind oldKeyBind = null;
+        
             // Checks which key bind ComboBox's SelectedIndex changed:
+
+            #region Next Level Key bind
             // Next level comboBox's
-            if (senderComboBox.Name == "controlModNextLevelComboBox")
-            {
-                mainForm.NextLevelKeyBind.ControlMod = newKey;
-            }
-            else if (senderComboBox.Name == "shiftModNextLevelComboBox")
-            {
-                mainForm.NextLevelKeyBind.ShiftMod = newKey;
-            }
-            else if (senderComboBox.Name == "altModNextLevelComboBox")
-            {
-                mainForm.NextLevelKeyBind.AltMod = newKey;
-            }
-            else if (senderComboBox.Name == "nextLevelComboBox")
+            if (senderComboBox.Name == "controlModNextLevelComboBox" || senderComboBox.Name == "shiftModNextLevelComboBox"
+                || senderComboBox.Name == "altModNextLevelComboBox" || senderComboBox.Name == "nextLevelComboBox")
             {
                 // Stores the key bind before modifying it
                 oldKeyBind = new KeyBind(mainForm.NextLevelKeyBind.BoundKey, mainForm.NextLevelKeyBind.ControlMod, mainForm.NextLevelKeyBind.ShiftMod, mainForm.NextLevelKeyBind.AltMod);
-                mainForm.NextLevelKeyBind.BoundKey = newKey;
+
+                // Modifies the key bind
+                if (senderComboBox.Name == "controlModNextLevelComboBox")
+                {
+                    mainForm.NextLevelKeyBind.ControlMod = newKey;
+                }
+                else if (senderComboBox.Name == "shiftModNextLevelComboBox")
+                {
+                    mainForm.NextLevelKeyBind.ShiftMod = newKey;
+                }
+                else if (senderComboBox.Name == "altModNextLevelComboBox")
+                {
+                    mainForm.NextLevelKeyBind.AltMod = newKey;
+                }
+                else if (senderComboBox.Name == "nextLevelComboBox")
+                {
+                    mainForm.NextLevelKeyBind.BoundKey = newKey;
+                }
 
                 // Checks if another key is already bound to that key and swaps the keys
                 if (mainForm.PrevLevelKeyBind.Equals(mainForm.NextLevelKeyBind))
@@ -850,25 +977,33 @@ namespace vSlide
                     mainForm.DecrSliderKeyBind = oldKeyBind;
                 }
             }
+            #endregion
 
+            #region Previous Level Key bind
             // Previous level comboBox's
-            else if (senderComboBox.Name == "controlModPrevLevelComboBox")
-            {
-                mainForm.PrevLevelKeyBind.ControlMod = newKey;
-            }
-            else if (senderComboBox.Name == "shiftModPrevLevelComboBox")
-            {
-                mainForm.PrevLevelKeyBind.ShiftMod = newKey;
-            }
-            else if (senderComboBox.Name == "altModPrevLevelComboBox")
-            {
-                mainForm.PrevLevelKeyBind.AltMod = newKey;
-            }
-            else if (senderComboBox.Name == "prevLevelComboBox")
+            if (senderComboBox.Name == "controlModPrevLevelComboBox" || senderComboBox.Name == "shiftModPrevLevelComboBox"
+                || senderComboBox.Name == "altModPrevLevelComboBox" || senderComboBox.Name == "prevLevelComboBox")
             {
                 // Stores the key bind before modifying it
                 oldKeyBind = new KeyBind(mainForm.PrevLevelKeyBind.BoundKey, mainForm.PrevLevelKeyBind.ControlMod, mainForm.PrevLevelKeyBind.ShiftMod, mainForm.PrevLevelKeyBind.AltMod);
-                mainForm.PrevLevelKeyBind.BoundKey = newKey;
+
+                // Modifies the key bind
+                if (senderComboBox.Name == "controlModPrevLevelComboBox")
+                {
+                    mainForm.PrevLevelKeyBind.ControlMod = newKey;
+                }
+                else if (senderComboBox.Name == "shiftModPrevLevelComboBox")
+                {
+                    mainForm.PrevLevelKeyBind.ShiftMod = newKey;
+                }
+                else if (senderComboBox.Name == "altModPrevLevelComboBox")
+                {
+                    mainForm.PrevLevelKeyBind.AltMod = newKey;
+                }
+                else if (senderComboBox.Name == "prevLevelComboBox")
+                {
+                    mainForm.PrevLevelKeyBind.BoundKey = newKey;
+                }
 
                 // Checks if another key is already bound to that key and swaps the keys
                 if (mainForm.NextLevelKeyBind.Equals(mainForm.PrevLevelKeyBind))
@@ -884,26 +1019,33 @@ namespace vSlide
                     mainForm.DecrSliderKeyBind = oldKeyBind;
                 }
             }
+            #endregion
 
-            // Increase slider comboBox's
-            else if (senderComboBox.Name == "controlModIncrSliderComboBox")
-            {
-                mainForm.IncrSliderKeyBind.ControlMod = newKey;
-            }
-            else if (senderComboBox.Name == "shiftModIncrSliderComboBox")
-            {
-                mainForm.IncrSliderKeyBind.ShiftMod = newKey;
-            }
-            else if (senderComboBox.Name == "altModIncrSliderComboBox")
-            {
-                mainForm.IncrSliderKeyBind.AltMod = newKey;
-            }
-            else if (senderComboBox.Name == "incrSliderComboBox")
+            #region Increase Slider Key Bind
+            if (senderComboBox.Name == "controlModIncrSliderComboBox" || senderComboBox.Name == "shiftModIncrSliderComboBox"
+                || senderComboBox.Name == "altModIncrSliderComboBox" || senderComboBox.Name == "incrSliderComboBox")
             {
                 // Stores the key bind before modifying it
                 oldKeyBind = new KeyBind(mainForm.IncrSliderKeyBind.BoundKey, mainForm.IncrSliderKeyBind.ControlMod, mainForm.IncrSliderKeyBind.ShiftMod, mainForm.IncrSliderKeyBind.AltMod);
-                mainForm.IncrSliderKeyBind.BoundKey = newKey;
 
+                // Modifies the key bind
+                if (senderComboBox.Name == "controlModIncrSliderComboBox")
+                {
+                    mainForm.IncrSliderKeyBind.ControlMod = newKey;
+                }
+                else if (senderComboBox.Name == "shiftModIncrSliderComboBox")
+                {
+                    mainForm.IncrSliderKeyBind.ShiftMod = newKey;
+                }
+                else if (senderComboBox.Name == "altModIncrSliderComboBox")
+                {
+                    mainForm.IncrSliderKeyBind.AltMod = newKey;
+                }
+                else if (senderComboBox.Name == "incrSliderComboBox")
+                {
+                    mainForm.IncrSliderKeyBind.BoundKey = newKey;
+                }
+                
                 // Checks if another key is already bound to that key and swaps the keys
                 if (mainForm.NextLevelKeyBind.Equals(mainForm.IncrSliderKeyBind))
                 {
@@ -918,25 +1060,32 @@ namespace vSlide
                     mainForm.DecrSliderKeyBind = oldKeyBind;
                 }
             }
+            #endregion
 
-            // Decrease slider comboBox's
-            else if (senderComboBox.Name == "controlModDecrSliderComboBox")
-            {
-                mainForm.DecrSliderKeyBind.ControlMod = newKey;
-            }
-            else if (senderComboBox.Name == "shiftModDecrSliderComboBox")
-            {
-                mainForm.DecrSliderKeyBind.ShiftMod = newKey;
-            }
-            else if (senderComboBox.Name == "altModDecrSliderComboBox")
-            {
-                mainForm.DecrSliderKeyBind.AltMod = newKey;
-            }
-            else if (senderComboBox.Name == "decrSliderComboBox")
+            #region Decrease Slider Key Bind
+            if (senderComboBox.Name == "controlModDecrSliderComboBox" || senderComboBox.Name == "shiftModDecrSliderComboBox"
+                || senderComboBox.Name == "altModDecrSliderComboBox" || senderComboBox.Name == "decrSliderComboBox")
             {
                 // Stores the key bind before modifying it
                 oldKeyBind = new KeyBind(mainForm.DecrSliderKeyBind.BoundKey, mainForm.DecrSliderKeyBind.ControlMod, mainForm.DecrSliderKeyBind.ShiftMod, mainForm.DecrSliderKeyBind.AltMod);
-                mainForm.DecrSliderKeyBind.BoundKey = newKey;
+
+                // Modifies the key bind
+                if (senderComboBox.Name == "controlModDecrSliderComboBox")
+                {
+                    mainForm.DecrSliderKeyBind.ControlMod = newKey;
+                }
+                else if (senderComboBox.Name == "shiftModDecrSliderComboBox")
+                {
+                    mainForm.DecrSliderKeyBind.ShiftMod = newKey;
+                }
+                else if (senderComboBox.Name == "altModDecrSliderComboBox")
+                {
+                    mainForm.DecrSliderKeyBind.AltMod = newKey;
+                }
+                else if (senderComboBox.Name == "decrSliderComboBox")
+                {
+                    mainForm.DecrSliderKeyBind.BoundKey = newKey;
+                }
 
                 // Checks if the new key bind is a duplicate
                 if (mainForm.NextLevelKeyBind.Equals(mainForm.DecrSliderKeyBind))
@@ -951,10 +1100,11 @@ namespace vSlide
                 {
                     mainForm.IncrSliderKeyBind = oldKeyBind;
                 }
+
             }
+            #endregion
 
             SyncUIToKeybinds();
-            currState = oldState;
         }
 
         private void saveSettingsButton_Click(object sender, EventArgs e)

@@ -31,32 +31,11 @@ namespace vSlide
         KeyHoldDownMode holdDownModeLevel;
         public KeyHoldDownMode HoldDownModeLevel
         {
+            get { return holdDownModeLevel; }
             set
             {
                 holdDownModeLevel = value;
                 holdModeLevelLabel.Text = value.ToString();
-            }
-        }
-        int holdTresholdLevel;
-        public int HoldTresholdLevel
-        {
-            get { return holdTresholdLevel; }
-            set
-            {
-                value = Math.Max(value, 0);
-                holdTresholdLevel = value;
-                holdTresholdLevelLabel.Text = value + " ms";
-            }
-        }
-        int holdTickIntervalLevel;
-        public int HoldTickIntervalLevel
-        {
-            get { return holdTickIntervalLevel; }
-            set
-            {
-                value = Math.Max(value, 0);
-                holdTickIntervalLevel = value;
-                tickIntervalLevelLabel.Text = value + " ms";
             }
         }
 
@@ -69,35 +48,6 @@ namespace vSlide
             {
                 isUsingSliderKeys = value;
                 useSliderKeysLabel.Text = value.ToString();
-            }
-        }
-        KeyHoldDownMode holdDownModeSlider;
-        public KeyHoldDownMode HoldDownModeSlider
-        {
-            set
-            {
-                holdDownModeSlider = value;
-                holdModeSliderLabel.Text = value.ToString();
-            }
-        }
-        int holdTresholdSlider;
-        public int HoldTresholdSlider
-        {
-            set
-            {
-                value = Math.Max(value, 0);
-                holdTresholdSlider = value;
-                holdTresholdSliderLabel.Text = value + " ms";
-            }
-        }
-        int holdTickIntervalSlider;
-        public int HoldTickIntervalSlider
-        {
-            set
-            {
-                value = Math.Max(value, 0);
-                holdTickIntervalSlider = value;
-                tickIntervalSliderLabel.Text = value + " ms";
             }
         }
         int holdSliderDeltaPerTick;
@@ -342,44 +292,30 @@ namespace vSlide
             {
                 Log("Couldn't acquire a device: There was no free vJoy device!");
             }
-            
-            // Creates keybinds
-            NextLevelKeyBind = new KeyBind(Keys.LShiftKey);
-            PrevLevelKeyBind = new KeyBind(Keys.LControlKey);
-            IncrSliderKeyBind = new KeyBind(Keys.E);
-            DecrSliderKeyBind = new KeyBind(Keys.Q);
 
             Log("");
+            Log("Creating key binds...");
+            NextLevelKeyBind = new KeyBind(Keys.ShiftKey, Keys.None, Keys.None, Keys.None);
+            PrevLevelKeyBind = new KeyBind(Keys.ControlKey, Keys.None, Keys.None, Keys.None);
+            IncrSliderKeyBind = new KeyBind(Keys.E, Keys.None, Keys.None, Keys.None);
+            DecrSliderKeyBind = new KeyBind(Keys.Q, Keys.None, Keys.None, Keys.None);
+            
             Log("Creating mapping-theme-form...");
             sliderLevelsForm = new SliderLevelsForm(this, 7);
-
-            Log("");
+            
             Log("Creating settings-form...");
             settingsForm = new SettingsForm(this, availableJoystickIds);
-
-            Log("");
+            
             Log("Creating about-form...");
             aboutForm = new AboutForm();
-
-            Log("");
+            
             Log("Creating instuctions-form...");
             instructionsForm = new InstructionsForm();
-            
+
             // Loads the settings
-            Log("");
             settingsForm.LoadSettings();
 
-            // Enables the held down modes for the keybindes
-            if (holdDownModeLevel != KeyHoldDownMode.None)
-            {
-                NextLevelKeyBind.EnableHeldDown((uint)holdTresholdLevel, (uint)holdTickIntervalLevel);
-                PrevLevelKeyBind.EnableHeldDown((uint)holdTresholdLevel, (uint)holdTickIntervalLevel);
-            }
-            IncrSliderKeyBind.EnableHeldDown(0, (uint)holdTickIntervalSlider);
-            DecrSliderKeyBind.EnableHeldDown(0, (uint)holdTickIntervalSlider);
-
             // Loads the slider levels
-            Log("");
             sliderLevelsForm.LoadSliderLevels();
             
             // Enables the other forms menu strip

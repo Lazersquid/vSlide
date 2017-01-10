@@ -320,7 +320,7 @@ namespace vSlide
         /// </summary>
         public void DisableHeldDown()
         {
-            if (useHeldDown)
+            if (!useHeldDown)
             {
                 Console.WriteLine("DisableHeldDown was called while useHeldDown already was '" + useHeldDown + "'!");
                 throw new InvalidOperationException("DisableHeldDown was called while useHeldDown already was '" + useHeldDown + "'!");
