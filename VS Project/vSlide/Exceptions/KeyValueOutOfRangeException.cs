@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace vSlide
 {
-    class KeyValueOutOfRangeException : ArgumentException
+    public class KeyValueOutOfRangeException : ArgumentException
     {
         public KeyValueOutOfRangeException(Keys key)
             : base(CreateMsg(key, ""))
