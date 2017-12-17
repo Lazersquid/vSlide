@@ -10,9 +10,11 @@ using System.Windows.Forms;
 
 namespace vSlide
 {
-    public partial class KeyBindControl : UserControl
+    public partial class KeyBindControl : UserControl, IRebindSubscriber, IRebindable
     {
         protected KeyBind keyBind;
+        protected event RebindInitializeHandler RebindInitialization;
+
         public string Title
         {
             get { return titleLabel.Text; }
@@ -22,7 +24,16 @@ namespace vSlide
                 titleLabel.Text = value;
             }
         }
-        public KeyBind KeyBind { get { return new KeyBind(keyBind.BoundKey, keyBind.ControlMod, keyBind.ShiftMod, keyBind.AltMod); } }
+        public KeyBind KeyBind
+        {
+            get { return keyBind; }
+            set
+            {
+                if (value == null) throw new ArgumentNullException();
+                keyBind = value;
+                UpdateKeyBindLabel();
+            }
+        }
 
         public KeyBindControl()
         {
@@ -37,12 +48,18 @@ namespace vSlide
 
         protected void RebindButton_Click(object sender, EventArgs e)
         {
-
+            if (RebindInitialization != null)
+                RebindInitialization(this);
         }
 
         protected void UpdateKeyBindLabel()
         {
             keyBindLabel.Text = keyBind.ToString();
+        }
+
+        public void SubscribeToRebindInitializationCallback(RebindInitializeHandler initializeRebindCallback)
+        {
+            RebindInitialization += initializeRebindCallback;
         }
     }
 }

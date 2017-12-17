@@ -69,10 +69,11 @@ namespace vSlide
             }
         }
 
+        private const int defaultMaxSliderValue = 32767;
         private int maxSliderValue;
         public int MaxSliderValue
         {
-            get { return maxSliderValue; }
+            get { return maxSliderValue == 0 ? defaultMaxSliderValue : maxSliderValue; }
         }
 
         private int sliderValueAbs;

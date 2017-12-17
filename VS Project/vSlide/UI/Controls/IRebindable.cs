@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace vSlide
 {
-    public interface ISliderTriggerFactory : IControl, IRebindSubscriber
+    public interface IRebindable
     {
-        ISliderTrigger CreateTrigger();
+        KeyBind KeyBind { get; set; }
     }
 }

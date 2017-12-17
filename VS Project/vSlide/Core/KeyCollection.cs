@@ -11,15 +11,15 @@ namespace vSlide
     public class KeyCollection
     {
         private Dictionary<string, Keys> nameToKeyDict = new Dictionary<string, Keys>();
-        public IEnumerable<Keys> KeyNames
+        public ImmutableArray<Keys> Keys
         {
-            get { return keyToNameDict.Keys; }
+            get { return keyToNameDict.Keys.ToImmutableArray(); }
         }
 
         private Dictionary<Keys, string> keyToNameDict = new Dictionary<Keys, string>();
-        public IEnumerable<string> Keys
+        public ImmutableArray<string> KeyNames
         {
-            get { return nameToKeyDict.Keys; }
+            get { return nameToKeyDict.Keys.ToImmutableArray(); }
         }
 
         public void Add(Keys key, string keyName)

@@ -23,5 +23,10 @@ namespace vSlide
         {
             return new WhenKeyPressedTrigger(keyBindControl.KeyBind);
         }
+
+        public void SubscribeToRebindInitializationCallback(RebindInitializeHandler initializeRebindCallback)
+        {
+            keyBindControl.SubscribeToRebindInitializationCallback(initializeRebindCallback);
+        }
     }
 }

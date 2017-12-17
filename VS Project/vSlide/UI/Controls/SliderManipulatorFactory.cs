@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace vSlide
 {
-    public partial class SliderManipulatorFactory : UserControl
+    public partial class SliderManipulatorFactory : UserControl, IRebindSubscriber
     {
         protected ISliderTriggerFactory triggerFactory;
         protected ISliderActionFactory actionFactory;
@@ -41,6 +41,11 @@ namespace vSlide
         public SliderManipulator CreateManipulator()
         {
             return new SliderManipulator(triggerFactory.CreateTrigger(), actionFactory.CreateAction());
+        }
+
+        public void SubscribeToRebindInitializationCallback(RebindInitializeHandler initializeRebindCallback)
+        {
+            triggerFactory.SubscribeToRebindInitializationCallback(initializeRebindCallback);
         }
     }
 }

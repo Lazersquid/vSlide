@@ -31,6 +31,8 @@ namespace vSlide
                 UpdatePanelEnables();
                 if (IsFeeding)
                     UpdateFeederConfiguration();
+                else
+                    feeder.SliderValue = 0.5M;
             }
         }
 
@@ -179,7 +181,7 @@ namespace vSlide
         #endregion
         #endregion
 
-        #region event methods
+        #region event callbacks
         protected void feedingButton_Click(object sender, EventArgs e)
         {
             IsFeeding = !IsFeeding;
@@ -187,7 +189,7 @@ namespace vSlide
 
         private void Feeder_OwnedDeviceIdChanged(object sender, EventArgs e)
         {
-            UpdateDevicePanel();
+            UpdateUI();
         }
 
         private void Feeder_SliderValueChanged(object sender, EventArgs e)

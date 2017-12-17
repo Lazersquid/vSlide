@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Collections.Immutable;
 
 namespace vSlide
 {
@@ -13,6 +14,15 @@ namespace vSlide
         [DllImport("User32.dll")]
         private static extern short GetAsyncKeyState(Keys vKey);
 
+        public static readonly ImmutableArray<Keys> ctrlKeys = ImmutableArray.Create(
+            Keys.LControlKey, Keys.RControlKey);
+
+        public static readonly ImmutableArray<Keys> shiftKeys = ImmutableArray.Create(
+            Keys.LShiftKey, Keys.RShiftKey);
+
+        public static readonly ImmutableArray<Keys> altKeys = ImmutableArray.Create(
+            Keys.LMenu, Keys.RMenu);
+
         public static bool IsKeyDown(Keys key)
         {
             return GetAsyncKeyState(key) != 0;
@@ -20,17 +30,17 @@ namespace vSlide
 
         public static bool IsCtrlKey(Keys key)
         {
-            return key == Keys.ControlKey || key == Keys.LControlKey || key == Keys.RControlKey;
+            return ctrlKeys.Contains(key);
         }
 
         public static bool IsShiftKey(Keys key)
         {
-            return key == Keys.ShiftKey || key == Keys.LShiftKey || key == Keys.RShiftKey;
+            return shiftKeys.Contains(key);
         }
 
         public static bool IsAltKey(Keys key)
         {
-            return key == Keys.Menu || key == Keys.LMenu || key == Keys.RMenu;
+            return altKeys.Contains(key);
         }
     }
 }

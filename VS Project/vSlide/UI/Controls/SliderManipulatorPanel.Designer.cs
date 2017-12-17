@@ -29,25 +29,25 @@ namespace vSlide
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.addButton = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.mainGroupBox = new System.Windows.Forms.GroupBox();
             this.manipulatorsPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.rebindGroupBox = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.applyButton = new System.Windows.Forms.Button();
             this.detectButton = new System.Windows.Forms.Button();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.keyComboBox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.altComboBox = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.shiftComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label92 = new System.Windows.Forms.Label();
             this.ctrlComboBox = new System.Windows.Forms.ComboBox();
             this.cancelButton = new System.Windows.Forms.Button();
+            this.addManipulatorButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.mainGroupBox.SuspendLayout();
+            this.rebindGroupBox.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,9 +55,9 @@ namespace vSlide
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.groupBox1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.groupBox2, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.addButton, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.mainGroupBox, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.rebindGroupBox, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.addManipulatorButton, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
@@ -65,33 +65,22 @@ namespace vSlide
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(828, 329);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // addButton
+            // mainGroupBox
             // 
-            this.addButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.addButton.Location = new System.Drawing.Point(376, 194);
-            this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(75, 23);
-            this.addButton.TabIndex = 0;
-            this.addButton.Text = "Add new";
-            this.addButton.UseVisualStyleBackColor = true;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.manipulatorsPanel);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(1, 1, 1, 3);
-            this.groupBox1.Size = new System.Drawing.Size(828, 191);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Slider manipulators";
+            this.mainGroupBox.Controls.Add(this.manipulatorsPanel);
+            this.mainGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainGroupBox.Location = new System.Drawing.Point(0, 0);
+            this.mainGroupBox.Margin = new System.Windows.Forms.Padding(0);
+            this.mainGroupBox.Name = "mainGroupBox";
+            this.mainGroupBox.Padding = new System.Windows.Forms.Padding(1, 1, 1, 3);
+            this.mainGroupBox.Size = new System.Drawing.Size(828, 209);
+            this.mainGroupBox.TabIndex = 1;
+            this.mainGroupBox.TabStop = false;
+            this.mainGroupBox.Text = "Slider manipulators";
             // 
             // manipulatorsPanel
             // 
@@ -101,22 +90,22 @@ namespace vSlide
             this.manipulatorsPanel.Location = new System.Drawing.Point(1, 14);
             this.manipulatorsPanel.Margin = new System.Windows.Forms.Padding(0);
             this.manipulatorsPanel.Name = "manipulatorsPanel";
-            this.manipulatorsPanel.Size = new System.Drawing.Size(826, 174);
+            this.manipulatorsPanel.Size = new System.Drawing.Size(826, 192);
             this.manipulatorsPanel.TabIndex = 0;
             this.manipulatorsPanel.WrapContents = false;
             // 
-            // groupBox2
+            // rebindGroupBox
             // 
-            this.groupBox2.Controls.Add(this.tableLayoutPanel2);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(0, 261);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(0);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(1, 1, 1, 3);
-            this.groupBox2.Size = new System.Drawing.Size(828, 68);
-            this.groupBox2.TabIndex = 2;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Rebind";
+            this.rebindGroupBox.Controls.Add(this.tableLayoutPanel2);
+            this.rebindGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rebindGroupBox.Location = new System.Drawing.Point(0, 279);
+            this.rebindGroupBox.Margin = new System.Windows.Forms.Padding(0);
+            this.rebindGroupBox.Name = "rebindGroupBox";
+            this.rebindGroupBox.Padding = new System.Windows.Forms.Padding(1, 1, 1, 3);
+            this.rebindGroupBox.Size = new System.Drawing.Size(828, 50);
+            this.rebindGroupBox.TabIndex = 2;
+            this.rebindGroupBox.TabStop = false;
+            this.rebindGroupBox.Text = "Rebind";
             // 
             // tableLayoutPanel2
             // 
@@ -134,11 +123,11 @@ namespace vSlide
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel2.Controls.Add(this.applyButton, 9, 0);
             this.tableLayoutPanel2.Controls.Add(this.detectButton, 8, 0);
-            this.tableLayoutPanel2.Controls.Add(this.comboBox3, 7, 0);
+            this.tableLayoutPanel2.Controls.Add(this.keyComboBox, 7, 0);
             this.tableLayoutPanel2.Controls.Add(this.label3, 6, 0);
-            this.tableLayoutPanel2.Controls.Add(this.comboBox2, 5, 0);
+            this.tableLayoutPanel2.Controls.Add(this.altComboBox, 5, 0);
             this.tableLayoutPanel2.Controls.Add(this.label2, 4, 0);
-            this.tableLayoutPanel2.Controls.Add(this.comboBox1, 3, 0);
+            this.tableLayoutPanel2.Controls.Add(this.shiftComboBox, 3, 0);
             this.tableLayoutPanel2.Controls.Add(this.label1, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.label92, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.ctrlComboBox, 1, 0);
@@ -149,13 +138,13 @@ namespace vSlide
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(826, 51);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(826, 33);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // applyButton
             // 
             this.applyButton.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.applyButton.Location = new System.Drawing.Point(702, 12);
+            this.applyButton.Location = new System.Drawing.Point(702, 3);
             this.applyButton.Name = "applyButton";
             this.applyButton.Size = new System.Drawing.Size(67, 26);
             this.applyButton.TabIndex = 52;
@@ -165,79 +154,79 @@ namespace vSlide
             // detectButton
             // 
             this.detectButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.detectButton.Location = new System.Drawing.Point(585, 14);
+            this.detectButton.Location = new System.Drawing.Point(585, 5);
             this.detectButton.Name = "detectButton";
             this.detectButton.Size = new System.Drawing.Size(54, 22);
             this.detectButton.TabIndex = 50;
             this.detectButton.Text = "Detect";
             this.detectButton.UseVisualStyleBackColor = true;
             // 
-            // comboBox3
+            // keyComboBox
             // 
-            this.comboBox3.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
+            this.keyComboBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.keyComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.keyComboBox.FormattingEnabled = true;
+            this.keyComboBox.Items.AddRange(new object[] {
             "None"});
-            this.comboBox3.Location = new System.Drawing.Point(463, 15);
-            this.comboBox3.Margin = new System.Windows.Forms.Padding(0, 3, 15, 3);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(104, 21);
-            this.comboBox3.TabIndex = 49;
+            this.keyComboBox.Location = new System.Drawing.Point(463, 6);
+            this.keyComboBox.Margin = new System.Windows.Forms.Padding(0, 3, 15, 3);
+            this.keyComboBox.Name = "keyComboBox";
+            this.keyComboBox.Size = new System.Drawing.Size(104, 21);
+            this.keyComboBox.TabIndex = 49;
             // 
             // label3
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(438, 19);
+            this.label3.Location = new System.Drawing.Point(438, 10);
             this.label3.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(25, 13);
             this.label3.TabIndex = 48;
             this.label3.Text = "Key";
             // 
-            // comboBox2
+            // altComboBox
             // 
-            this.comboBox2.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.altComboBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.altComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.altComboBox.FormattingEnabled = true;
+            this.altComboBox.Items.AddRange(new object[] {
             "None"});
-            this.comboBox2.Location = new System.Drawing.Point(316, 15);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(0, 3, 15, 3);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(104, 21);
-            this.comboBox2.TabIndex = 47;
+            this.altComboBox.Location = new System.Drawing.Point(316, 6);
+            this.altComboBox.Margin = new System.Windows.Forms.Padding(0, 3, 15, 3);
+            this.altComboBox.Name = "altComboBox";
+            this.altComboBox.Size = new System.Drawing.Size(104, 21);
+            this.altComboBox.TabIndex = 47;
             // 
             // label2
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(297, 19);
+            this.label2.Location = new System.Drawing.Point(297, 10);
             this.label2.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(19, 13);
             this.label2.TabIndex = 46;
             this.label2.Text = "Alt";
             // 
-            // comboBox1
+            // shiftComboBox
             // 
-            this.comboBox1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.shiftComboBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.shiftComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.shiftComboBox.FormattingEnabled = true;
+            this.shiftComboBox.Items.AddRange(new object[] {
             "None"});
-            this.comboBox1.Location = new System.Drawing.Point(175, 15);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(0, 3, 15, 3);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(104, 21);
-            this.comboBox1.TabIndex = 45;
+            this.shiftComboBox.Location = new System.Drawing.Point(175, 6);
+            this.shiftComboBox.Margin = new System.Windows.Forms.Padding(0, 3, 15, 3);
+            this.shiftComboBox.Name = "shiftComboBox";
+            this.shiftComboBox.Size = new System.Drawing.Size(104, 21);
+            this.shiftComboBox.TabIndex = 45;
             // 
             // label1
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(147, 19);
+            this.label1.Location = new System.Drawing.Point(147, 10);
             this.label1.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(28, 13);
@@ -248,7 +237,7 @@ namespace vSlide
             // 
             this.label92.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label92.AutoSize = true;
-            this.label92.Location = new System.Drawing.Point(3, 19);
+            this.label92.Location = new System.Drawing.Point(3, 10);
             this.label92.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.label92.Name = "label92";
             this.label92.Size = new System.Drawing.Size(22, 13);
@@ -262,7 +251,7 @@ namespace vSlide
             this.ctrlComboBox.FormattingEnabled = true;
             this.ctrlComboBox.Items.AddRange(new object[] {
             "None"});
-            this.ctrlComboBox.Location = new System.Drawing.Point(25, 15);
+            this.ctrlComboBox.Location = new System.Drawing.Point(25, 6);
             this.ctrlComboBox.Margin = new System.Windows.Forms.Padding(0, 3, 15, 3);
             this.ctrlComboBox.Name = "ctrlComboBox";
             this.ctrlComboBox.Size = new System.Drawing.Size(104, 21);
@@ -271,12 +260,22 @@ namespace vSlide
             // cancelButton
             // 
             this.cancelButton.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.cancelButton.Location = new System.Drawing.Point(775, 12);
+            this.cancelButton.Location = new System.Drawing.Point(775, 3);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(48, 26);
             this.cancelButton.TabIndex = 51;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
+            // 
+            // addButton
+            // 
+            this.addManipulatorButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.addManipulatorButton.Location = new System.Drawing.Point(376, 212);
+            this.addManipulatorButton.Name = "addButton";
+            this.addManipulatorButton.Size = new System.Drawing.Size(75, 23);
+            this.addManipulatorButton.TabIndex = 0;
+            this.addManipulatorButton.Text = "Add new";
+            this.addManipulatorButton.UseVisualStyleBackColor = true;
             // 
             // SliderManipulatorPanel
             // 
@@ -287,8 +286,8 @@ namespace vSlide
             this.Name = "SliderManipulatorPanel";
             this.Size = new System.Drawing.Size(828, 329);
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
+            this.mainGroupBox.ResumeLayout(false);
+            this.rebindGroupBox.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
@@ -298,16 +297,16 @@ namespace vSlide
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Button addButton;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button addManipulatorButton;
+        private System.Windows.Forms.GroupBox mainGroupBox;
+        private System.Windows.Forms.GroupBox rebindGroupBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.ComboBox ctrlComboBox;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox keyComboBox;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox altComboBox;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox shiftComboBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label92;
         private System.Windows.Forms.Button detectButton;
