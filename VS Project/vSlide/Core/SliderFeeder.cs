@@ -42,8 +42,7 @@ namespace vSlide
                 if (value > 16) throw new ArgumentOutOfRangeException();
 
                 ownedDeviceId = value;
-                if (OwnedDeviceIdChanged != null)
-                    OwnedDeviceIdChanged(this, null);
+                OwnedDeviceIdChanged?.Invoke(this, null);
             }
         }
 
@@ -147,7 +146,7 @@ namespace vSlide
 
         #region methods
 
-        public void Update(uint elapsedMs)
+        public void Update(int elapsedMs)
         {
             if (State != FeederState.Ready)
                 throw new InvalidFeederOperationException(State);

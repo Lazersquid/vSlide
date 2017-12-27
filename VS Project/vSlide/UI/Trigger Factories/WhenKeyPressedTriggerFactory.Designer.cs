@@ -28,35 +28,35 @@ namespace vSlide
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.titleLabel = new System.Windows.Forms.Label();
             this.keyBindControl = new vSlide.KeyBindControl();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // tableLayoutPanel
             // 
-            this.tableLayoutPanel1.AutoSize = true;
-            this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.Controls.Add(this.titleLabel, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.keyBindControl, 1, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(251, 29);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this.tableLayoutPanel.AutoSize = true;
+            this.tableLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel.ColumnCount = 2;
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel.Controls.Add(this.titleLabel, 0, 0);
+            this.tableLayoutPanel.Controls.Add(this.keyBindControl, 1, 0);
+            this.tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel.Name = "tableLayoutPanel";
+            this.tableLayoutPanel.RowCount = 1;
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel.Size = new System.Drawing.Size(241, 23);
+            this.tableLayoutPanel.TabIndex = 0;
             // 
             // titleLabel
             // 
             this.titleLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.titleLabel.AutoSize = true;
             this.titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titleLabel.Location = new System.Drawing.Point(0, 8);
+            this.titleLabel.Location = new System.Drawing.Point(0, 5);
             this.titleLabel.Margin = new System.Windows.Forms.Padding(0);
             this.titleLabel.Name = "titleLabel";
             this.titleLabel.Size = new System.Drawing.Size(95, 13);
@@ -72,7 +72,7 @@ namespace vSlide
             this.keyBindControl.Location = new System.Drawing.Point(95, 0);
             this.keyBindControl.Margin = new System.Windows.Forms.Padding(0);
             this.keyBindControl.Name = "keyBindControl";
-            this.keyBindControl.Size = new System.Drawing.Size(156, 29);
+            this.keyBindControl.Size = new System.Drawing.Size(146, 23);
             this.keyBindControl.TabIndex = 2;
             this.keyBindControl.Title = "Key:";
             // 
@@ -83,12 +83,12 @@ namespace vSlide
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.tableLayoutPanel);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "WhenKeyPressedTriggerFactory";
-            this.Size = new System.Drawing.Size(251, 29);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this.Size = new System.Drawing.Size(241, 23);
+            this.tableLayoutPanel.ResumeLayout(false);
+            this.tableLayoutPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -96,7 +96,7 @@ namespace vSlide
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
         private System.Windows.Forms.Label titleLabel;
         private KeyBindControl keyBindControl;
     }

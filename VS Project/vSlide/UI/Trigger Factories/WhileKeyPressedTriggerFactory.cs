@@ -10,18 +10,18 @@ using System.Windows.Forms;
 
 namespace vSlide
 {
-    public partial class WhenKeyPressedTriggerFactory : UserControl, ISliderTriggerFactory
+    public partial class WhileKeyPressedTriggerFactory : UserControl, ISliderTriggerFactory
     {
         public Control Control { get { return this; } }
 
-        public WhenKeyPressedTriggerFactory()
+        public WhileKeyPressedTriggerFactory()
         {
             InitializeComponent();
         }
 
         public ISliderTrigger CreateTrigger()
         {
-            return new WhenKeyPressedTrigger(keyBindControl.KeyBind);
+            return new WhileKeyPressedTrigger(keyBindControl.KeyBind, decimal.ToInt32(tresholdDecimalControl.Value), decimal.ToInt32(intervalDecimalControl.Value));
         }
 
         public void SubscribeToRebindInitializationCallback(RebindInitializeHandler initializeRebindCallback)

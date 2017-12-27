@@ -14,11 +14,8 @@ namespace vSlide
 
         public SliderManipulator(ISliderTrigger trigger, ISliderAction action)
         {
-            if (trigger == null) throw new ArgumentNullException(nameof(trigger));
-            if (action == null) throw new ArgumentNullException(nameof(action));
-
-            this.trigger = trigger;
-            this.action = action;
+            this.trigger = trigger ?? throw new ArgumentNullException(nameof(trigger));
+            this.action = action ?? throw new ArgumentNullException(nameof(action));
         }
 
         public void Execute(UpdateInformation updateInfo)

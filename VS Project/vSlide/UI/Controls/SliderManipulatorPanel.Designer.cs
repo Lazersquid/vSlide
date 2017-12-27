@@ -66,7 +66,7 @@ namespace vSlide
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(828, 329);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(887, 229);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // mainGroupBox
@@ -77,7 +77,7 @@ namespace vSlide
             this.mainGroupBox.Margin = new System.Windows.Forms.Padding(0);
             this.mainGroupBox.Name = "mainGroupBox";
             this.mainGroupBox.Padding = new System.Windows.Forms.Padding(1, 1, 1, 3);
-            this.mainGroupBox.Size = new System.Drawing.Size(828, 209);
+            this.mainGroupBox.Size = new System.Drawing.Size(887, 109);
             this.mainGroupBox.TabIndex = 1;
             this.mainGroupBox.TabStop = false;
             this.mainGroupBox.Text = "Slider manipulators";
@@ -90,7 +90,7 @@ namespace vSlide
             this.manipulatorsPanel.Location = new System.Drawing.Point(1, 14);
             this.manipulatorsPanel.Margin = new System.Windows.Forms.Padding(0);
             this.manipulatorsPanel.Name = "manipulatorsPanel";
-            this.manipulatorsPanel.Size = new System.Drawing.Size(826, 192);
+            this.manipulatorsPanel.Size = new System.Drawing.Size(885, 92);
             this.manipulatorsPanel.TabIndex = 0;
             this.manipulatorsPanel.WrapContents = false;
             // 
@@ -98,11 +98,11 @@ namespace vSlide
             // 
             this.rebindGroupBox.Controls.Add(this.tableLayoutPanel2);
             this.rebindGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rebindGroupBox.Location = new System.Drawing.Point(0, 279);
+            this.rebindGroupBox.Location = new System.Drawing.Point(0, 179);
             this.rebindGroupBox.Margin = new System.Windows.Forms.Padding(0);
             this.rebindGroupBox.Name = "rebindGroupBox";
             this.rebindGroupBox.Padding = new System.Windows.Forms.Padding(1, 1, 1, 3);
-            this.rebindGroupBox.Size = new System.Drawing.Size(828, 50);
+            this.rebindGroupBox.Size = new System.Drawing.Size(887, 50);
             this.rebindGroupBox.TabIndex = 2;
             this.rebindGroupBox.TabStop = false;
             this.rebindGroupBox.Text = "Rebind";
@@ -138,13 +138,13 @@ namespace vSlide
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(826, 33);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(885, 33);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // applyButton
             // 
             this.applyButton.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.applyButton.Location = new System.Drawing.Point(702, 3);
+            this.applyButton.Location = new System.Drawing.Point(761, 3);
             this.applyButton.Name = "applyButton";
             this.applyButton.Size = new System.Drawing.Size(67, 26);
             this.applyButton.TabIndex = 52;
@@ -154,7 +154,8 @@ namespace vSlide
             // detectButton
             // 
             this.detectButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.detectButton.Location = new System.Drawing.Point(585, 5);
+            this.detectButton.Enabled = false;
+            this.detectButton.Location = new System.Drawing.Point(509, 5);
             this.detectButton.Name = "detectButton";
             this.detectButton.Size = new System.Drawing.Size(54, 22);
             this.detectButton.TabIndex = 50;
@@ -168,17 +169,17 @@ namespace vSlide
             this.keyComboBox.FormattingEnabled = true;
             this.keyComboBox.Items.AddRange(new object[] {
             "None"});
-            this.keyComboBox.Location = new System.Drawing.Point(463, 6);
+            this.keyComboBox.Location = new System.Drawing.Point(406, 6);
             this.keyComboBox.Margin = new System.Windows.Forms.Padding(0, 3, 15, 3);
             this.keyComboBox.Name = "keyComboBox";
-            this.keyComboBox.Size = new System.Drawing.Size(104, 21);
+            this.keyComboBox.Size = new System.Drawing.Size(85, 21);
             this.keyComboBox.TabIndex = 49;
             // 
             // label3
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(438, 10);
+            this.label3.Location = new System.Drawing.Point(381, 10);
             this.label3.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(25, 13);
@@ -192,17 +193,17 @@ namespace vSlide
             this.altComboBox.FormattingEnabled = true;
             this.altComboBox.Items.AddRange(new object[] {
             "None"});
-            this.altComboBox.Location = new System.Drawing.Point(316, 6);
+            this.altComboBox.Location = new System.Drawing.Point(278, 6);
             this.altComboBox.Margin = new System.Windows.Forms.Padding(0, 3, 15, 3);
             this.altComboBox.Name = "altComboBox";
-            this.altComboBox.Size = new System.Drawing.Size(104, 21);
+            this.altComboBox.Size = new System.Drawing.Size(85, 21);
             this.altComboBox.TabIndex = 47;
             // 
             // label2
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(297, 10);
+            this.label2.Location = new System.Drawing.Point(259, 10);
             this.label2.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(19, 13);
@@ -216,17 +217,17 @@ namespace vSlide
             this.shiftComboBox.FormattingEnabled = true;
             this.shiftComboBox.Items.AddRange(new object[] {
             "None"});
-            this.shiftComboBox.Location = new System.Drawing.Point(175, 6);
+            this.shiftComboBox.Location = new System.Drawing.Point(156, 6);
             this.shiftComboBox.Margin = new System.Windows.Forms.Padding(0, 3, 15, 3);
             this.shiftComboBox.Name = "shiftComboBox";
-            this.shiftComboBox.Size = new System.Drawing.Size(104, 21);
+            this.shiftComboBox.Size = new System.Drawing.Size(85, 21);
             this.shiftComboBox.TabIndex = 45;
             // 
             // label1
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(147, 10);
+            this.label1.Location = new System.Drawing.Point(128, 10);
             this.label1.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(28, 13);
@@ -254,24 +255,24 @@ namespace vSlide
             this.ctrlComboBox.Location = new System.Drawing.Point(25, 6);
             this.ctrlComboBox.Margin = new System.Windows.Forms.Padding(0, 3, 15, 3);
             this.ctrlComboBox.Name = "ctrlComboBox";
-            this.ctrlComboBox.Size = new System.Drawing.Size(104, 21);
+            this.ctrlComboBox.Size = new System.Drawing.Size(85, 21);
             this.ctrlComboBox.TabIndex = 40;
             // 
             // cancelButton
             // 
             this.cancelButton.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.cancelButton.Location = new System.Drawing.Point(775, 3);
+            this.cancelButton.Location = new System.Drawing.Point(834, 3);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(48, 26);
             this.cancelButton.TabIndex = 51;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             // 
-            // addButton
+            // addManipulatorButton
             // 
             this.addManipulatorButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.addManipulatorButton.Location = new System.Drawing.Point(376, 212);
-            this.addManipulatorButton.Name = "addButton";
+            this.addManipulatorButton.Location = new System.Drawing.Point(406, 112);
+            this.addManipulatorButton.Name = "addManipulatorButton";
             this.addManipulatorButton.Size = new System.Drawing.Size(75, 23);
             this.addManipulatorButton.TabIndex = 0;
             this.addManipulatorButton.Text = "Add new";
@@ -284,7 +285,7 @@ namespace vSlide
             this.Controls.Add(this.tableLayoutPanel1);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "SliderManipulatorPanel";
-            this.Size = new System.Drawing.Size(828, 329);
+            this.Size = new System.Drawing.Size(887, 229);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.mainGroupBox.ResumeLayout(false);
             this.rebindGroupBox.ResumeLayout(false);

@@ -61,5 +61,10 @@ namespace vSlide
         {
             RebindInitialization += initializeRebindCallback;
         }
+
+        public void UnsubscribeFromRebindInitializationCallback(RebindInitializeHandler initializeRebindCallback)
+        {
+            RebindInitialization -= initializeRebindCallback;
+        }
     }
 }

@@ -51,14 +51,14 @@ namespace vSlide
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(120, 23);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(120, 20);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // keyBindLabel
             // 
             this.keyBindLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.keyBindLabel.AutoSize = true;
-            this.keyBindLabel.Location = new System.Drawing.Point(45, 5);
+            this.keyBindLabel.Location = new System.Drawing.Point(45, 3);
             this.keyBindLabel.Margin = new System.Windows.Forms.Padding(0);
             this.keyBindLabel.Name = "keyBindLabel";
             this.keyBindLabel.Size = new System.Drawing.Size(10, 13);
@@ -70,7 +70,7 @@ namespace vSlide
             this.titleLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.titleLabel.AutoSize = true;
             this.titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titleLabel.Location = new System.Drawing.Point(0, 5);
+            this.titleLabel.Location = new System.Drawing.Point(0, 3);
             this.titleLabel.Margin = new System.Windows.Forms.Padding(0);
             this.titleLabel.Name = "titleLabel";
             this.titleLabel.Size = new System.Drawing.Size(45, 13);
@@ -83,7 +83,7 @@ namespace vSlide
             this.rebindButton.Location = new System.Drawing.Point(55, 0);
             this.rebindButton.Margin = new System.Windows.Forms.Padding(0);
             this.rebindButton.Name = "rebindButton";
-            this.rebindButton.Size = new System.Drawing.Size(65, 23);
+            this.rebindButton.Size = new System.Drawing.Size(65, 20);
             this.rebindButton.TabIndex = 13;
             this.rebindButton.Text = "Rebind";
             this.rebindButton.UseVisualStyleBackColor = true;
@@ -97,7 +97,7 @@ namespace vSlide
             this.Controls.Add(this.tableLayoutPanel1);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "KeyBindControl";
-            this.Size = new System.Drawing.Size(120, 23);
+            this.Size = new System.Drawing.Size(120, 20);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);

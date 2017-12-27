@@ -71,11 +71,18 @@
     <Compile Include="Core\KeyCollection.cs" />
     <Compile Include="Core\Triggers\ISliderTrigger.cs" />
     <Compile Include="Core\Triggers\KeyBindTrigger.cs" />
+    <Compile Include="Core\Triggers\WhileKeyPressedTrigger.cs" />
     <Compile Include="Core\Triggers\WhenKeyPressedTrigger.cs" />
     <Compile Include="Exceptions\InvalidFeederOperationException.cs" />
     <Compile Include="Exceptions\LoggingException.cs" />
     <Compile Include="Exceptions\VjoyDeviceException.cs" />
     <Compile Include="Logger\Logger.cs" />
+    <Compile Include="UI\Action Factories\SetSliderValueActionFactory.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Action Factories\SetSliderValueActionFactory.Designer.cs">
+      <DependentUpon>SetSliderValueActionFactory.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Action Factories\ModifySliderValueActionFactory.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -163,6 +170,7 @@
       <DependentUpon>DesignExperimentForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Controls\IControl.cs" />
+    <Compile Include="UI\InterfaceFactory.cs" />
     <Compile Include="UI\Trigger Factories\ISliderTriggerFactory.cs" />
     <Compile Include="Core\Actions\ISliderAction.cs" />
     <Compile Include="UI\Action Factories\ISliderActionFactory.cs" />
@@ -182,12 +190,21 @@
     <Compile Include="Core\SliderFeeder.cs" />
     <Compile Include="Core\SliderManipulator.cs" />
     <Compile Include="Core\UpdateInformation.cs" />
+    <Compile Include="UI\Trigger Factories\WhileKeyPressedTriggerFactory.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Trigger Factories\WhileKeyPressedTriggerFactory.Designer.cs">
+      <DependentUpon>WhileKeyPressedTriggerFactory.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Trigger Factories\WhenKeyPressedTriggerFactory.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UI\Trigger Factories\WhenKeyPressedTriggerFactory.Designer.cs">
       <DependentUpon>WhenKeyPressedTriggerFactory.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UI\Action Factories\SetSliderValueActionFactory.resx">
+      <DependentUpon>SetSliderValueActionFactory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Action Factories\ModifySliderValueActionFactory.resx">
       <DependentUpon>ModifySliderValueActionFactory.cs</DependentUpon>
     </EmbeddedResource>
@@ -243,6 +260,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UI\Trigger Factories\WhileKeyPressedTriggerFactory.resx">
+      <DependentUpon>WhileKeyPressedTriggerFactory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Trigger Factories\WhenKeyPressedTriggerFactory.resx">
       <DependentUpon>WhenKeyPressedTriggerFactory.cs</DependentUpon>
     </EmbeddedResource>

@@ -7,18 +7,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Collections.Immutable;
 
 namespace vSlide
 {
 
     public partial class SliderManipulatorPanel : UserControl
     {
-        public const int MaxManipulatorCount = 50;
         protected IRebindable rebindingRebindable;
+        protected int maximumManipulators = 50;
+        public int MaximumManipulators
+        {
+            get { return maximumManipulators; }
+            set
+            {
+                Math.Max(value, 0);
+                maximumManipulators = value;
+            }
+        }
         public bool IsRebinding
         {
             get { return rebindingRebindable != null; }
         }
+
+        protected static readonly ImmutableArray<Factory<ISliderTriggerFactory>> triggerSwapFactories = ImmutableArray.Create(
+            new Factory<ISliderTriggerFactory>(Activator.CreateInstance<WhenKeyPressedTriggerFactory>, "On key pressed"),
+            new Factory<ISliderTriggerFactory>(Activator.CreateInstance<WhileKeyPressedTriggerFactory>, "While key pressed")
+            );
+
+        protected static readonly ImmutableArray<Factory<ISliderActionFactory>> actionSwapFactories = ImmutableArray.Create(
+            new Factory<ISliderActionFactory>(Activator.CreateInstance<ModifySliderValueActionFactory>, "Modify slider by"),
+            new Factory<ISliderActionFactory>(Activator.CreateInstance<SetSliderValueActionFactory>, "Set slider to")
+            );
+
 
         public SliderManipulatorPanel()
         {
@@ -50,18 +71,19 @@ namespace vSlide
 
         protected void AddManipulator()
         {
-
             AddManipulator(new SliderManipulatorFactory(
                 new WhenKeyPressedTriggerFactory(),
-                new ModifySliderValueActionFactory()));
+                new ModifySliderValueActionFactory(),
+                triggerSwapFactories.ToArray(),
+                actionSwapFactories.ToArray()));
         }
 
         protected void AddManipulator(SliderManipulatorFactory manipulator)
         {
-            if (manipulatorsPanel.Controls.Count >= MaxManipulatorCount)
+            if (manipulatorsPanel.Controls.Count >= maximumManipulators)
             {
                 MessageBox.Show(
-                    string.Format("The maximum count of {0} manipulators is reached!", MaxManipulatorCount),
+                    string.Format("The maximum count of {0} manipulators is reached!", maximumManipulators),
                     "Can't add another manipulator!",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
@@ -69,6 +91,8 @@ namespace vSlide
             }
             manipulatorsPanel.Controls.Add(manipulator);
             manipulator.DeleteButtonClick += Manipulator_DeleteButtonClick;
+            manipulator.SelectedTriggerFactoryChanged += Manipulator_SelectedTriggerFactoryChanged;
+            manipulator.SelectedActionFactoryChanged += Manipulator_SelectedActionFactoryChanged;
             manipulator.SubscribeToRebindInitializationCallback(Rebindable_RebindInitialization);
         }
 
@@ -76,8 +100,19 @@ namespace vSlide
         {
             if (IsRebinding) LeaveRebindingState();
             manipulator.DeleteButtonClick -= Manipulator_DeleteButtonClick;
+            manipulator.SelectedTriggerFactoryChanged -= Manipulator_SelectedTriggerFactoryChanged;
+            manipulator.SelectedActionFactoryChanged -= Manipulator_SelectedActionFactoryChanged;
+            manipulator.UnsubscribeFromRebindInitializationCallback(Rebindable_RebindInitialization);
             Controls.Remove(manipulator);
             manipulator.Dispose();
+        }
+
+        protected void ReplaceManipulator(SliderManipulatorFactory oldManipulator, SliderManipulatorFactory newManipulator)
+        {
+            var index = manipulatorsPanel.Controls.IndexOf(oldManipulator);
+            RemoveManipulator(oldManipulator);
+            AddManipulator(newManipulator);
+            manipulatorsPanel.Controls.SetChildIndex(newManipulator, index);
         }
 
         protected void EnterRebindingState(IRebindable newRebindingRebindable)
@@ -155,6 +190,28 @@ namespace vSlide
             if (!(sender is SliderManipulatorFactory))
                 throw new ArgumentOutOfRangeException();
             RemoveManipulator((SliderManipulatorFactory)sender);
+        }
+
+        protected void Manipulator_SelectedTriggerFactoryChanged(object sender, EventArgs e)
+        {
+            if (!(sender is SliderManipulatorFactory))
+                throw new ArgumentOutOfRangeException();
+
+            var manipulator = (SliderManipulatorFactory)sender;
+            var newTriggerFactory = manipulator.SelectedTriggerSwapFactory.CreateInstance();
+            ReplaceManipulator(manipulator, new SliderManipulatorFactory(
+                newTriggerFactory, manipulator.actionFactory, triggerSwapFactories.ToArray(), actionSwapFactories.ToArray()));
+        }
+
+        protected void Manipulator_SelectedActionFactoryChanged(object sender, EventArgs e)
+        {
+            if (!(sender is SliderManipulatorFactory))
+                throw new ArgumentOutOfRangeException();
+
+            var manipulator = (SliderManipulatorFactory)sender;
+            var newActionFactory = manipulator.SelectedActionSwapFactory.CreateInstance();
+            ReplaceManipulator(manipulator, new SliderManipulatorFactory(
+                manipulator.triggerFactory, newActionFactory, triggerSwapFactories.ToArray(), actionSwapFactories.ToArray()));
         }
 
         protected void SliderManipulatorPanel_EnabledChanged(object sender, EventArgs e)

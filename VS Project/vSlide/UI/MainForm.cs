@@ -32,7 +32,7 @@ namespace vSlide
                 if (IsFeeding)
                     UpdateFeederConfiguration();
                 else
-                    feeder.SliderValue = 0.5M;
+                    feeder.SliderValue = 0;
             }
         }
 
@@ -60,7 +60,7 @@ namespace vSlide
             }
         }
 
-        protected void FeederTick(uint elapsedMs)
+        protected void FeederTick(int elapsedMs)
         {
             feeder.Update(elapsedMs);
         }
@@ -238,7 +238,7 @@ namespace vSlide
                     "Can't execute {0}: Feeder state is {1}!", nameof(UpdateTimer_Tick), feeder.State));
             }
 
-            FeederTick((uint)updateTimer.Interval);
+            FeederTick(updateTimer.Interval);
         }
 
         protected void MainForm_FormClosed(object sender, FormClosedEventArgs e)

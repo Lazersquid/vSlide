@@ -1,6 +1,6 @@
 namespace vSlide
 {
-    partial class ModifySliderValueActionFactory
+    partial class SetSliderValueActionFactory
     {
         /// <summary> 
         /// Required designer variable.
@@ -48,7 +48,7 @@ namespace vSlide
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(206, 20);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(212, 20);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // titleLabel
@@ -59,27 +59,27 @@ namespace vSlide
             this.titleLabel.Location = new System.Drawing.Point(0, 3);
             this.titleLabel.Margin = new System.Windows.Forms.Padding(0);
             this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(95, 13);
+            this.titleLabel.Size = new System.Drawing.Size(110, 13);
             this.titleLabel.TabIndex = 0;
-            this.titleLabel.Text = "Modify slider by";
+            this.titleLabel.Text = "Set slider value to";
             // 
             // deltaDecimalControl
             // 
             this.deltaDecimalControl.AutoSize = true;
             this.deltaDecimalControl.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.deltaDecimalControl.DecimalDigits = 1;
-            this.deltaDecimalControl.Location = new System.Drawing.Point(95, 0);
+            this.deltaDecimalControl.Location = new System.Drawing.Point(110, 0);
             this.deltaDecimalControl.Margin = new System.Windows.Forms.Padding(0);
             this.deltaDecimalControl.Maximum = new decimal(new int[] {
-            100,
+            1000,
+            0,
+            0,
+            65536});
+            this.deltaDecimalControl.Minimum = new decimal(new int[] {
+            0,
             0,
             0,
             0});
-            this.deltaDecimalControl.Minimum = new decimal(new int[] {
-            100,
-            0,
-            0,
-            -2147483648});
             this.deltaDecimalControl.Name = "deltaDecimalControl";
             this.deltaDecimalControl.NumericUpDownIncrement = new decimal(new int[] {
             5,
@@ -92,17 +92,17 @@ namespace vSlide
             0,
             0,
             65536});
-            this.deltaDecimalControl.Size = new System.Drawing.Size(111, 20);
+            this.deltaDecimalControl.Size = new System.Drawing.Size(102, 20);
             this.deltaDecimalControl.Suffix = "%";
             this.deltaDecimalControl.TabIndex = 1;
-            this.deltaDecimalControl.Title = "Amount:";
+            this.deltaDecimalControl.Title = "Value:";
             this.deltaDecimalControl.Value = new decimal(new int[] {
             50,
             0,
             0,
             65536});
             // 
-            // ModifySliderValueActionFactory
+            // SetSliderValueActionFactory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -111,8 +111,8 @@ namespace vSlide
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Margin = new System.Windows.Forms.Padding(0);
-            this.Name = "ModifySliderValueActionFactory";
-            this.Size = new System.Drawing.Size(207, 21);
+            this.Name = "SetSliderValueActionFactory";
+            this.Size = new System.Drawing.Size(213, 21);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);

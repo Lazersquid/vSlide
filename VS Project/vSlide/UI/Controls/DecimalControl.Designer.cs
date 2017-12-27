@@ -30,10 +30,10 @@ namespace vSlide
         {
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.titleLabel = new System.Windows.Forms.Label();
-            this.timeNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown = new System.Windows.Forms.NumericUpDown();
             this.suffixLabel = new System.Windows.Forms.Label();
             this.flowLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.timeNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -41,7 +41,7 @@ namespace vSlide
             this.flowLayoutPanel1.AutoSize = true;
             this.flowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.flowLayoutPanel1.Controls.Add(this.titleLabel);
-            this.flowLayoutPanel1.Controls.Add(this.timeNumericUpDown);
+            this.flowLayoutPanel1.Controls.Add(this.numericUpDown);
             this.flowLayoutPanel1.Controls.Add(this.suffixLabel);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -62,32 +62,32 @@ namespace vSlide
             this.titleLabel.TabIndex = 10;
             this.titleLabel.Text = "Interval:";
             // 
-            // timeNumericUpDown
+            // numericUpDown
             // 
-            this.timeNumericUpDown.BackColor = System.Drawing.Color.Gainsboro;
-            this.timeNumericUpDown.Increment = new decimal(new int[] {
+            this.numericUpDown.BackColor = System.Drawing.Color.Gainsboro;
+            this.numericUpDown.Increment = new decimal(new int[] {
             5,
             0,
             0,
             0});
-            this.timeNumericUpDown.Location = new System.Drawing.Point(45, 0);
-            this.timeNumericUpDown.Margin = new System.Windows.Forms.Padding(0);
-            this.timeNumericUpDown.Maximum = new decimal(new int[] {
+            this.numericUpDown.Location = new System.Drawing.Point(45, 0);
+            this.numericUpDown.Margin = new System.Windows.Forms.Padding(0);
+            this.numericUpDown.Maximum = new decimal(new int[] {
             1000,
             0,
             0,
             0});
-            this.timeNumericUpDown.Minimum = new decimal(new int[] {
+            this.numericUpDown.Minimum = new decimal(new int[] {
             5,
             0,
             0,
             0});
-            this.timeNumericUpDown.Name = "timeNumericUpDown";
-            this.timeNumericUpDown.Size = new System.Drawing.Size(44, 20);
-            this.timeNumericUpDown.TabIndex = 35;
-            this.timeNumericUpDown.Tag = "";
-            this.timeNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.timeNumericUpDown.Value = new decimal(new int[] {
+            this.numericUpDown.Name = "numericUpDown";
+            this.numericUpDown.Size = new System.Drawing.Size(44, 20);
+            this.numericUpDown.TabIndex = 35;
+            this.numericUpDown.Tag = "";
+            this.numericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numericUpDown.Value = new decimal(new int[] {
             20,
             0,
             0,
@@ -116,7 +116,7 @@ namespace vSlide
             this.Size = new System.Drawing.Size(109, 20);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.timeNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -126,7 +126,7 @@ namespace vSlide
 
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label titleLabel;
-        private System.Windows.Forms.NumericUpDown timeNumericUpDown;
+        private System.Windows.Forms.NumericUpDown numericUpDown;
         private System.Windows.Forms.Label suffixLabel;
     }
 }

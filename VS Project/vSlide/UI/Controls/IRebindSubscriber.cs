@@ -11,5 +11,6 @@ namespace vSlide
     public interface IRebindSubscriber
     {
         void SubscribeToRebindInitializationCallback(RebindInitializeHandler initializeRebindCallback);
+        void UnsubscribeFromRebindInitializationCallback(RebindInitializeHandler initializeRebindCallback);
     }
 }

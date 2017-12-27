@@ -9,8 +9,8 @@ namespace vSlide
 {
     public class UpdateInformation
     {
-        protected uint elapsedMs;
-        public uint ElapsedMs
+        protected int elapsedMs;
+        public int ElapsedMs
         {
             get { return elapsedMs; }
         }
@@ -79,7 +79,7 @@ namespace vSlide
             }
         }
 
-        public UpdateInformation(uint elapsedMs, int sliderMax, ImmutableArray<decimal> sliderLevels, int sliderValueAbs, bool isInterpolating, bool isReturningToCenter)
+        public UpdateInformation(int elapsedMs, int sliderMax, ImmutableArray<decimal> sliderLevels, int sliderValueAbs, bool isInterpolating, bool isReturningToCenter)
         {
             if (sliderLevels == null) throw new ArgumentNullException(nameof(sliderLevels));
 

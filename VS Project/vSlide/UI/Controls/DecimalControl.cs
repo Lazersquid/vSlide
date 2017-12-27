@@ -32,56 +32,78 @@ namespace vSlide
         }
         public decimal Maximum
         {
-            get { return timeNumericUpDown.Maximum; }
+            get { return numericUpDown.Maximum; }
             set
             {
+                value = ClampToResolution(value);
                 value = Math.Max(value, Minimum);
-                timeNumericUpDown.Maximum = value;
+                numericUpDown.Maximum = value;
             }
         }
         public decimal Minimum
         {
-            get { return timeNumericUpDown.Minimum; }
+            get { return numericUpDown.Minimum; }
             set
             {
+                value = ClampToResolution(value);
                 value = Math.Min(value, Maximum);
-                timeNumericUpDown.Minimum = value;
+                numericUpDown.Minimum = value;
             }
         }
         public int DecimalDigits
         {
-            get { return timeNumericUpDown.DecimalPlaces; }
+            get { return numericUpDown.DecimalPlaces; }
             set
             {
-                timeNumericUpDown.DecimalPlaces = value;
+                numericUpDown.DecimalPlaces = value;
             }
         }
-        public decimal Increment
+        public decimal NumericUpDownIncrement
         {
-            get { return timeNumericUpDown.Increment; }
+            get { return numericUpDown.Increment; }
             set
             {
-                timeNumericUpDown.Increment = value;
+                value = ClampToResolution(value);
+                numericUpDown.Increment = value;
             }
         }
-        public decimal StepSize
+
+        public decimal Resolution
         {
             get { return stepSize; }
             set
             {
-                value = Math.Min(value, 1);
                 value = Math.Max(value, 0);
                 stepSize = value;
             }
         }
         public decimal Value
         {
-            get { return timeNumericUpDown.Value; }
+            get { return numericUpDown.Value; }
             set
             {
+                value = ClampToResolution(value);
                 value = Math.Min(value, Maximum);
                 value = Math.Max(value, Minimum);
-                timeNumericUpDown.Value = value;
+                numericUpDown.Value = value;
+            }
+        }
+        public decimal ValueAsFactor
+        {
+            get
+            {
+                var value = Value / 100;
+                Math.Min(value, 1);
+                Math.Max(value, 0);
+                return value;
+            }
+        }
+        public int NumericUpDownWidth
+        {
+            get { return numericUpDown.Size.Width; }
+            set
+            {
+                numericUpDown.Size = new Size(value, numericUpDown.Size.Height);
             }
         }
 
@@ -89,25 +111,17 @@ namespace vSlide
         {
             InitializeComponent();
 
-            Initialize("Amount:", "ms", 100, -100, 1, 5, 0.5M, 5);
+            numericUpDown.ValueChanged += NumericUpDown_ValueChanged;
         }
 
-        public DecimalControl(string title, string suffix, decimal maximum, decimal minimum, int decimalDigits, decimal increment, decimal stepSize, decimal value)
+        private void NumericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            InitializeComponent();
-            Initialize(title, suffix, maximum, minimum, decimalDigits, increment, stepSize, value);
+            Value = numericUpDown.Value;
         }
 
-        protected void Initialize(string title, string suffix, decimal maximum, decimal minimum, int decimalDigits, decimal increment, decimal stepSize, decimal value)
+        protected decimal ClampToResolution(decimal value)
         {
-            Title = title;
-            Suffix = suffix;
-            Maximum = maximum;
-            Minimum = minimum;
-            DecimalDigits = decimalDigits;
-            Increment = increment;
-            StepSize = stepSize;
-            Value = value;
+            return Resolution == 0 ? value : value - (value % Resolution);
         }
     }
 }
