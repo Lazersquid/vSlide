@@ -29,18 +29,18 @@ namespace vSlide
         private void InitializeComponent()
         {
             this.feedingButton = new System.Windows.Forms.Button();
-            this.vslideInfoBox1 = new vSlide.VslideInfoBox();
-            this.vjoyInfoBox1 = new vSlide.VjoyInfoBox();
+            this.vslideInfoBox = new vSlide.VslideInfoBox();
+            this.vjoyInfoBox = new vSlide.VjoyInfoBox();
             this.sliderLevelsPanel = new vSlide.SliderLevelsPanel();
             this.sliderView = new vSlide.SliderView();
-            this.devicePanel = new vSlide.DevicePanel();
             this.manipulatorPanel = new vSlide.SliderManipulatorPanel();
+            this.devicePanel = new vSlide.DevicePanel();
             this.SuspendLayout();
             // 
             // feedingButton
             // 
             this.feedingButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.feedingButton.Location = new System.Drawing.Point(36, 516);
+            this.feedingButton.Location = new System.Drawing.Point(39, 552);
             this.feedingButton.Name = "feedingButton";
             this.feedingButton.Size = new System.Drawing.Size(118, 23);
             this.feedingButton.TabIndex = 1;
@@ -48,78 +48,76 @@ namespace vSlide
             this.feedingButton.UseVisualStyleBackColor = true;
             this.feedingButton.Click += new System.EventHandler(this.FeedingButton_Click);
             // 
-            // vslideInfoBox1
+            // vslideInfoBox
             // 
-            this.vslideInfoBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.vslideInfoBox1.Location = new System.Drawing.Point(12, 308);
-            this.vslideInfoBox1.Name = "vslideInfoBox1";
-            this.vslideInfoBox1.Size = new System.Drawing.Size(165, 56);
-            this.vslideInfoBox1.TabIndex = 33;
+            this.vslideInfoBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.vslideInfoBox.Location = new System.Drawing.Point(761, 423);
+            this.vslideInfoBox.Name = "vslideInfoBox";
+            this.vslideInfoBox.Size = new System.Drawing.Size(165, 76);
+            this.vslideInfoBox.TabIndex = 33;
             // 
-            // vjoyInfoBox1
+            // vjoyInfoBox
             // 
-            this.vjoyInfoBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.vjoyInfoBox1.Location = new System.Drawing.Point(12, 367);
-            this.vjoyInfoBox1.Margin = new System.Windows.Forms.Padding(0);
-            this.vjoyInfoBox1.Name = "vjoyInfoBox1";
-            this.vjoyInfoBox1.Size = new System.Drawing.Size(165, 76);
-            this.vjoyInfoBox1.TabIndex = 32;
+            this.vjoyInfoBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.vjoyInfoBox.Location = new System.Drawing.Point(932, 423);
+            this.vjoyInfoBox.Name = "vjoyInfoBox";
+            this.vjoyInfoBox.Size = new System.Drawing.Size(165, 76);
+            this.vjoyInfoBox.TabIndex = 32;
             // 
             // sliderLevelsPanel
             // 
             this.sliderLevelsPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.sliderLevelsPanel.Enabled = false;
-            this.sliderLevelsPanel.Location = new System.Drawing.Point(12, 9);
+            this.sliderLevelsPanel.Location = new System.Drawing.Point(12, 12);
             this.sliderLevelsPanel.Name = "sliderLevelsPanel";
-            this.sliderLevelsPanel.Size = new System.Drawing.Size(165, 293);
+            this.sliderLevelsPanel.Size = new System.Drawing.Size(181, 271);
             this.sliderLevelsPanel.TabIndex = 31;
             // 
             // sliderView
             // 
             this.sliderView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.sliderView.Location = new System.Drawing.Point(200, 469);
+            this.sliderView.Location = new System.Drawing.Point(254, 505);
             this.sliderView.MinimumSize = new System.Drawing.Size(0, 70);
             this.sliderView.Name = "sliderView";
             this.sliderView.Prefix = "Slider Value: ";
-            this.sliderView.Size = new System.Drawing.Size(592, 70);
+            this.sliderView.Size = new System.Drawing.Size(1057, 70);
             this.sliderView.Suffix = "%";
             this.sliderView.TabIndex = 30;
-            // 
-            // devicePanel
-            // 
-            this.devicePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.devicePanel.Location = new System.Drawing.Point(803, 381);
-            this.devicePanel.Margin = new System.Windows.Forms.Padding(0);
-            this.devicePanel.Name = "devicePanel";
-            this.devicePanel.Size = new System.Drawing.Size(281, 158);
-            this.devicePanel.TabIndex = 29;
             // 
             // manipulatorPanel
             // 
             this.manipulatorPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.manipulatorPanel.Location = new System.Drawing.Point(200, 9);
+            this.manipulatorPanel.Location = new System.Drawing.Point(254, 9);
             this.manipulatorPanel.Margin = new System.Windows.Forms.Padding(0);
             this.manipulatorPanel.MaximumManipulators = 5;
             this.manipulatorPanel.Name = "manipulatorPanel";
-            this.manipulatorPanel.Size = new System.Drawing.Size(887, 293);
+            this.manipulatorPanel.Size = new System.Drawing.Size(1060, 389);
             this.manipulatorPanel.TabIndex = 28;
+            // 
+            // devicePanel
+            // 
+            this.devicePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.devicePanel.Location = new System.Drawing.Point(1103, 423);
+            this.devicePanel.Name = "devicePanel";
+            this.devicePanel.Size = new System.Drawing.Size(208, 76);
+            this.devicePanel.TabIndex = 29;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1096, 551);
-            this.Controls.Add(this.vslideInfoBox1);
-            this.Controls.Add(this.vjoyInfoBox1);
-            this.Controls.Add(this.sliderLevelsPanel);
-            this.Controls.Add(this.sliderView);
+            this.ClientSize = new System.Drawing.Size(1323, 587);
             this.Controls.Add(this.devicePanel);
-            this.Controls.Add(this.manipulatorPanel);
             this.Controls.Add(this.feedingButton);
+            this.Controls.Add(this.sliderView);
+            this.Controls.Add(this.manipulatorPanel);
+            this.Controls.Add(this.sliderLevelsPanel);
+            this.Controls.Add(this.vjoyInfoBox);
+            this.Controls.Add(this.vslideInfoBox);
             this.MinimumSize = new System.Drawing.Size(1000, 470);
             this.Name = "MainForm";
             this.Text = "vSlide [experimental_build_1]";
@@ -131,10 +129,10 @@ namespace vSlide
         #endregion
         private System.Windows.Forms.Button feedingButton;
         private SliderManipulatorPanel manipulatorPanel;
-        private DevicePanel devicePanel;
         private SliderView sliderView;
         private SliderLevelsPanel sliderLevelsPanel;
-        private VjoyInfoBox vjoyInfoBox1;
-        private VslideInfoBox vslideInfoBox1;
+        private VjoyInfoBox vjoyInfoBox;
+        private VslideInfoBox vslideInfoBox;
+        private DevicePanel devicePanel;
     }
 }

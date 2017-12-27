@@ -42,9 +42,9 @@ namespace vSlide
             updateTimer = new Timer { Interval = 5 };
             feeder = new SliderFeeder();
 
-            vjoyInfoBox1.IsVjoyInstalled = feeder.DriverState != DriverState.VJoyNotInstalled;
-            vjoyInfoBox1.VjoyVersion = feeder.VjoyDriverVersion;
-            vjoyInfoBox1.VjoyDllVersion = feeder.VjoyDllVersion;
+            vjoyInfoBox.IsVjoyInstalled = feeder.DriverState != DriverState.VJoyNotInstalled;
+            vjoyInfoBox.VjoyVersion = feeder.VjoyDriverVersion;
+            vjoyInfoBox.VjoyDllVersion = feeder.VjoyDllVersion;
 
             updateTimer.Tick += UpdateTimer_Tick;
             devicePanel.AcquireButtonClick += DevicePanel_AcquireButtonClick;

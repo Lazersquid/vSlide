@@ -38,7 +38,7 @@ namespace vSlide
             this.seperatorLabel.Location = new System.Drawing.Point(1, 14);
             this.seperatorLabel.Margin = new System.Windows.Forms.Padding(1);
             this.seperatorLabel.Name = "seperatorLabel";
-            this.seperatorLabel.Size = new System.Drawing.Size(202, 2);
+            this.seperatorLabel.Size = new System.Drawing.Size(202, 1);
             this.seperatorLabel.TabIndex = 41;
             // 
             // HorizontalLine
