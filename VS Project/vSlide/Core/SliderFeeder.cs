@@ -257,7 +257,7 @@ namespace vSlide
             return status == VjdStat.VJD_STAT_FREE && HasDeviceSlider(deviceId);
         }
 
-        public List<uint> GetAcquirableVjoyDevices()
+        public ImmutableList<uint> GetAcquirableVjoyDevices()
         {
             if (State == FeederState.DriverError)
                 throw new InvalidFeederOperationException(State);
@@ -269,7 +269,7 @@ namespace vSlide
                 availableJoystickIds.Add(deviceId);
             }
 
-            return availableJoystickIds;
+            return availableJoystickIds.ToImmutableList();
         }
 
         public DeviceStat GetDeviceStatus(uint deviceId)

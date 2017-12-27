@@ -39,17 +39,8 @@ namespace vSlide
         public MainForm()
         {
             InitializeComponent();
-            updateTimer = new Timer();
-            updateTimer.Interval = 5;
-
+            updateTimer = new Timer { Interval = 5 };
             feeder = new SliderFeeder();
-            try
-            {
-                feeder.AcquireVjoyDevice();
-            }
-            catch (VjoyDeviceException)
-            {
-            }
 
             vjoyInfoBox1.IsVjoyInstalled = feeder.DriverState != DriverState.VJoyNotInstalled;
             vjoyInfoBox1.VjoyVersion = feeder.VjoyDriverVersion;
@@ -59,8 +50,14 @@ namespace vSlide
             devicePanel.AcquireButtonClick += DevicePanel_AcquireButtonClick;
             feeder.SliderValueChanged += Feeder_SliderValueChanged;
             feeder.OwnedDeviceIdChanged += Feeder_OwnedDeviceIdChanged;
-            sliderView.ValueChanged += sliderView_ValueChanged;
+            sliderView.ValueChanged += SliderView_ValueChanged;
             UpdateUI();
+
+            if (feeder.State != FeederState.DriverError
+                && feeder.GetAcquirableVjoyDevices().Count > 0)
+            {
+                feeder.AcquireVjoyDevice();
+            }
         }
 
         protected void FeederTick(uint elapsedMs)
@@ -129,8 +126,11 @@ namespace vSlide
         protected void UpdateDevicePanel()
         {
             UpdateDevicePanelEnabled();
-            UpdateDeviceList();
-            UpdateAcquiredDevice();
+            if(feeder.State != FeederState.DriverError)
+            {
+                UpdateDeviceList();
+                UpdateAcquiredDevice();
+            }
         }
 
         protected void UpdateDevicePanelEnabled()
@@ -182,7 +182,7 @@ namespace vSlide
         #endregion
 
         #region event callbacks
-        protected void feedingButton_Click(object sender, EventArgs e)
+        protected void FeedingButton_Click(object sender, EventArgs e)
         {
             IsFeeding = !IsFeeding;
         }
@@ -197,7 +197,7 @@ namespace vSlide
             UpdateSliderDisplayValue();
         }
 
-        private void sliderView_ValueChanged(object sender, EventArgs e)
+        private void SliderView_ValueChanged(object sender, EventArgs e)
         {
             if (!IsFeeding) throw new InvalidOperationException();
             feeder.SliderValue = sliderView.SliderValue;

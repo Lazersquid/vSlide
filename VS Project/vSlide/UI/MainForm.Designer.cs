@@ -29,29 +29,29 @@ namespace vSlide
         private void InitializeComponent()
         {
             this.feedingButton = new System.Windows.Forms.Button();
-            this.vslideInfoBox1 = new VslideInfoBox();
-            this.vjoyInfoBox1 = new VjoyInfoBox();
-            this.sliderLevelsPanel = new SliderLevelsPanel();
-            this.sliderView = new SliderView();
-            this.devicePanel = new DevicePanel();
-            this.manipulatorPanel = new SliderManipulatorPanel();
+            this.vslideInfoBox1 = new vSlide.VslideInfoBox();
+            this.vjoyInfoBox1 = new vSlide.VjoyInfoBox();
+            this.sliderLevelsPanel = new vSlide.SliderLevelsPanel();
+            this.sliderView = new vSlide.SliderView();
+            this.devicePanel = new vSlide.DevicePanel();
+            this.manipulatorPanel = new vSlide.SliderManipulatorPanel();
             this.SuspendLayout();
             // 
             // feedingButton
             // 
             this.feedingButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.feedingButton.Location = new System.Drawing.Point(36, 579);
+            this.feedingButton.Location = new System.Drawing.Point(36, 396);
             this.feedingButton.Name = "feedingButton";
             this.feedingButton.Size = new System.Drawing.Size(118, 23);
             this.feedingButton.TabIndex = 1;
             this.feedingButton.Text = "Start";
             this.feedingButton.UseVisualStyleBackColor = true;
-            this.feedingButton.Click += new System.EventHandler(this.feedingButton_Click);
+            this.feedingButton.Click += new System.EventHandler(this.FeedingButton_Click);
             // 
             // vslideInfoBox1
             // 
             this.vslideInfoBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.vslideInfoBox1.Location = new System.Drawing.Point(12, 447);
+            this.vslideInfoBox1.Location = new System.Drawing.Point(12, 264);
             this.vslideInfoBox1.Name = "vslideInfoBox1";
             this.vslideInfoBox1.Size = new System.Drawing.Size(165, 56);
             this.vslideInfoBox1.TabIndex = 33;
@@ -59,7 +59,7 @@ namespace vSlide
             // vjoyInfoBox1
             // 
             this.vjoyInfoBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.vjoyInfoBox1.Location = new System.Drawing.Point(12, 368);
+            this.vjoyInfoBox1.Location = new System.Drawing.Point(12, 185);
             this.vjoyInfoBox1.Margin = new System.Windows.Forms.Padding(0);
             this.vjoyInfoBox1.Name = "vjoyInfoBox1";
             this.vjoyInfoBox1.Size = new System.Drawing.Size(165, 76);
@@ -71,14 +71,14 @@ namespace vSlide
             | System.Windows.Forms.AnchorStyles.Left)));
             this.sliderLevelsPanel.Location = new System.Drawing.Point(12, 9);
             this.sliderLevelsPanel.Name = "sliderLevelsPanel";
-            this.sliderLevelsPanel.Size = new System.Drawing.Size(165, 356);
+            this.sliderLevelsPanel.Size = new System.Drawing.Size(165, 173);
             this.sliderLevelsPanel.TabIndex = 31;
             // 
             // sliderView
             // 
             this.sliderView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.sliderView.Location = new System.Drawing.Point(200, 532);
+            this.sliderView.Location = new System.Drawing.Point(200, 349);
             this.sliderView.MinimumSize = new System.Drawing.Size(0, 70);
             this.sliderView.Name = "sliderView";
             this.sliderView.Prefix = "Slider Value: ";
@@ -89,7 +89,7 @@ namespace vSlide
             // devicePanel
             // 
             this.devicePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.devicePanel.Location = new System.Drawing.Point(803, 444);
+            this.devicePanel.Location = new System.Drawing.Point(803, 261);
             this.devicePanel.Margin = new System.Windows.Forms.Padding(0);
             this.devicePanel.Name = "devicePanel";
             this.devicePanel.Size = new System.Drawing.Size(281, 158);
@@ -103,14 +103,14 @@ namespace vSlide
             this.manipulatorPanel.Location = new System.Drawing.Point(200, 9);
             this.manipulatorPanel.Margin = new System.Windows.Forms.Padding(0);
             this.manipulatorPanel.Name = "manipulatorPanel";
-            this.manipulatorPanel.Size = new System.Drawing.Size(887, 356);
+            this.manipulatorPanel.Size = new System.Drawing.Size(887, 173);
             this.manipulatorPanel.TabIndex = 28;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1096, 614);
+            this.ClientSize = new System.Drawing.Size(1096, 431);
             this.Controls.Add(this.vslideInfoBox1);
             this.Controls.Add(this.vjoyInfoBox1);
             this.Controls.Add(this.sliderLevelsPanel);
@@ -118,10 +118,7 @@ namespace vSlide
             this.Controls.Add(this.devicePanel);
             this.Controls.Add(this.manipulatorPanel);
             this.Controls.Add(this.feedingButton);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
-            this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1600, 820);
-            this.MinimumSize = new System.Drawing.Size(1000, 450);
+            this.MinimumSize = new System.Drawing.Size(1000, 470);
             this.Name = "MainForm";
             this.Text = "vSlide [experimental_build_1]";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
