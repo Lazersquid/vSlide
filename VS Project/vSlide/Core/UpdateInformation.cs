@@ -15,17 +15,9 @@ namespace vSlide
             get { return elapsedMs; }
         }
 
-        protected readonly int sliderMax;
-        public int SliderMax
-        {
-            get { return sliderMax; }
-        }
+        public readonly int MaxSliderValueAbs;
 
-        protected readonly ImmutableArray<decimal> sliderLevels;
-        public ImmutableArray<decimal> SliderLevels
-        {
-            get { return sliderLevels; }
-        }
+        public readonly ImmutableArray<decimal> SliderLevels;
 
         protected bool wasSliderModified = false;
         public bool WasSliderModified
@@ -40,7 +32,7 @@ namespace vSlide
             set
             {
                 value = Math.Max(value, 0);
-                value = Math.Min(value, SliderMax);
+                value = Math.Min(value, MaxSliderValueAbs);
                 sliderValueAbs = value;
             }
         }
@@ -49,13 +41,13 @@ namespace vSlide
         {
             get
             {
-                return decimal.Divide(SliderValueAbs, SliderMax);
+                return decimal.Divide(SliderValueAbs, MaxSliderValueAbs);
             }
             set
             {
                 value = Math.Max(value, 0);
                 value = Math.Min(value, 1);
-                SliderValueAbs = (int)(SliderMax * value);
+                SliderValueAbs = (int)(MaxSliderValueAbs * value);
             }
         }
 
@@ -79,16 +71,31 @@ namespace vSlide
             }
         }
 
-        public UpdateInformation(int elapsedMs, int sliderMax, ImmutableArray<decimal> sliderLevels, int sliderValueAbs, bool isInterpolating, bool isReturningToCenter)
+        public UpdateInformation(int elapsedMs, int maxSliderValueAbs, ImmutableArray<decimal> sliderLevels, int sliderValueAbs, bool isInterpolating, bool isReturningToCenter)
         {
             if (sliderLevels == null) throw new ArgumentNullException(nameof(sliderLevels));
 
             this.elapsedMs = elapsedMs;
-            this.sliderMax = sliderMax;
-            this.sliderLevels = sliderLevels;
+            this.MaxSliderValueAbs = maxSliderValueAbs;
+            this.SliderLevels = sliderLevels;
             this.sliderValueAbs = sliderValueAbs;
             this.isInterpolating = isInterpolating;
             this.isReturningToCenter = isReturningToCenter;
+        }
+
+        /// <summary>
+        /// Returns product of relative slider value (a factor between 0 and 1) and absolute maximum slider value
+        /// </summary>
+        /// <param name="relativeValueAsFactor"></param>
+        /// <returns></returns>
+        public int ToAbs(decimal relativeValueAsFactor)
+        {
+            if (relativeValueAsFactor > 1) throw new ArgumentOutOfRangeException();
+            if (relativeValueAsFactor < 0) throw new ArgumentOutOfRangeException();
+            var result = (int)(relativeValueAsFactor * MaxSliderValueAbs);
+            result = Math.Max(result, 0);
+            result = Math.Min(result, MaxSliderValueAbs);
+            return result;
         }
     }
 }

@@ -12,7 +12,32 @@ namespace vSlide
 {
     public partial class DecimalControl : UserControl
     {
-        protected decimal stepSize;
+        public const int DefaultFixedTitleSize = 55;
+
+        protected int fixedTitleWidth = -1;
+        public int FixedTitleWidth
+        {
+            get { return fixedTitleWidth; }
+            set
+            {
+                fixedTitleWidth = value;
+                titleLabel.AutoSize = !IsTitleSizeFixed;
+                titleLabel.Width = value;
+            }
+        }
+        public bool IsTitleSizeFixed
+        {
+            get { return fixedTitleWidth >= 0; }
+            set
+            {
+                FixedTitleWidth = value == true ? DefaultFixedTitleSize : -1;
+            }
+        }
+        public bool IsValueEditableByUser
+        {
+            get { return numericUpDown.Enabled; }
+            set { numericUpDown.Enabled = value; }
+        }
         public string Title
         {
             get { return titleLabel.Text; }
@@ -67,14 +92,14 @@ namespace vSlide
                 numericUpDown.Increment = value;
             }
         }
-
+        protected decimal resolution;
         public decimal Resolution
         {
-            get { return stepSize; }
+            get { return resolution; }
             set
             {
                 value = Math.Max(value, 0);
-                stepSize = value;
+                resolution = value;
             }
         }
         public decimal Value
@@ -93,9 +118,16 @@ namespace vSlide
             get
             {
                 var value = Value / 100;
-                Math.Min(value, 1);
-                Math.Max(value, 0);
+                value = Math.Min(value, 1);
+                value = Math.Max(value, 0);
                 return value;
+            }
+            set
+            {
+                value = Math.Min(value, 1);
+                value = Math.Max(value, 0);
+                value *= 100;
+                Value = value;
             }
         }
         public int NumericUpDownWidth

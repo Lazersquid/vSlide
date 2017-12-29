@@ -69,11 +69,17 @@ namespace vSlide
         protected void UpdateFeederConfiguration()
         {
             UpdateFeederManipulators();
+            UpdateFeederLevels();
         }
         protected void UpdateFeederManipulators()
         {
             var newManipulators = manipulatorPanel.CreateManipulators().ToImmutableArray();
             feeder.Manipulators = newManipulators;
+        }
+        protected void UpdateFeederLevels()
+        {
+            var newLevels = sliderLevelsPanel.CreateSliderLevels();
+            feeder.SliderLevels = newLevels;
         }
         #endregion
 

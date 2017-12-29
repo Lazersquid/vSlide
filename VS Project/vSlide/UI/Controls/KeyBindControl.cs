@@ -29,8 +29,7 @@ namespace vSlide
             get { return keyBind; }
             set
             {
-                if (value == null) throw new ArgumentNullException();
-                keyBind = value;
+                keyBind = value ?? throw new ArgumentNullException();
                 UpdateKeyBindLabel();
             }
         }

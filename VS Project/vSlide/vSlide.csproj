@@ -68,6 +68,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Actions\PreviousSliderLevelAction.cs" />
+    <Compile Include="Core\Actions\NextSliderLevelAction.cs" />
     <Compile Include="Core\KeyCollection.cs" />
     <Compile Include="Core\Triggers\ISliderTrigger.cs" />
     <Compile Include="Core\Triggers\KeyBindTrigger.cs" />
@@ -77,6 +79,18 @@
     <Compile Include="Exceptions\LoggingException.cs" />
     <Compile Include="Exceptions\VjoyDeviceException.cs" />
     <Compile Include="Logger\Logger.cs" />
+    <Compile Include="UI\Action Factories\NextSliderLevelActionFactory - Copy.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Action Factories\NextSliderLevelActionFactory - Copy.Designer.cs">
+      <DependentUpon>NextSliderLevelActionFactory - Copy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Action Factories\PreviousSliderLevelActionFactory.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Action Factories\PreviousSliderLevelActionFactory.Designer.cs">
+      <DependentUpon>PreviousSliderLevelActionFactory.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Action Factories\SetSliderValueActionFactory.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -202,6 +216,12 @@
     <Compile Include="UI\Trigger Factories\WhenKeyPressedTriggerFactory.Designer.cs">
       <DependentUpon>WhenKeyPressedTriggerFactory.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UI\Action Factories\NextSliderLevelActionFactory - Copy.resx">
+      <DependentUpon>NextSliderLevelActionFactory - Copy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Action Factories\PreviousSliderLevelActionFactory.resx">
+      <DependentUpon>PreviousSliderLevelActionFactory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Action Factories\SetSliderValueActionFactory.resx">
       <DependentUpon>SetSliderValueActionFactory.cs</DependentUpon>
     </EmbeddedResource>

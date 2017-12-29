@@ -37,7 +37,9 @@ namespace vSlide
 
         protected static readonly ImmutableArray<Factory<ISliderActionFactory>> actionSwapFactories = ImmutableArray.Create(
             new Factory<ISliderActionFactory>(Activator.CreateInstance<ModifySliderValueActionFactory>, "Modify slider by"),
-            new Factory<ISliderActionFactory>(Activator.CreateInstance<SetSliderValueActionFactory>, "Set slider to")
+            new Factory<ISliderActionFactory>(Activator.CreateInstance<SetSliderValueActionFactory>, "Set slider to"),
+            new Factory<ISliderActionFactory>(Activator.CreateInstance<NextSliderLevelActionFactory>, "Jump to next greater slider level"),
+            new Factory<ISliderActionFactory>(Activator.CreateInstance<PreviousSliderLevelActionFactory>, "Jump to next smaller slider level")
             );
 
 

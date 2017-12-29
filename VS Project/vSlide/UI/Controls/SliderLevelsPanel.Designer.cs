@@ -31,18 +31,15 @@ namespace vSlide
             this.groupBox = new System.Windows.Forms.GroupBox();
             this.mainTablePanel = new System.Windows.Forms.TableLayoutPanel();
             this.levelFactoriesFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.levelCountTitleLabel = new System.Windows.Forms.Label();
-            this.levelCountNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.customValuesCheckBox = new System.Windows.Forms.CheckBox();
             this.metaValuesTablePanel = new System.Windows.Forms.TableLayoutPanel();
             this.customValuesTitleLabel = new System.Windows.Forms.Label();
-            this.sliderLevelFactory1 = new SliderLevelFactory();
-            this.sliderLevelFactory2 = new SliderLevelFactory();
+            this.customValuesCheckBox = new System.Windows.Forms.CheckBox();
+            this.levelCountNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.levelCountTitleLabel = new System.Windows.Forms.Label();
             this.groupBox.SuspendLayout();
             this.mainTablePanel.SuspendLayout();
-            this.levelFactoriesFlowPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.levelCountNumericUpDown)).BeginInit();
             this.metaValuesTablePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.levelCountNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox
@@ -73,46 +70,15 @@ namespace vSlide
             // 
             // levelFactoriesFlowPanel
             // 
+            this.levelFactoriesFlowPanel.AutoScroll = true;
             this.levelFactoriesFlowPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.levelFactoriesFlowPanel.Controls.Add(this.sliderLevelFactory1);
-            this.levelFactoriesFlowPanel.Controls.Add(this.sliderLevelFactory2);
             this.levelFactoriesFlowPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.levelFactoriesFlowPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.levelFactoriesFlowPanel.Location = new System.Drawing.Point(3, 56);
             this.levelFactoriesFlowPanel.Name = "levelFactoriesFlowPanel";
             this.levelFactoriesFlowPanel.Size = new System.Drawing.Size(156, 235);
             this.levelFactoriesFlowPanel.TabIndex = 59;
-            // 
-            // levelCountTitleLabel
-            // 
-            this.levelCountTitleLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.levelCountTitleLabel.AutoSize = true;
-            this.levelCountTitleLabel.Location = new System.Drawing.Point(3, 6);
-            this.levelCountTitleLabel.Margin = new System.Windows.Forms.Padding(3);
-            this.levelCountTitleLabel.Name = "levelCountTitleLabel";
-            this.levelCountTitleLabel.Size = new System.Drawing.Size(63, 13);
-            this.levelCountTitleLabel.TabIndex = 35;
-            this.levelCountTitleLabel.Text = "Level count";
-            // 
-            // levelCountNumericUpDown
-            // 
-            this.levelCountNumericUpDown.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.levelCountNumericUpDown.Location = new System.Drawing.Point(85, 3);
-            this.levelCountNumericUpDown.Name = "levelCountNumericUpDown";
-            this.levelCountNumericUpDown.Size = new System.Drawing.Size(39, 20);
-            this.levelCountNumericUpDown.TabIndex = 36;
-            this.levelCountNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // customValuesCheckBox
-            // 
-            this.customValuesCheckBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.customValuesCheckBox.AutoSize = true;
-            this.customValuesCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.customValuesCheckBox.Location = new System.Drawing.Point(85, 29);
-            this.customValuesCheckBox.Name = "customValuesCheckBox";
-            this.customValuesCheckBox.Size = new System.Drawing.Size(15, 14);
-            this.customValuesCheckBox.TabIndex = 37;
-            this.customValuesCheckBox.UseVisualStyleBackColor = true;
+            this.levelFactoriesFlowPanel.WrapContents = false;
             // 
             // metaValuesTablePanel
             // 
@@ -144,23 +110,36 @@ namespace vSlide
             this.customValuesTitleLabel.TabIndex = 38;
             this.customValuesTitleLabel.Text = "Custom values";
             // 
-            // sliderLevelFactory1
+            // customValuesCheckBox
             // 
-            this.sliderLevelFactory1.AutoSize = true;
-            this.sliderLevelFactory1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.sliderLevelFactory1.Location = new System.Drawing.Point(3, 3);
-            this.sliderLevelFactory1.Name = "sliderLevelFactory1";
-            this.sliderLevelFactory1.Size = new System.Drawing.Size(147, 20);
-            this.sliderLevelFactory1.TabIndex = 0;
+            this.customValuesCheckBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.customValuesCheckBox.AutoSize = true;
+            this.customValuesCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.customValuesCheckBox.Location = new System.Drawing.Point(85, 29);
+            this.customValuesCheckBox.Name = "customValuesCheckBox";
+            this.customValuesCheckBox.Size = new System.Drawing.Size(15, 14);
+            this.customValuesCheckBox.TabIndex = 37;
+            this.customValuesCheckBox.UseVisualStyleBackColor = true;
             // 
-            // sliderLevelFactory2
+            // levelCountNumericUpDown
             // 
-            this.sliderLevelFactory2.AutoSize = true;
-            this.sliderLevelFactory2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.sliderLevelFactory2.Location = new System.Drawing.Point(3, 29);
-            this.sliderLevelFactory2.Name = "sliderLevelFactory2";
-            this.sliderLevelFactory2.Size = new System.Drawing.Size(147, 20);
-            this.sliderLevelFactory2.TabIndex = 1;
+            this.levelCountNumericUpDown.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.levelCountNumericUpDown.Location = new System.Drawing.Point(85, 3);
+            this.levelCountNumericUpDown.Name = "levelCountNumericUpDown";
+            this.levelCountNumericUpDown.Size = new System.Drawing.Size(39, 20);
+            this.levelCountNumericUpDown.TabIndex = 36;
+            this.levelCountNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // levelCountTitleLabel
+            // 
+            this.levelCountTitleLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.levelCountTitleLabel.AutoSize = true;
+            this.levelCountTitleLabel.Location = new System.Drawing.Point(3, 6);
+            this.levelCountTitleLabel.Margin = new System.Windows.Forms.Padding(3);
+            this.levelCountTitleLabel.Name = "levelCountTitleLabel";
+            this.levelCountTitleLabel.Size = new System.Drawing.Size(63, 13);
+            this.levelCountTitleLabel.TabIndex = 35;
+            this.levelCountTitleLabel.Text = "Level count";
             // 
             // SliderLevelsPanel
             // 
@@ -172,11 +151,9 @@ namespace vSlide
             this.groupBox.ResumeLayout(false);
             this.mainTablePanel.ResumeLayout(false);
             this.mainTablePanel.PerformLayout();
-            this.levelFactoriesFlowPanel.ResumeLayout(false);
-            this.levelFactoriesFlowPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.levelCountNumericUpDown)).EndInit();
             this.metaValuesTablePanel.ResumeLayout(false);
             this.metaValuesTablePanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.levelCountNumericUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -186,8 +163,6 @@ namespace vSlide
         private System.Windows.Forms.GroupBox groupBox;
         private System.Windows.Forms.TableLayoutPanel mainTablePanel;
         private System.Windows.Forms.FlowLayoutPanel levelFactoriesFlowPanel;
-        private SliderLevelFactory sliderLevelFactory1;
-        private SliderLevelFactory sliderLevelFactory2;
         private System.Windows.Forms.TableLayoutPanel metaValuesTablePanel;
         private System.Windows.Forms.Label customValuesTitleLabel;
         private System.Windows.Forms.CheckBox customValuesCheckBox;

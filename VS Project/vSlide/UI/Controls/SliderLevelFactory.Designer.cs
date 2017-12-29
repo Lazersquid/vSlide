@@ -49,27 +49,26 @@ namespace vSlide
             this.flowLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel.MinimumSize = new System.Drawing.Size(0, 10);
             this.flowLayoutPanel.Name = "flowLayoutPanel";
-            this.flowLayoutPanel.Size = new System.Drawing.Size(143, 20);
+            this.flowLayoutPanel.Size = new System.Drawing.Size(153, 20);
             this.flowLayoutPanel.TabIndex = 42;
             this.flowLayoutPanel.WrapContents = false;
             // 
             // titleLabel
             // 
             this.titleLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.titleLabel.AutoSize = true;
             this.titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.titleLabel.Location = new System.Drawing.Point(0, 3);
-            this.titleLabel.Margin = new System.Windows.Forms.Padding(0, 0, 10, 0);
+            this.titleLabel.Margin = new System.Windows.Forms.Padding(0, 0, 8, 0);
             this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(42, 13);
+            this.titleLabel.Size = new System.Drawing.Size(54, 13);
             this.titleLabel.TabIndex = 39;
-            this.titleLabel.Text = "Level 1";
+            this.titleLabel.Text = "Level 0";
             // 
             // valueTitleLable
             // 
             this.valueTitleLable.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.valueTitleLable.AutoSize = true;
-            this.valueTitleLable.Location = new System.Drawing.Point(52, 3);
+            this.valueTitleLable.Location = new System.Drawing.Point(62, 3);
             this.valueTitleLable.Margin = new System.Windows.Forms.Padding(0);
             this.valueTitleLable.Name = "valueTitleLable";
             this.valueTitleLable.Size = new System.Drawing.Size(37, 13);
@@ -80,7 +79,7 @@ namespace vSlide
             // 
             this.numericUpDown.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.flowLayoutPanel.SetFlowBreak(this.numericUpDown, true);
-            this.numericUpDown.Location = new System.Drawing.Point(89, 0);
+            this.numericUpDown.Location = new System.Drawing.Point(99, 0);
             this.numericUpDown.Margin = new System.Windows.Forms.Padding(0);
             this.numericUpDown.Name = "numericUpDown";
             this.numericUpDown.Size = new System.Drawing.Size(39, 20);
@@ -91,7 +90,7 @@ namespace vSlide
             // 
             this.label99.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label99.AutoSize = true;
-            this.label99.Location = new System.Drawing.Point(128, 3);
+            this.label99.Location = new System.Drawing.Point(138, 3);
             this.label99.Margin = new System.Windows.Forms.Padding(0);
             this.label99.Name = "label99";
             this.label99.Size = new System.Drawing.Size(15, 13);
@@ -106,7 +105,7 @@ namespace vSlide
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.flowLayoutPanel);
             this.Name = "SliderLevelFactory";
-            this.Size = new System.Drawing.Size(143, 20);
+            this.Size = new System.Drawing.Size(153, 20);
             this.flowLayoutPanel.ResumeLayout(false);
             this.flowLayoutPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).EndInit();
