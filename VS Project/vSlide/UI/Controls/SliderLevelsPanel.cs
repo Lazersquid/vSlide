@@ -41,36 +41,23 @@ namespace vSlide
                     if(levelCountDelta > 0)
                     {
                         levelCountDelta--;
-                        var lastControl = levelFactoriesFlowPanel.Controls[SliderLevelCount-1];
-                        levelFactoriesFlowPanel.Controls.RemoveAt(SliderLevelCount - 1);
+                        RemoveSliderLevel();
                     }
                     else
                     {
                         levelCountDelta++;
-                        var newControl = new DecimalControl
-                        {
-                            DecimalDigits = 1,
-                            Resolution = 0.5M,
-                            NumericUpDownIncrement = 0.5M,
-                            NumericUpDownWidth = 50,
-                            Minimum = 0,
-                            Maximum = 100,
-                            Value = 0,
-                            IsValueEditableByUser = IsUsingCustomValues,
-                            FixedTitleWidth = sliderLevelTitleFixedWidth,
-                            Title = sliderLevelPrefix + (SliderLevelCount + 1).ToString(),
-                            Suffix = sliderLevelSuffix,
-                            Margin = new Padding(seperationHeight)
-                        };
-                        levelFactoriesFlowPanel.Controls.Add(newControl);
+                        AddSliderLevel();
                     }
                 }
                 levelFactoriesFlowPanel.ResumeLayout();
 
+                // unneeded scrollbar sometimes only disappears by reseting auto-scroll
+                levelFactoriesFlowPanel.AutoScroll = false;
+                levelFactoriesFlowPanel.AutoScroll = true;
                 if (!IsUsingCustomValues) SetAutoLevelValues();
             }
         }
-
+        
         protected int sliderLevelTitleFixedWidth = 55;
         public int SliderLevelTitleFixedWidth
         {
@@ -125,14 +112,7 @@ namespace vSlide
             levelCountNumericUpDown.ValueChanged += LevelCountNumericUpDown_ValueChanged;
             customValuesCheckBox.CheckedChanged += CustomValuesCheckBox_CheckedChanged;
         }
-
-        protected void SetAutoLevelValues()
-        {
-            var stepSize = SliderLevelCount <= 1 ? 0 : decimal.Divide(100, SliderLevelCount-1);
-            UpdateSliderLevelDecimalControls(
-                (sliderLevel, i) => sliderLevel.Value = stepSize * i);
-        }
-
+        
         protected delegate void SliderLevelHandler(DecimalControl sliderLevelDecimalControl, int sliderLevelIndex);
         protected void UpdateSliderLevelDecimalControls(SliderLevelHandler sliderLevelHandler)
         {
@@ -147,6 +127,38 @@ namespace vSlide
                 sliderLevelHandler.Invoke(sliderLevel, i);
             }
             levelFactoriesFlowPanel.ResumeLayout();
+        }
+
+        protected void SetAutoLevelValues()
+        {
+            var stepSize = SliderLevelCount <= 1 ? 0 : decimal.Divide(100, SliderLevelCount-1);
+            UpdateSliderLevelDecimalControls(
+                (sliderLevel, i) => sliderLevel.Value = stepSize * i);
+        }
+
+        protected void AddSliderLevel()
+        {
+            var newControl = new DecimalControl
+            {
+                DecimalDigits = 1,
+                Resolution = 0.5M,
+                NumericUpDownIncrement = 0.5M,
+                NumericUpDownWidth = 50,
+                Minimum = 0,
+                Maximum = 100,
+                Value = 0,
+                IsValueEditableByUser = IsUsingCustomValues,
+                FixedTitleWidth = sliderLevelTitleFixedWidth,
+                Title = sliderLevelPrefix + (SliderLevelCount + 1).ToString(),
+                Suffix = sliderLevelSuffix,
+                Margin = new Padding(seperationHeight)
+            };
+            levelFactoriesFlowPanel.Controls.Add(newControl);
+        }
+
+        protected void RemoveSliderLevel()
+        {
+            levelFactoriesFlowPanel.Controls.RemoveAt(SliderLevelCount - 1);
         }
 
         protected void LevelCountNumericUpDown_ValueChanged(object sender, EventArgs e)

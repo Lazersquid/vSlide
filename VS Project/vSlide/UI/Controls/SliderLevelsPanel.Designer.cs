@@ -125,6 +125,11 @@ namespace vSlide
             // 
             this.levelCountNumericUpDown.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.levelCountNumericUpDown.Location = new System.Drawing.Point(85, 3);
+            this.levelCountNumericUpDown.Maximum = new decimal(new int[] {
+            101,
+            0,
+            0,
+            0});
             this.levelCountNumericUpDown.Name = "levelCountNumericUpDown";
             this.levelCountNumericUpDown.Size = new System.Drawing.Size(39, 20);
             this.levelCountNumericUpDown.TabIndex = 36;
