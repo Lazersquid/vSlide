@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace vSlide
 {
-    public partial class WhenKeyPressedTriggerFactory : UserControl, ISliderTriggerFactory, IRebindable
+    public partial class WhenKeyReleasedTriggerFactory : UserControl, ISliderTriggerFactory, IRebindable
     {
         public Control Control { get { return this; } }
 
@@ -23,14 +23,14 @@ namespace vSlide
             }
         }
 
-        public WhenKeyPressedTriggerFactory()
+        public WhenKeyReleasedTriggerFactory()
         {
             InitializeComponent();
         }
 
         public ISliderTrigger CreateTrigger()
         {
-            return new WhenKeyPressedTrigger(keyBindControl.KeyBind);
+            return new WhenKeyReleasedTrigger(keyBindControl.KeyBind, decimal.ToInt32(maxPressTimeDecimalControl.Value));
         }
 
         public void SubscribeToRebindInitializationCallback(RebindInitializeHandler initializeRebindCallback)

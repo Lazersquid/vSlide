@@ -6,29 +6,24 @@ using System.Threading.Tasks;
 
 namespace vSlide
 {
-    public class Factory <T>
+    public class Factory <T> : IHasDisplayString
     {
         #region fields
-        protected readonly FactoryHandler factoryHandler;
-        protected readonly string message;
+        public string DisplayString { get; }
+        protected FactoryHandler factoryHandler { get; }
         #endregion
 
         public delegate T FactoryHandler();
 
-        public Factory(FactoryHandler factoryHandler, string toStringString)
+        public Factory(FactoryHandler factoryHandler, string displayString)
         {
-            message = toStringString;
+            DisplayString = displayString;
             this.factoryHandler = factoryHandler;
         }
 
         public T CreateInstance()
         {
             return factoryHandler.Invoke();
-        }
-
-        public override string ToString()
-        {
-            return message;
         }
     }
 }

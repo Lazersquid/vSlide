@@ -39,6 +39,7 @@ namespace vSlide
             this.sliderTrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.sliderTrackBar.Enabled = false;
             this.sliderTrackBar.LargeChange = 20;
             this.sliderTrackBar.Location = new System.Drawing.Point(1, 14);
             this.sliderTrackBar.Margin = new System.Windows.Forms.Padding(0);
@@ -47,7 +48,6 @@ namespace vSlide
             this.sliderTrackBar.Name = "sliderTrackBar";
             this.sliderTrackBar.Size = new System.Drawing.Size(581, 45);
             this.sliderTrackBar.TabIndex = 28;
-            this.sliderTrackBar.ValueChanged += new System.EventHandler(this.sliderTrackBar_ValueChanged);
             // 
             // groupBox
             // 

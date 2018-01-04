@@ -18,10 +18,20 @@ namespace vSlide
             this.action = action ?? throw new ArgumentNullException(nameof(action));
         }
 
-        public void Execute(UpdateInformation updateInfo)
+        /// <summary>
+        /// Executes slider action if slider trigger is fired
+        /// </summary>
+        /// <param name="updateInfo"></param>
+        /// <returns> Whether the trigger of the manipulator fired or not. </returns>
+        public bool Execute(UpdateInformation updateInfo)
         {
             if (trigger.IsTriggered(updateInfo))
+            {
                 action.Execute(updateInfo);
+                return true;
+            }
+
+            return false;
         }
         #endregion
     }

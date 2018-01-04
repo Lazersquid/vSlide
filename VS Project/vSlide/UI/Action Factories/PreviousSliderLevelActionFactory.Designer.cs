@@ -46,7 +46,7 @@ namespace vSlide
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(188, 13);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(187, 13);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // titleLabel
@@ -57,11 +57,11 @@ namespace vSlide
             this.titleLabel.Location = new System.Drawing.Point(0, 0);
             this.titleLabel.Margin = new System.Windows.Forms.Padding(0);
             this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(188, 13);
+            this.titleLabel.Size = new System.Drawing.Size(187, 13);
             this.titleLabel.TabIndex = 0;
-            this.titleLabel.Text = "Jump to next greater slider level";
+            this.titleLabel.Text = "Jump to next smaller slider level";
             // 
-            // NextSliderLevelActionFactory
+            // PreviousSliderLevelActionFactory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -70,8 +70,8 @@ namespace vSlide
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Margin = new System.Windows.Forms.Padding(0);
-            this.Name = "NextSliderLevelActionFactory";
-            this.Size = new System.Drawing.Size(189, 14);
+            this.Name = "PreviousSliderLevelActionFactory";
+            this.Size = new System.Drawing.Size(188, 14);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);

@@ -10,9 +10,18 @@ using System.Windows.Forms;
 
 namespace vSlide
 {
-    public partial class WhileKeyPressedTriggerFactory : UserControl, ISliderTriggerFactory
+    public partial class WhileKeyPressedTriggerFactory : UserControl, ISliderTriggerFactory, IRebindable
     {
         public Control Control { get { return this; } }
+
+        public KeyBind KeyBind
+        {
+            get { return keyBindControl.KeyBind; }
+            set
+            {
+                keyBindControl.KeyBind = value ?? throw new ArgumentNullException();
+            }
+        }
 
         public WhileKeyPressedTriggerFactory()
         {

@@ -68,6 +68,9 @@ namespace vSlide
             this.deltaDecimalControl.AutoSize = true;
             this.deltaDecimalControl.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.deltaDecimalControl.DecimalDigits = 1;
+            this.deltaDecimalControl.FixedTitleWidth = -1;
+            this.deltaDecimalControl.IsTitleSizeFixed = false;
+            this.deltaDecimalControl.IsValueEditableByUser = true;
             this.deltaDecimalControl.Location = new System.Drawing.Point(95, 0);
             this.deltaDecimalControl.Margin = new System.Windows.Forms.Padding(0);
             this.deltaDecimalControl.Maximum = new decimal(new int[] {
@@ -97,10 +100,15 @@ namespace vSlide
             this.deltaDecimalControl.TabIndex = 1;
             this.deltaDecimalControl.Title = "Amount:";
             this.deltaDecimalControl.Value = new decimal(new int[] {
-            50,
+            25,
             0,
             0,
             65536});
+            this.deltaDecimalControl.ValueAsFactor = new decimal(new int[] {
+            25,
+            0,
+            0,
+            196608});
             // 
             // ModifySliderValueActionFactory
             // 

@@ -8,17 +8,13 @@ namespace vSlide
 {
     public class SetSliderValueAction : ISliderAction
     {
-        private readonly decimal sliderValue;
-        public decimal SliderValue
-        {
-            get { return sliderValue; }
-        }
+        public decimal SliderValue { get; }
         
         public SetSliderValueAction(decimal sliderValue)
         {
             sliderValue = Math.Max(sliderValue, 0);
             sliderValue = Math.Min(sliderValue, 100);
-            this.sliderValue = sliderValue;
+            SliderValue = sliderValue;
         }
 
         public void Execute(UpdateInformation updateInfo)

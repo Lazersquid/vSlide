@@ -70,9 +70,14 @@
   <ItemGroup>
     <Compile Include="Core\Actions\PreviousSliderLevelAction.cs" />
     <Compile Include="Core\Actions\NextSliderLevelAction.cs" />
+    <Compile Include="Core\Actions\SetSliderModeAction.cs" />
     <Compile Include="Core\KeyCollection.cs" />
+    <Compile Include="Core\SliderModes\ISliderMode.cs" />
+    <Compile Include="Core\SliderModes\DefaultSliderMode.cs" />
+    <Compile Include="Core\SliderModes\PingPongLerpSliderMode.cs" />
     <Compile Include="Core\Triggers\ISliderTrigger.cs" />
     <Compile Include="Core\Triggers\KeyBindTrigger.cs" />
+    <Compile Include="Core\Triggers\WhenKeyReleasedTrigger.cs" />
     <Compile Include="Core\Triggers\WhileKeyPressedTrigger.cs" />
     <Compile Include="Core\Triggers\WhenKeyPressedTrigger.cs" />
     <Compile Include="Exceptions\InvalidFeederOperationException.cs" />
@@ -184,6 +189,7 @@
       <DependentUpon>DesignExperimentForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Controls\IControl.cs" />
+    <Compile Include="UI\IHasDisplayString.cs" />
     <Compile Include="UI\InterfaceFactory.cs" />
     <Compile Include="UI\Trigger Factories\ISliderTriggerFactory.cs" />
     <Compile Include="Core\Actions\ISliderAction.cs" />
@@ -204,6 +210,12 @@
     <Compile Include="Core\SliderFeeder.cs" />
     <Compile Include="Core\SliderManipulator.cs" />
     <Compile Include="Core\UpdateInformation.cs" />
+    <Compile Include="UI\Trigger Factories\WhenKeyReleasedTriggerFactory.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Trigger Factories\WhenKeyReleasedTriggerFactory.Designer.cs">
+      <DependentUpon>WhenKeyReleasedTriggerFactory.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Trigger Factories\WhileKeyPressedTriggerFactory.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -280,6 +292,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UI\Trigger Factories\WhenKeyReleasedTriggerFactory.resx">
+      <DependentUpon>WhenKeyReleasedTriggerFactory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Trigger Factories\WhileKeyPressedTriggerFactory.resx">
       <DependentUpon>WhileKeyPressedTriggerFactory.cs</DependentUpon>
     </EmbeddedResource>

@@ -11,19 +11,16 @@ namespace vSlide
     public class SliderFeeder
     {
         #region fields & properties
+        public const uint MaxDeviceId = 16;
         private vJoy vJoyDriver;
 
-        private DriverState driverState;
-        public DriverState DriverState
-        {
-            get { return driverState; }
-        }
+        public DriverState DriverState { get; }
 
         public FeederState State
         {
             get
             {
-                if (driverState != DriverState.Ok)
+                if (DriverState != DriverState.Ok)
                     return FeederState.DriverError;
                 if (OwnedDeviceId == 0)
                     return FeederState.NoVjoyDevice;
@@ -39,10 +36,12 @@ namespace vSlide
 
             private set
             {
-                if (value > 16) throw new ArgumentOutOfRangeException();
+                if (value > MaxDeviceId) throw new ArgumentOutOfRangeException();
 
+                var isValueDifferent = ownedDeviceId != value;
                 ownedDeviceId = value;
-                OwnedDeviceIdChanged?.Invoke(this, null);
+
+                if (isValueDifferent) OwnedDeviceIdChanged?.Invoke(this, null);
             }
         }
 
@@ -86,12 +85,12 @@ namespace vSlide
 
                 value = Math.Max(value, 0);
                 value = Math.Min(value, MaxSliderValue);
-                
+
+                var isValueDifferent = sliderValueAbs != value;
                 vJoyDriver.SetAxis(value, ownedDeviceId, HID_USAGES.HID_USAGE_SL0);
                 sliderValueAbs = value;
 
-                if (SliderValueChanged != null)
-                    SliderValueChanged(this, null);
+                if(isValueDifferent) SliderValueChanged?.Invoke(this, null);
             }
         }
 
@@ -104,6 +103,16 @@ namespace vSlide
                 value = Math.Max(value, 0);
                 value = Math.Min(value, 1);
                 SliderValueAbs = (int)(value * MaxSliderValue);
+            }
+        }
+
+        private ISliderMode sliderMode;
+        public ISliderMode SliderMode
+        {
+            get { return sliderMode; }
+            set
+            {
+                sliderMode = value ?? throw new ArgumentNullException();
             }
         }
 
@@ -127,13 +136,14 @@ namespace vSlide
         {
             SliderLevels = ImmutableArray.Create<decimal>();
             Manipulators = ImmutableArray.Create<SliderManipulator>();
+            sliderMode = new DefaultSliderMode();
 
             vJoyDriver = new vJoy();
-            driverState = DriverState.VJoyNotInstalled;
+            DriverState = DriverState.VJoyNotInstalled;
 
             // checks if vjoy driver is installed
             if (!vJoyDriver.vJoyEnabled()) return;
-            driverState = DriverState.VersionMissmatch;
+            DriverState = DriverState.VersionMissmatch;
             vjoyDriverVersion = vJoyDriver.GetvJoyVersion().ToString();
 
             // checks if vjoy wraper dll version matches version of vjoy driver 
@@ -141,7 +151,7 @@ namespace vSlide
             var doesDriverMatch = vJoyDriver.DriverMatch(ref DllVer, ref DrvVer);
             vjoyDllVersion = DllVer.ToString();
             if (!doesDriverMatch) return;
-            driverState = DriverState.Ok;
+            DriverState = DriverState.Ok;
         }
 
         #region methods
@@ -151,11 +161,13 @@ namespace vSlide
             if (State != FeederState.Ready)
                 throw new InvalidFeederOperationException(State);
             
-            var updateInfo = new UpdateInformation(elapsedMs, MaxSliderValue, SliderLevels, SliderValueAbs, false, false);
+            var updateInfo = new UpdateInformation(elapsedMs, MaxSliderValue, SliderValueAbs, SliderLevels, sliderMode);
             foreach(var manipulator in manipulators)
             {
                 manipulator.Execute(updateInfo);
             }
+            sliderMode = updateInfo.SliderMode;
+            sliderMode.Execute(updateInfo);
             SliderValueAbs = updateInfo.SliderValueAbs;
         }
 
@@ -224,7 +236,7 @@ namespace vSlide
                 throw new InvalidFeederOperationException(State);
 
             // check all devices in case something went wrong and the feeder acquired other devices
-            for (uint deviceId = 1; deviceId <= 16; deviceId++)
+            for (uint deviceId = 1; deviceId <= MaxDeviceId; deviceId++)
             {
                 if (vJoyDriver.GetVJDStatus(deviceId) != VjdStat.VJD_STAT_OWN) continue;
                 RelinquishVJoyDevice(deviceId);
@@ -262,7 +274,7 @@ namespace vSlide
                 throw new InvalidFeederOperationException(State);
 
             List<uint> availableJoystickIds = new List<uint>();
-            for (uint deviceId = 1; deviceId <= 16; deviceId++)
+            for (uint deviceId = 1; deviceId <= MaxDeviceId; deviceId++)
             {
                 if (!IsDeviceAcquirable(deviceId)) continue;
                 availableJoystickIds.Add(deviceId);
@@ -271,30 +283,30 @@ namespace vSlide
             return availableJoystickIds.ToImmutableList();
         }
 
-        public DeviceStat GetDeviceStatus(uint deviceId)
+        public DeviceState GetDeviceStatus(uint deviceId)
         {
             var status = vJoyDriver.GetVJDStatus(deviceId);
             return VjdStatToDeviceStat(status);
         }
 
-        protected DeviceStat VjdStatToDeviceStat(VjdStat vjdStat)
+        protected DeviceState VjdStatToDeviceStat(VjdStat vjdStat)
         {
             switch (vjdStat)
             {
                 case VjdStat.VJD_STAT_FREE:
-                    return DeviceStat.Free;
+                    return DeviceState.Free;
 
                 case VjdStat.VJD_STAT_BUSY:
-                    return DeviceStat.Busy;
+                    return DeviceState.Busy;
 
                 case VjdStat.VJD_STAT_MISS:
-                    return DeviceStat.Missing;
+                    return DeviceState.Missing;
 
                 case VjdStat.VJD_STAT_OWN:
-                    return DeviceStat.Acquired;
+                    return DeviceState.Acquired;
 
                 default:
-                    return DeviceStat.Unknown;
+                    return DeviceState.Unknown;
             }
         }
         #endregion
@@ -315,7 +327,7 @@ public enum FeederState
     Ready
 }
 
-public enum DeviceStat
+public enum DeviceState
 {
     Unknown,
     Missing,

@@ -32,7 +32,8 @@ namespace vSlide
 
         protected static readonly ImmutableArray<Factory<ISliderTriggerFactory>> triggerSwapFactories = ImmutableArray.Create(
             new Factory<ISliderTriggerFactory>(Activator.CreateInstance<WhenKeyPressedTriggerFactory>, "On key pressed"),
-            new Factory<ISliderTriggerFactory>(Activator.CreateInstance<WhileKeyPressedTriggerFactory>, "While key pressed")
+            new Factory<ISliderTriggerFactory>(Activator.CreateInstance<WhileKeyPressedTriggerFactory>, "While key pressed"),
+            new Factory<ISliderTriggerFactory>(Activator.CreateInstance<WhenKeyReleasedTriggerFactory>, "On key released")
             );
 
         protected static readonly ImmutableArray<Factory<ISliderActionFactory>> actionSwapFactories = ImmutableArray.Create(
@@ -74,7 +75,7 @@ namespace vSlide
         protected void AddManipulator()
         {
             AddManipulator(new SliderManipulatorFactory(
-                new WhenKeyPressedTriggerFactory(),
+                new WhileKeyPressedTriggerFactory(),
                 new ModifySliderValueActionFactory(),
                 triggerSwapFactories.ToArray(),
                 actionSwapFactories.ToArray()));
@@ -111,10 +112,18 @@ namespace vSlide
 
         protected void ReplaceManipulator(SliderManipulatorFactory oldManipulator, SliderManipulatorFactory newManipulator)
         {
+            manipulatorsPanel.SuspendLayout();
             var index = manipulatorsPanel.Controls.IndexOf(oldManipulator);
             RemoveManipulator(oldManipulator);
             AddManipulator(newManipulator);
             manipulatorsPanel.Controls.SetChildIndex(newManipulator, index);
+
+            // keep key bind of old trigger if both triggers are rebindable
+            if(oldManipulator.triggerFactory is IRebindable && newManipulator.triggerFactory is IRebindable)
+            {
+                ((IRebindable)newManipulator.triggerFactory).KeyBind = ((IRebindable)oldManipulator.triggerFactory).KeyBind;
+            }
+            manipulatorsPanel.ResumeLayout();
         }
 
         protected void EnterRebindingState(IRebindable newRebindingRebindable)

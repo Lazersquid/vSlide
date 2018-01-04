@@ -54,7 +54,7 @@ namespace vSlide
             this.tableLayoutPanel.Name = "tableLayoutPanel";
             this.tableLayoutPanel.RowCount = 1;
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel.Size = new System.Drawing.Size(521, 23);
+            this.tableLayoutPanel.Size = new System.Drawing.Size(507, 20);
             this.tableLayoutPanel.TabIndex = 0;
             // 
             // tresholdDecimalControl
@@ -63,7 +63,10 @@ namespace vSlide
             this.tresholdDecimalControl.AutoSize = true;
             this.tresholdDecimalControl.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tresholdDecimalControl.DecimalDigits = 0;
-            this.tresholdDecimalControl.Location = new System.Drawing.Point(277, 1);
+            this.tresholdDecimalControl.FixedTitleWidth = -1;
+            this.tresholdDecimalControl.IsTitleSizeFixed = false;
+            this.tresholdDecimalControl.IsValueEditableByUser = true;
+            this.tresholdDecimalControl.Location = new System.Drawing.Point(277, 0);
             this.tresholdDecimalControl.Margin = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.tresholdDecimalControl.Maximum = new decimal(new int[] {
             1000,
@@ -87,11 +90,16 @@ namespace vSlide
             0,
             0,
             0});
-            this.tresholdDecimalControl.Size = new System.Drawing.Size(115, 20);
+            this.tresholdDecimalControl.Size = new System.Drawing.Size(101, 20);
             this.tresholdDecimalControl.Suffix = "ms";
             this.tresholdDecimalControl.TabIndex = 1;
-            this.tresholdDecimalControl.Title = "Treshold:";
+            this.tresholdDecimalControl.Title = "Delay:";
             this.tresholdDecimalControl.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.tresholdDecimalControl.ValueAsFactor = new decimal(new int[] {
             0,
             0,
             0,
@@ -102,7 +110,7 @@ namespace vSlide
             this.titleLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.titleLabel.AutoSize = true;
             this.titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titleLabel.Location = new System.Drawing.Point(0, 5);
+            this.titleLabel.Location = new System.Drawing.Point(0, 3);
             this.titleLabel.Margin = new System.Windows.Forms.Padding(0);
             this.titleLabel.Name = "titleLabel";
             this.titleLabel.Size = new System.Drawing.Size(111, 13);
@@ -118,7 +126,7 @@ namespace vSlide
             this.keyBindControl.Location = new System.Drawing.Point(111, 0);
             this.keyBindControl.Margin = new System.Windows.Forms.Padding(0);
             this.keyBindControl.Name = "keyBindControl";
-            this.keyBindControl.Size = new System.Drawing.Size(146, 23);
+            this.keyBindControl.Size = new System.Drawing.Size(146, 20);
             this.keyBindControl.TabIndex = 2;
             this.keyBindControl.Title = "Key:";
             // 
@@ -128,7 +136,10 @@ namespace vSlide
             this.intervalDecimalControl.AutoSize = true;
             this.intervalDecimalControl.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.intervalDecimalControl.DecimalDigits = 0;
-            this.intervalDecimalControl.Location = new System.Drawing.Point(412, 1);
+            this.intervalDecimalControl.FixedTitleWidth = -1;
+            this.intervalDecimalControl.IsTitleSizeFixed = false;
+            this.intervalDecimalControl.IsValueEditableByUser = true;
+            this.intervalDecimalControl.Location = new System.Drawing.Point(398, 0);
             this.intervalDecimalControl.Margin = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.intervalDecimalControl.Maximum = new decimal(new int[] {
             1000,
@@ -157,10 +168,15 @@ namespace vSlide
             this.intervalDecimalControl.TabIndex = 3;
             this.intervalDecimalControl.Title = "Interval:";
             this.intervalDecimalControl.Value = new decimal(new int[] {
-            5,
+            10,
             0,
             0,
             0});
+            this.intervalDecimalControl.ValueAsFactor = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             // 
             // WhileKeyPressedTriggerFactory
             // 
@@ -172,7 +188,7 @@ namespace vSlide
             this.Controls.Add(this.tableLayoutPanel);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "WhileKeyPressedTriggerFactory";
-            this.Size = new System.Drawing.Size(521, 23);
+            this.Size = new System.Drawing.Size(507, 20);
             this.tableLayoutPanel.ResumeLayout(false);
             this.tableLayoutPanel.PerformLayout();
             this.ResumeLayout(false);

@@ -50,7 +50,6 @@ namespace vSlide
             devicePanel.AcquireButtonClick += DevicePanel_AcquireButtonClick;
             feeder.SliderValueChanged += Feeder_SliderValueChanged;
             feeder.OwnedDeviceIdChanged += Feeder_OwnedDeviceIdChanged;
-            sliderView.ValueChanged += SliderView_ValueChanged;
             UpdateUI();
 
             if (feeder.State != FeederState.DriverError
@@ -58,6 +57,17 @@ namespace vSlide
             {
                 feeder.AcquireVjoyDevice();
             }
+
+            sliderModeComboBox.DisplayMember = "DisplayString";
+            sliderModeComboBox.Items.Add(new DefaultSliderMode());
+            sliderModeComboBox.Items.Add(new PingPongLerpSliderMode(10, 0.01M));
+            sliderModeComboBox.SelectionChangeCommitted += SliderModeComboBox_SelectionChangeCommitted;
+            sliderModeComboBox.SelectedIndex = 0;
+        }
+
+        private void SliderModeComboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            feeder.SliderMode = (ISliderMode)sliderModeComboBox.SelectedItem;
         }
 
         protected void FeederTick(int elapsedMs)
@@ -90,6 +100,7 @@ namespace vSlide
             UpdateManipulatorPanel();
             UpdateFeedingButton();
             UpdateSliderDisplay();
+            UpdateLevelsPanel();
         }
 
         protected void UpdatePanelEnables()
@@ -97,6 +108,7 @@ namespace vSlide
             UpdateManipulatorPanelEnabled();
             UpdateDevicePanelEnabled();
             UpdateSliderDisplayEnabled();
+            UpdateLevelsPanelEnabled();
         }
 
         #region FeedingButton
@@ -183,6 +195,23 @@ namespace vSlide
             if (feeder.State == FeederState.DriverError) return;
             if (sliderView.SliderValue != feeder.SliderValue)
                 sliderView.SetValue(feeder.SliderValue, false);
+        }
+        #endregion
+
+        #region SliderLevels
+        public void UpdateLevelsPanel()
+        {
+            UpdateLevelsPanelEnabled();
+        }
+
+        public void UpdateLevelsPanelEnabled()
+        {
+            if (feeder.State == FeederState.DriverError)
+            {
+                sliderLevelsPanel.Enabled = false;
+                return;
+            }
+            sliderLevelsPanel.Enabled = !IsFeeding;
         }
         #endregion
         #endregion

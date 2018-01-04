@@ -49,10 +49,12 @@ namespace vSlide
             this.actionFactory = actionFactory;
             actionFactory.Control.Anchor = AnchorStyles.Left;
             tableLayoutPanel.Controls.Add(actionFactory.Control, actionFactoryTableIndex, 0);
-
+            
+            triggerFactoryComboBox.DisplayMember = "DisplayString";
             triggerFactoryComboBox.Items.Clear();
             triggerFactoryComboBox.Items.AddRange(triggerSwapFactories);
 
+            actionFactoryComboBox.DisplayMember = "DisplayString";
             actionFactoryComboBox.Items.Clear();
             actionFactoryComboBox.Items.AddRange(actionSwapFactories);
 

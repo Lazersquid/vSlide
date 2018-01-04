@@ -9,21 +9,9 @@ namespace vSlide
 {
     public class UpdateInformation
     {
-        protected int elapsedMs;
-        public int ElapsedMs
-        {
-            get { return elapsedMs; }
-        }
-
-        public readonly int MaxSliderValueAbs;
-
-        public readonly ImmutableArray<decimal> SliderLevels;
-
-        protected bool wasSliderModified = false;
-        public bool WasSliderModified
-        {
-            get { return wasSliderModified; }
-        }
+        public int ElapsedMs { get; }
+        public int MaxSliderValueAbs { get; }
+        public ImmutableArray<decimal> SliderLevels { get; }
 
         protected int sliderValueAbs;
         public int SliderValueAbs
@@ -39,48 +27,34 @@ namespace vSlide
         
         public decimal SliderValue
         {
-            get
-            {
-                return decimal.Divide(SliderValueAbs, MaxSliderValueAbs);
-            }
+            get { return decimal.Divide(SliderValueAbs, MaxSliderValueAbs); }
             set
             {
                 value = Math.Max(value, 0);
                 value = Math.Min(value, 1);
-                SliderValueAbs = (int)(MaxSliderValueAbs * value);
+                SliderValueAbs = ToAbs(value);
             }
         }
 
-        protected bool isInterpolating;
-        public bool IsInterpolating
+        protected ISliderMode sliderMode;
+        public ISliderMode SliderMode
         {
-            get { return isInterpolating; }
+            get { return sliderMode; }
             set
             {
-                isInterpolating = value;
+                sliderMode = value ?? throw new ArgumentNullException();
             }
         }
 
-        protected bool isReturningToCenter;
-        public bool IsReturningToCenter
-        {
-            get { return isReturningToCenter; }
-            set
-            {
-                isReturningToCenter = value;
-            }
-        }
-
-        public UpdateInformation(int elapsedMs, int maxSliderValueAbs, ImmutableArray<decimal> sliderLevels, int sliderValueAbs, bool isInterpolating, bool isReturningToCenter)
+        public UpdateInformation(int elapsedMs, int maxSliderValueAbs, int sliderValueAbs, ImmutableArray<decimal> sliderLevels, ISliderMode sliderMode)
         {
             if (sliderLevels == null) throw new ArgumentNullException(nameof(sliderLevels));
 
-            this.elapsedMs = elapsedMs;
-            this.MaxSliderValueAbs = maxSliderValueAbs;
-            this.SliderLevels = sliderLevels;
-            this.sliderValueAbs = sliderValueAbs;
-            this.isInterpolating = isInterpolating;
-            this.isReturningToCenter = isReturningToCenter;
+            ElapsedMs = elapsedMs;
+            MaxSliderValueAbs = maxSliderValueAbs;
+            SliderValueAbs = sliderValueAbs;
+            SliderLevels = sliderLevels;
+            SliderMode = sliderMode;
         }
 
         /// <summary>
