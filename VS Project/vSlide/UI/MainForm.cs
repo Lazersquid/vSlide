@@ -101,6 +101,7 @@ namespace vSlide
             UpdateFeedingButton();
             UpdateSliderDisplay();
             UpdateLevelsPanel();
+            UpdateFeederStateLabel();
         }
 
         protected void UpdatePanelEnables()
@@ -212,6 +213,29 @@ namespace vSlide
                 return;
             }
             sliderLevelsPanel.Enabled = !IsFeeding;
+        }
+        #endregion
+
+        #region FeederStateLabel
+        protected void UpdateFeederStateLabel()
+        {
+            if (feeder.State == FeederState.Ready)
+                feederStateLabel.Text = "Setup successful.";
+            else if (feeder.State == FeederState.NoVjoyDevice)
+                feederStateLabel.Text = "Setup successful.\nSelect a Vjoy device!";
+            else if (feeder.State == FeederState.DriverError)
+            {
+                if(feeder.DriverState == DriverState.VJoyNotInstalled)
+                    feederStateLabel.Text = "Setup failed.\nVjoy is not installed or disabled!";
+                if (feeder.DriverState == DriverState.VersionMissmatch)
+                    feederStateLabel.Text = string.Format(
+                        "Setup failed.\nVjoy version ({0}) is not of expected version ({0})!",
+                        feeder.VjoyDriverVersion, feeder.VjoyDllVersion);
+            }
+            else
+            {
+                feederStateLabel.Text = "Setup failed due to unknown reason.";
+            }
         }
         #endregion
         #endregion

@@ -29,20 +29,21 @@ namespace vSlide
         private void InitializeComponent()
         {
             this.feedingButton = new System.Windows.Forms.Button();
+            this.sliderModeComboBox = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.devicePanel = new vSlide.DevicePanel();
             this.sliderView = new vSlide.SliderView();
             this.manipulatorPanel = new vSlide.SliderManipulatorPanel();
             this.sliderLevelsPanel = new vSlide.SliderLevelsPanel();
             this.vjoyInfoBox = new vSlide.VjoyInfoBox();
             this.vslideInfoBox = new vSlide.VslideInfoBox();
-            this.sliderModeComboBox = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.feederStateLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // feedingButton
             // 
             this.feedingButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.feedingButton.Location = new System.Drawing.Point(39, 588);
+            this.feedingButton.Location = new System.Drawing.Point(52, 585);
             this.feedingButton.Name = "feedingButton";
             this.feedingButton.Size = new System.Drawing.Size(118, 23);
             this.feedingButton.TabIndex = 1;
@@ -50,10 +51,30 @@ namespace vSlide
             this.feedingButton.UseVisualStyleBackColor = true;
             this.feedingButton.Click += new System.EventHandler(this.FeedingButton_Click);
             // 
+            // sliderModeComboBox
+            // 
+            this.sliderModeComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.sliderModeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.sliderModeComboBox.FormattingEnabled = true;
+            this.sliderModeComboBox.Location = new System.Drawing.Point(606, 498);
+            this.sliderModeComboBox.Name = "sliderModeComboBox";
+            this.sliderModeComboBox.Size = new System.Drawing.Size(138, 21);
+            this.sliderModeComboBox.TabIndex = 34;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(641, 482);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(65, 13);
+            this.label1.TabIndex = 35;
+            this.label1.Text = "Slider mode:";
+            // 
             // devicePanel
             // 
             this.devicePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.devicePanel.Location = new System.Drawing.Point(1103, 459);
+            this.devicePanel.Location = new System.Drawing.Point(1103, 456);
             this.devicePanel.Name = "devicePanel";
             this.devicePanel.Size = new System.Drawing.Size(208, 76);
             this.devicePanel.TabIndex = 29;
@@ -62,7 +83,7 @@ namespace vSlide
             // 
             this.sliderView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.sliderView.Location = new System.Drawing.Point(254, 541);
+            this.sliderView.Location = new System.Drawing.Point(254, 538);
             this.sliderView.MinimumSize = new System.Drawing.Size(0, 70);
             this.sliderView.Name = "sliderView";
             this.sliderView.Prefix = "Slider Value: ";
@@ -79,7 +100,7 @@ namespace vSlide
             this.manipulatorPanel.Margin = new System.Windows.Forms.Padding(0);
             this.manipulatorPanel.MaximumManipulators = 20;
             this.manipulatorPanel.Name = "manipulatorPanel";
-            this.manipulatorPanel.Size = new System.Drawing.Size(1060, 412);
+            this.manipulatorPanel.Size = new System.Drawing.Size(1060, 409);
             this.manipulatorPanel.TabIndex = 28;
             // 
             // sliderLevelsPanel
@@ -90,7 +111,7 @@ namespace vSlide
             this.sliderLevelsPanel.Location = new System.Drawing.Point(12, 12);
             this.sliderLevelsPanel.Name = "sliderLevelsPanel";
             this.sliderLevelsPanel.SeperationHeight = 2;
-            this.sliderLevelsPanel.Size = new System.Drawing.Size(191, 347);
+            this.sliderLevelsPanel.Size = new System.Drawing.Size(191, 344);
             this.sliderLevelsPanel.SliderLevelCount = 11;
             this.sliderLevelsPanel.SliderLevelPrefix = "Level ";
             this.sliderLevelsPanel.SliderLevelSuffix = "%";
@@ -100,7 +121,7 @@ namespace vSlide
             // vjoyInfoBox
             // 
             this.vjoyInfoBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.vjoyInfoBox.Location = new System.Drawing.Point(932, 459);
+            this.vjoyInfoBox.Location = new System.Drawing.Point(932, 456);
             this.vjoyInfoBox.Margin = new System.Windows.Forms.Padding(0);
             this.vjoyInfoBox.Name = "vjoyInfoBox";
             this.vjoyInfoBox.Size = new System.Drawing.Size(165, 76);
@@ -109,34 +130,29 @@ namespace vSlide
             // vslideInfoBox
             // 
             this.vslideInfoBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.vslideInfoBox.Location = new System.Drawing.Point(761, 459);
+            this.vslideInfoBox.Location = new System.Drawing.Point(761, 456);
             this.vslideInfoBox.Name = "vslideInfoBox";
             this.vslideInfoBox.Size = new System.Drawing.Size(165, 76);
             this.vslideInfoBox.TabIndex = 33;
             // 
-            // sliderModeComboBox
+            // feederStateLabel
             // 
-            this.sliderModeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.sliderModeComboBox.FormattingEnabled = true;
-            this.sliderModeComboBox.Location = new System.Drawing.Point(604, 488);
-            this.sliderModeComboBox.Name = "sliderModeComboBox";
-            this.sliderModeComboBox.Size = new System.Drawing.Size(138, 21);
-            this.sliderModeComboBox.TabIndex = 34;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(533, 491);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 13);
-            this.label1.TabIndex = 35;
-            this.label1.Text = "Slider mode:";
+            this.feederStateLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.feederStateLabel.AutoSize = true;
+            this.feederStateLabel.Location = new System.Drawing.Point(22, 538);
+            this.feederStateLabel.Name = "feederStateLabel";
+            this.feederStateLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.feederStateLabel.Size = new System.Drawing.Size(181, 13);
+            this.feederStateLabel.TabIndex = 36;
+            this.feederStateLabel.Text = "Setup failed due to unknown reason.";
+            this.feederStateLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1323, 623);
+            this.ClientSize = new System.Drawing.Size(1323, 620);
+            this.Controls.Add(this.feederStateLabel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.sliderModeComboBox);
             this.Controls.Add(this.devicePanel);
@@ -165,5 +181,6 @@ namespace vSlide
         private DevicePanel devicePanel;
         private System.Windows.Forms.ComboBox sliderModeComboBox;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label feederStateLabel;
     }
 }

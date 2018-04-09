@@ -271,11 +271,11 @@ namespace vSlide
             // addManipulatorButton
             // 
             this.addManipulatorButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.addManipulatorButton.Location = new System.Drawing.Point(406, 112);
+            this.addManipulatorButton.Location = new System.Drawing.Point(395, 112);
             this.addManipulatorButton.Name = "addManipulatorButton";
-            this.addManipulatorButton.Size = new System.Drawing.Size(75, 23);
+            this.addManipulatorButton.Size = new System.Drawing.Size(97, 23);
             this.addManipulatorButton.TabIndex = 0;
-            this.addManipulatorButton.Text = "Add new";
+            this.addManipulatorButton.Text = "New Manipulator";
             this.addManipulatorButton.UseVisualStyleBackColor = true;
             // 
             // SliderManipulatorPanel
